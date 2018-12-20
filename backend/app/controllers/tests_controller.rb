@@ -1,8 +1,13 @@
 class TestsController < ApplicationController
 
-    def create
+  def create
     test = Test.create(user_params)
-    end
+  end
+
+  def show
+    @test = Test.find_by(name: params[:id])
+    render json: @test
+  end
 
     def show
       @test = Test.find(name: params[:id])

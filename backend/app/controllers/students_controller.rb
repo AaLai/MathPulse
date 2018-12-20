@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
 
     def create
-    student = Student.create(user_params)
+      student = Student.create(user_params)
     end
 
   private
