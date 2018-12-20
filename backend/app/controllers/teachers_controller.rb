@@ -5,8 +5,8 @@ class TeachersController < ApplicationController
     end
 
     def show
-      teacher = Teacher.find_by(name: params[:id])
-      render json: teacher
+      @teacher = Teacher.find_by(name: params[:id])
+      render json: @teacher
     end
 
   private

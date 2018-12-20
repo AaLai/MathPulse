@@ -5,8 +5,8 @@ class TestsController < ApplicationController
   end
 
   def show
-    test = Test.find_by(name: params[:id])
-    render json: test
+    @test = Test.find_by(name: params[:id])
+    render json: @test
   end
 
   private
