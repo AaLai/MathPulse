@@ -6,12 +6,17 @@ class StudentsChannel < ApplicationCable::Channel
   end
 
   # Outbound to students
-  # Change student display to big Green checkmark
-  def welcome
+  # Send the individual student their question
+  def fakeq
+    the_question = Question.first
+    StudentsChannel.broadcast_to @student, the_question
   end
 
-  # Send the individual student their question
-  def question_send
+
+  def question_send(category, level)
+    next_question = Question.where(category: category).where(level: level)
+    StudentsChannel.broadcast_to @student, next_question
+
   end
 
   # End the test for ALL students
