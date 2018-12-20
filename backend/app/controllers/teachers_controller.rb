@@ -4,6 +4,11 @@ class TeachersController < ApplicationController
     teacher = Teacher.create(user_params)
     end
 
+    def show
+    @teacher = Teacher.find(params[:id])
+#    @products = @category.products.order(created_at: :desc)
+    end
+
   private
     def user_params
       params.require(:teacher).permit(:name)
