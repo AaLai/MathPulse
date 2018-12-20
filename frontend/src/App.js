@@ -1,27 +1,51 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TeacherLogin from './teacher/teachLogin';
+import StudentLogin from './student/studentLogin';
 
 class App extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      role: null
+    };
+  };
+
+  changeToTeacher = () => {
+    this.setState({role: 'teacher'})
+  };
+
+  changeToStudent = () => {
+    this.setState({role: 'student'})
+  }
+
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    if (this.state.role === 'teacher') {
+      return (
+        <div>
+          <TeacherLogin />
+        </div>
+      );
+    }
+    else if (this.state.role === 'student') {
+      return (
+        <div>
+          <StudentLogin />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <button onClick={this.changeToTeacher}> Teacher </button>
+          <br/>
+          <br/>
+          <button onClick={this.changeToStudent}> Student </button>
+        </div>
+      );
+    }
   }
 }
 
