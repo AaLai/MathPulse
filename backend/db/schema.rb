@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_222325) do
+ActiveRecord::Schema.define(version: 2018_12_20_140708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "catnum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "qtext"
+    t.string "a1"
+    t.string "a2"
+    t.string "a3"
+    t.string "a4"
+    t.string "correct_answer"
+    t.integer "level"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_questions_on_category_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
@@ -37,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_222325) do
     t.index ["teacher_id"], name: "index_tests_on_teacher_id"
   end
 
+  add_foreign_key "questions", "categories"
   add_foreign_key "students", "tests"
   add_foreign_key "tests", "teachers"
 end
