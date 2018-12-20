@@ -40,46 +40,36 @@ end
 
 puts "Finding or Creating Categories ..."
 
+Question.destroy_all
 Category.destroy_all
 
-cat1 = Category.find_or_create_by! name: 'Exponents'
-cat2 = Category.find_or_create_by! name: 'Fractions'
-cat3 = Category.find_or_create_by! name: 'Order of Operations'
+cat0 = Category.create!({name: 'Exponents', catnum: 1})
+cat1 = Category.create!({name: 'Fractions', catnum: 2})
+cat2 = Category.create!({name: 'BEDMAS', catnum: 3})
+cat3 = Category.create!({name: 'Algebra', catnum: 4})
+
+categories = [cat0, cat1, cat2, cat3]
+questions = ["What is 3 squared?", "What is three quarters of 5?", "What comes first * or +?", "If x = 6 what is 3x?"]
+
 
 ## PRODUCTS
 
 puts "Re-creating Questions ..."
 
-Question.destroy_all
-
-10.times do |index|
-  cat1.questions.create!({
-  qtext:  'What is 3 squared?',
-  ans1: Faker::Name.unique.name,
-  ans2: Faker::Name.unique.name,
-  ans3: Faker::Name.unique.name,
-  ans4: Faker::Name.unique.name
-})
+5.times do |y|
+  4.times do |x|
+    4.times do |index|
+      categories[x].questions.create!({
+      qtext:  questions[x],
+      a1: Faker::Name.unique.name,
+      a2: Faker::Name.unique.name,
+      a3: 'bingo',
+      a4: Faker::Name.unique.name,
+      correct_answer: 'bingo',
+      level: index
+    })
+    end
+  end
 end
 
-10.times do |index|
-  cat2.questions.create!({
-  qtext:  'What is 3 divided by 9?',
-  ans1: Faker::Name.unique.name,
-  ans2: Faker::Name.unique.name,
-  ans3: Faker::Name.unique.name,
-  ans4: Faker::Name.unique.name
-})
-end
-
-10.times do |index|
-  cat3.questions.create!({
-  category_id: 6,
-  qtext:  'Plot a line that goes through (0,0).',
-  ans1: Faker::Name.unique.name,
-  ans2: Faker::Name.unique.name,
-  ans3: Faker::Name.unique.name,
-  ans4: Faker::Name.unique.name
-})
-end
-p "Created #{Question.count} questions"
+p "Created #{Question.count} questions."
