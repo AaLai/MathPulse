@@ -5,6 +5,7 @@ class StudentsChannel < ApplicationCable::Channel
     stream_for @student
   end
 
+  # Outbound to students
   # Change student display to big Green checkmark
   def welcome
   end
@@ -17,6 +18,11 @@ class StudentsChannel < ApplicationCable::Channel
   def end_test
   end
 
+  # Inbound from students
+  def student_answer
+    # take in from the student the Category and Level it wants next
+    # pass over to question_send to send the next question with those parameters
+  end
 
 
 ##
