@@ -10,7 +10,7 @@ class TestsController < ApplicationController
   end
 
     def show
-      @test = Test.find(name: params[:id])
+      @test = Test.find_by(name: params[:id])
       render json: @test
     end
 

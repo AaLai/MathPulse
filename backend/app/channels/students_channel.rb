@@ -5,12 +5,15 @@ class StudentsChannel < ApplicationCable::Channel
     stream_for @student
   end
 
+  # Change student display to big Green checkmark
   def welcome
   end
 
+  # Send the individual student their question
   def question_send
   end
 
+  # End the test for ALL students
   def end_test
   end
 
