@@ -1432,3 +1432,505 @@ Processing by TestsController#create as JSON
 Completed 204 No Content in 38ms (ActiveRecord: 10.4ms)
 
 
+Started POST "/teachers" for ::1 at 2018-12-20 12:13:17 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"wq1lgl", "name"=>"happycat", "teacher_id"=>nil, "ready"=>nil, "teacher"=>{"name"=>"happycat"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "happycat"], ["created_at", "2018-12-20 17:13:17.869997"], ["updated_at", "2018-12-20 17:13:17.869997"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 9ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/teachers/happycat/" for ::1 at 2018-12-20 12:13:17 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"happycat"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "happycat"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 12ms (Views: 0.6ms | ActiveRecord: 7.4ms)
+
+
+Started POST "/tests" for ::1 at 2018-12-20 12:13:21 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"wq1lgl", "teacher_id"=>32, "test"=>{"name"=>"wq1lgl", "teacher_id"=>32}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (0.7ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "wq1lgl"], ["teacher_id", 32], ["created_at", "2018-12-20 17:13:21.505273"], ["updated_at", "2018-12-20 17:13:21.505273"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 5ms (ActiveRecord: 2.3ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 12:13:49 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"iaawz", "name"=>"bctbtyhf5b5tbt5h", "teacher_id"=>nil, "ready"=>nil, "teacher"=>{"name"=>"bctbtyhf5b5tbt5h"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "bctbtyhf5b5tbt5h"], ["created_at", "2018-12-20 17:13:49.849975"], ["updated_at", "2018-12-20 17:13:49.849975"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/teachers/bctbtyhf5b5tbt5h/" for ::1 at 2018-12-20 12:13:49 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"bctbtyhf5b5tbt5h"}
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "bctbtyhf5b5tbt5h"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tests" for ::1 at 2018-12-20 12:14:10 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"iaawz", "teacher_id"=>33, "test"=>{"name"=>"iaawz", "teacher_id"=>33}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (1.1ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "iaawz"], ["teacher_id", 33], ["created_at", "2018-12-20 17:14:10.897645"], ["updated_at", "2018-12-20 17:14:10.897645"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 11ms (ActiveRecord: 3.5ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 12:21:41 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"3j6sw6l", "name"=>"helloworld", "teacher_id"=>nil, "ready"=>nil, "teacher"=>{"name"=>"helloworld"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "helloworld"], ["created_at", "2018-12-20 17:21:41.033444"], ["updated_at", "2018-12-20 17:21:41.033444"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 9ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/teachers/helloworld/" for ::1 at 2018-12-20 12:21:41 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"helloworld"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "helloworld"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/tests" for ::1 at 2018-12-20 12:21:45 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"3j6sw6l", "teacher_id"=>34, "test"=>{"name"=>"3j6sw6l", "teacher_id"=>34}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (0.8ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "3j6sw6l"], ["teacher_id", 34], ["created_at", "2018-12-20 17:21:45.939002"], ["updated_at", "2018-12-20 17:21:45.939002"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 6ms (ActiveRecord: 2.4ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 12:22:22 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"bem69k", "name"=>"fdsafdsfaagf", "teacher_id"=>nil, "ready"=>nil, "teacher"=>{"name"=>"fdsafdsfaagf"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fdsafdsfaagf"], ["created_at", "2018-12-20 17:22:22.449485"], ["updated_at", "2018-12-20 17:22:22.449485"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/teachers/fdsafdsfaagf/" for ::1 at 2018-12-20 12:22:22 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"fdsafdsfaagf"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "fdsafdsfaagf"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 12:27:53 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TestsController#show as HTML
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 20ms (Views: 0.4ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/teachers/undefined/" for ::1 at 2018-12-20 12:37:11 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"undefined"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/tests/undefined/" for ::1 at 2018-12-20 12:47:26 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"undefined"}
+  [1m[36mTest Load (1.0ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/tests/undefined/" for ::1 at 2018-12-20 13:27:19 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"undefined"}
+  [1m[36mTest Load (2.0ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "undefined"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/tests/fdsa/" for ::1 at 2018-12-20 13:28:04 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fdsa"}
+  [1m[36mTest Load (0.6ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fdsa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tests/fdsa/" for ::1 at 2018-12-20 13:31:24 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fdsa"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fdsa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/fds/" for ::1 at 2018-12-20 13:31:51 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fds"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fds"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/fds/" for ::1 at 2018-12-20 13:32:05 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fds"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fds"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:32:35 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tests/dsa/" for ::1 at 2018-12-20 13:33:35 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"dsa"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "dsa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:33:44 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/null/" for ::1 at 2018-12-20 13:33:48 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"null"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "null"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tests/null/" for ::1 at 2018-12-20 13:33:53 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"null"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "null"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/fds/" for ::1 at 2018-12-20 13:36:32 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fds"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fds"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:36:41 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (1.0ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/tests/test/" for ::1 at 2018-12-20 13:38:31 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"test"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:38:40 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:39:08 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tests/ia/" for ::1 at 2018-12-20 13:48:12 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"ia"}
+  [1m[36mTest Load (2.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "ia"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:48:18 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:48:26 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"iaawz", "test_id"=>"iaawz", "student"=>{"name"=>"iaawz", "test_id"=>"iaawz"}}
+Unpermitted parameter: :test_id
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (2.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 652ms (ActiveRecord: 13.2ms)
+
+
+Started GET "/tests/fdsa/" for ::1 at 2018-12-20 13:50:42 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fdsa"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fdsa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:50:48 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:50:52 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Joe", "test_id"=>"iaawz", "student"=>{"name"=>"Joe", "test_id"=>"iaawz"}}
+Unpermitted parameter: :test_id
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 5ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:51:42 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:51:48 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Joe", "test_id"=>"iaawz", "student"=>{"name"=>"Joe", "test_id"=>"iaawz"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 25ms (ActiveRecord: 10.9ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:53:15 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:53:18 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Test", "test_id"=>"iaawz", "student"=>{"name"=>"Test", "test_id"=>"iaawz"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.5ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 142ms (ActiveRecord: 9.2ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 13:55:27 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 4.4ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:55:30 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Joe", "test_id"=>"iaawz", "student"=>{"name"=>"Joe", "test_id"=>"iaawz"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 138ms (ActiveRecord: 8.9ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 13:57:55 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>nil, "test_id"=>"iaawz", "student"=>{"name"=>nil, "test_id"=>"iaawz"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 14ms (ActiveRecord: 7.6ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 14:00:27 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 14:00:30 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Joe", "test_id"=>3, "student"=>{"name"=>"Joe", "test_id"=>3}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (2.8ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Joe"], ["test_id", 3], ["created_at", "2018-12-20 19:00:30.928563"], ["updated_at", "2018-12-20 19:00:30.928563"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 13ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 14:01:54 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 14:01:57 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"fdsaf", "test_id"=>3, "student"=>{"name"=>"fdsaf", "test_id"=>3}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (1.1ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "fdsaf"], ["test_id", 3], ["created_at", "2018-12-20 19:01:57.578390"], ["updated_at", "2018-12-20 19:01:57.578390"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 10ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/tests/fdsa/" for ::1 at 2018-12-20 14:04:32 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fdsa"}
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fdsa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 14:04:38 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 14:04:43 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Joe", "test_id"=>3, "student"=>{"name"=>"Joe", "test_id"=>3}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.6ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (1.2ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Joe"], ["test_id", 3], ["created_at", "2018-12-20 19:04:43.592732"], ["updated_at", "2018-12-20 19:04:43.592732"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 11ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/tests/fdasf/" for ::1 at 2018-12-20 14:05:15 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"fdasf"}
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "fdasf"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 14:05:23 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.6ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 14:05:27 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"fgsdgag", "test_id"=>3, "student"=>{"name"=>"fgsdgag", "test_id"=>3}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (1.1ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "fgsdgag"], ["test_id", 3], ["created_at", "2018-12-20 19:05:27.489325"], ["updated_at", "2018-12-20 19:05:27.489325"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 11ms (ActiveRecord: 3.6ms)
+
+

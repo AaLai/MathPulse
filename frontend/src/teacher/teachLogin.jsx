@@ -7,11 +7,17 @@ class TeacherLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      roomID: this.getRandomString(),
+      roomID: null,
       name: null,
       teacher_id: null,
-      socket: null
+      ready: null
     }
+  }
+
+  componentDidMount = () => {
+    const rand = this.getRandomString();
+    console.log('test')
+    this.setState({roomID: rand})
   }
 
   getRandomString = () => {
@@ -34,7 +40,11 @@ class TeacherLogin extends React.Component {
         name: this.state.roomID,
         teacher_id: this.state.teacher_id
       })
-    });
+    }).then( resp => {
+      if (resp.ok) {
+        this.setState({ready: 'ok'})
+      }
+    })
 
   };
 
@@ -67,7 +77,6 @@ class TeacherLogin extends React.Component {
         <div>
           <form onSubmit={this.handleSubmitName}>
             <label>User Name</label>
-            {this.state.roomID}
             <br />
             <input
               type='text'
@@ -78,13 +87,19 @@ class TeacherLogin extends React.Component {
           </form>
         </div>
       );
-    } else {
+    } else if (!this.state.ready) {
       return (
         <div>
         {this.state.teacher_id}<br/>
         {this.state.roomID}<br/>
         <button onClick={this.handleSubmitTest}> Create Test </button>
         }
+        </div>
+      )
+    } else {
+      return (
+        <div>
+        <h1> OMG THIS WORKS! (Put realtime test component here)</h1>
         </div>
       )
     }
