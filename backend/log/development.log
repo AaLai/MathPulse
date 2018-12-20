@@ -2174,3 +2174,152 @@ Started GET "/cable/" [WebSocket] for ::1 at 2018-12-20 15:54:12 -0500
 Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
 TeachersChannel is transmitting the subscription confirmation
 TeachersChannel is streaming from teachers_channel
+Finished "/cable/" [WebSocket] for ::1 at 2018-12-20 15:56:40 -0500
+TeachersChannel stopped streaming from teachers_channel
+Started POST "/teachers" for ::1 at 2018-12-20 15:57:05 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"zt5xyd", "name"=>"vfajfhlwke", "teacher_id"=>nil, "ready"=>nil, "teacher"=>{"name"=>"vfajfhlwke"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.1ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "vfajfhlwke"], ["created_at", "2018-12-20 20:57:05.863905"], ["updated_at", "2018-12-20 20:57:05.863905"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 9ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/teachers/vfajfhlwke/" for ::1 at 2018-12-20 15:57:05 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"vfajfhlwke"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "vfajfhlwke"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tests" for ::1 at 2018-12-20 15:57:12 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"zt5xyd", "teacher_id"=>45, "test"=>{"name"=>"zt5xyd", "teacher_id"=>45}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (1.3ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "zt5xyd"], ["teacher_id", 45], ["created_at", "2018-12-20 20:57:12.535143"], ["updated_at", "2018-12-20 20:57:12.535143"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 13ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/cable/cable" for ::1 at 2018-12-20 15:57:12 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 15:57:12 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Finished "/cable/cable" [WebSocket] for ::1 at 2018-12-20 15:57:41 -0500
+TeachersChannel stopped streaming from teachers_channel
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 16:18:00 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (1.3ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:13
+Completed 200 OK in 15ms (Views: 0.9ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 16:18:04 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"joe", "test_id"=>3, "student"=>{"name"=>"joe", "test_id"=>3}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (0.8ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "joe"], ["test_id", 3], ["created_at", "2018-12-20 21:18:04.880265"], ["updated_at", "2018-12-20 21:18:04.880265"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 23ms (ActiveRecord: 13.8ms)
+
+
+Started GET "/cable/cable" for ::1 at 2018-12-20 16:18:04 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:04 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Started GET "/cable/cable" for ::1 at 2018-12-20 16:18:04 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:04 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "StudentChannel"
+Finished "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:32 -0500
+TeachersChannel stopped streaming from teachers_channel
+Finished "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:32 -0500
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 16:18:44 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (0.5ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:13
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 16:18:48 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"tarwevcq", "test_id"=>3, "student"=>{"name"=>"tarwevcq", "test_id"=>3}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.8ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (1.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "tarwevcq"], ["test_id", 3], ["created_at", "2018-12-20 21:18:48.933836"], ["updated_at", "2018-12-20 21:18:48.933836"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 10ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/cable/cable" for ::1 at 2018-12-20 16:18:48 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:48 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Started GET "/cable/cable" for ::1 at 2018-12-20 16:18:48 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 16:18:48 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/channels/students_channel.rb:4
+StudentsChannel is transmitting the subscription confirmation
+StudentsChannel is streaming from students:
+Finished "/cable/cable" [WebSocket] for ::1 at 2018-12-20 17:06:37 -0500
+StudentsChannel stopped streaming from students:
+Finished "/cable/cable" [WebSocket] for ::1 at 2018-12-20 17:06:37 -0500
+TeachersChannel stopped streaming from teachers_channel
+Started GET "/tests/iaawz/" for ::1 at 2018-12-20 17:20:14 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"iaawz"}
+  [1m[36mTest Load (2.1ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "iaawz"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:13
+Completed 200 OK in 12ms (Views: 0.9ms | ActiveRecord: 8.5ms)
+
+
+Started POST "/students" for ::1 at 2018-12-20 17:20:18 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"tasfvasbgsd", "test_id"=>3, "student"=>{"name"=>"tasfvasbgsd", "test_id"=>3}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (1.0ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (2.1ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "tasfvasbgsd"], ["test_id", 3], ["created_at", "2018-12-20 22:20:18.246862"], ["updated_at", "2018-12-20 22:20:18.246862"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 12ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/cable/cable" for ::1 at 2018-12-20 17:20:18 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 17:20:18 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Started GET "/cable/cable" for ::1 at 2018-12-20 17:20:18 -0500
+Started GET "/cable/cable" [WebSocket] for ::1 at 2018-12-20 17:20:18 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/channels/students_channel.rb:4
+StudentsChannel is transmitting the subscription confirmation
+StudentsChannel is streaming from students:

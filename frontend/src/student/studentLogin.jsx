@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import { API_ROOT, HEADERS } from '../secrets';
-import logo from '../logo.svg';
+import QuestionHandler from './questionHandler'
 const cookies = new Cookies();
 
 class StudentLogin extends React.Component {
@@ -10,8 +10,7 @@ class StudentLogin extends React.Component {
     this.state = {
       testID: null,
       name: null,
-      formField: null,
-      greenCircleOfDeath: null
+      formField: null
     }
   }
 
@@ -89,18 +88,10 @@ class StudentLogin extends React.Component {
           </form>
         </div>
       )
-    } else if (this.state.greenCircleOfDeath === 'ok') {
+    } else {
       return (
-        <div>
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        <QuestionHandler studentName={this.state.name}/>
       )
-    } else if (!this.state.greenCircleOfDeath) {
-      return (
-            <div>
-            <h1> OMG THE LOGIC </h1>
-            </div>
-            )
     }
   }
 

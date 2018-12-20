@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { API_WS_ROOT , HEADERS } from '../secrets';
+import React, { Component } from 'react';
+import { API_WS_ROOT } from '../secrets';
 import ActionCable from 'actioncable'
 
 class RealTimeTest extends Component {
@@ -10,13 +10,12 @@ class RealTimeTest extends Component {
     }
   }
 
-
   componentDidMount = () => {
     this.createSocket();
   }
 
   createSocket() {
-    let cable = ActionCable.createConsumer('ws://localhost:3006/cable');
+    let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
 
     this.teacherChannel = cable.subscriptions.create ({
       channel: 'TeachersChannel'
