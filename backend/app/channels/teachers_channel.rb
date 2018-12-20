@@ -4,6 +4,12 @@ class TeachersChannel < ApplicationCable::Channel
     stream_from "teachers_channel"
   end
 
+  def who_is_online
+  end
+
+  def student_answer
+  end
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

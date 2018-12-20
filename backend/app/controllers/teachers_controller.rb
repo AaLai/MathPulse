@@ -5,7 +5,8 @@ class TeachersController < ApplicationController
     end
 
     def show
-    @teacher = Teacher.find(params[:id])
+      @teacher = Teacher.find(params[:id])
+      render json: @teacher
 #    @products = @category.products.order(created_at: :desc)
     end
 

@@ -5,6 +5,17 @@ class StudentsChannel < ApplicationCable::Channel
     stream_for @student
   end
 
+  def welcome
+  end
+
+  def question_send
+  end
+
+  def end_test
+  end
+
+
+
 ##
 #  def received(data)
 #    @teacher = how to we set this to go to the Teacher channel
