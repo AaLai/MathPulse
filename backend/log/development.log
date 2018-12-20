@@ -345,3 +345,1090 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 14ms (Views: 9.0ms | ActiveRecord: 0.0ms)
 
 
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_development"[0m
+  ↳ bin/rake:9
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_test"[0m
+  ↳ bin/rake:9
+  [1m[35m (338.1ms)[0m  [1m[35mCREATE DATABASE "backend_development" ENCODING = 'unicode'[0m
+  ↳ bin/rake:9
+  [1m[35m (261.1ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  ↳ bin/rake:9
+  [1m[35mSQL (1.0ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "students" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "name" character varying, "test_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE  INDEX  "index_students_on_test_id" ON "students"  ("test_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "teachers" CASCADE[0m
+  ↳ db/schema.rb:26
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "teachers" ("id" bigserial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:26
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "tests" CASCADE[0m
+  ↳ db/schema.rb:32
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "tests" ("id" bigserial primary key, "name" character varying, "teacher_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:32
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE  INDEX  "index_tests_on_teacher_id" ON "tests"  ("teacher_id")[0m
+  ↳ db/schema.rb:32
+  [1m[35m (5.3ms)[0m  [1m[35mALTER TABLE "students" ADD CONSTRAINT "fk_rails_21e5578683"
+FOREIGN KEY ("test_id")
+  REFERENCES "tests" ("id")
+[0m
+  ↳ db/schema.rb:40
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "tests" ADD CONSTRAINT "fk_rails_95b7544e73"
+FOREIGN KEY ("teacher_id")
+  REFERENCES "teachers" ("id")
+[0m
+  ↳ db/schema.rb:41
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181219222325)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181219222300),
+(20181219222240);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-20 00:45:32.538991"], ["updated_at", "2018-12-20 00:45:32.538991"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rake:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "students" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "name" character varying, "test_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE  INDEX  "index_students_on_test_id" ON "students"  ("test_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "teachers" CASCADE[0m
+  ↳ db/schema.rb:26
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "teachers" ("id" bigserial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "tests" CASCADE[0m
+  ↳ db/schema.rb:32
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "tests" ("id" bigserial primary key, "name" character varying, "teacher_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:32
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE  INDEX  "index_tests_on_teacher_id" ON "tests"  ("teacher_id")[0m
+  ↳ db/schema.rb:32
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "students" ADD CONSTRAINT "fk_rails_21e5578683"
+FOREIGN KEY ("test_id")
+  REFERENCES "tests" ("id")
+[0m
+  ↳ db/schema.rb:40
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "tests" ADD CONSTRAINT "fk_rails_95b7544e73"
+FOREIGN KEY ("teacher_id")
+  REFERENCES "teachers" ("id")
+[0m
+  ↳ db/schema.rb:41
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181219222325)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181219222300),
+(20181219222240);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-12-20 00:45:32.617698"], ["updated_at", "2018-12-20 00:45:32.617698"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rake:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rake:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2018-12-20 00:45:32.621421"], ["key", "environment"]]
+  ↳ bin/rake:9
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rake:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rake:9
+Started POST "/teachers" for ::1 at 2018-12-19 20:02:16 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#create as JSON
+  Parameters: {"_json"=>"test", "teacher"=>{}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 2.7ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: teacher):
+  
+app/controllers/teachers_controller.rb:9:in `user_params'
+app/controllers/teachers_controller.rb:4:in `create'
+Started POST "/teachers" for ::1 at 2018-12-19 20:04:32 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"test", "teacher"=>{"name"=>"test"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["created_at", "2018-12-20 01:04:32.137616"], ["updated_at", "2018-12-20 01:04:32.137616"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 26ms (ActiveRecord: 9.8ms)
+
+
+Started GET "/conversations" for ::1 at 2018-12-19 20:47:52 -0500
+Started POST "/teachers" for ::1 at 2018-12-19 20:47:52 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [GET] "/conversations"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Hi", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Hi"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Hi"], ["created_at", "2018-12-20 01:47:52.651881"], ["updated_at", "2018-12-20 01:47:52.651881"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 13ms (ActiveRecord: 17.7ms)
+
+
+Started GET "/teachers" for ::1 at 2018-12-19 20:51:19 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#index as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers"[0m
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 16ms (Views: 7.0ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/teachers/1" for ::1 at 2018-12-19 20:59:09 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for TeachersController):
+  
+actionpack (5.2.2) lib/abstract_controller/base.rb:129:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/teachers/1" for ::1 at 2018-12-19 20:59:52 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/teachers/hi" for ::1 at 2018-12-19 21:00:01 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"hi"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/teachers/hi" for ::1 at 2018-12-19 21:00:45 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"hi"}
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/teachers/hi" for ::1 at 2018-12-19 21:01:14 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/eskia/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"hi"}
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "hi"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/teachers/test" for ::1 at 2018-12-19 21:01:27 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"test"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 22ms (Views: 0.7ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/teachers/hi" for ::1 at 2018-12-19 21:01:35 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"hi"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "hi"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/teachers/hi" for ::1 at 2018-12-20 09:01:22 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"hi"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "hi"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/teachers/Hi/" for ::1 at 2018-12-20 09:02:19 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"Hi"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Hi"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/teachers/%7Bthis.state.name%7D" for ::1 at 2018-12-20 09:05:16 -0500
+Started POST "/teachers" for ::1 at 2018-12-20 09:05:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/teachers/%7Bthis.state.name%7D"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Kirby", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Kirby"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.5ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Kirby"], ["created_at", "2018-12-20 14:05:17.022089"], ["updated_at", "2018-12-20 14:05:17.022089"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 10ms (ActiveRecord: 8.1ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:07:22 -0500
+Started GET "/teachers/%7Bthis.state.name%7D" for ::1 at 2018-12-20 09:07:22 -0500
+Processing by TeachersController#create as JSON
+  
+  Parameters: {"roomID"=>nil, "name"=>"Yoshi", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Yoshi"}}
+ActionController::RoutingError (No route matches [GET] "/teachers/%7Bthis.state.name%7D"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Yoshi"], ["created_at", "2018-12-20 14:07:22.922238"], ["updated_at", "2018-12-20 14:07:22.922238"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 20ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/teachers/%7Bthis.state.name%7D" for ::1 at 2018-12-20 09:09:36 -0500
+Started POST "/teachers" for ::1 at 2018-12-20 09:09:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/teachers/%7Bthis.state.name%7D"):
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Cow", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Cow"}}
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.1ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Cow"], ["created_at", "2018-12-20 14:09:36.862921"], ["updated_at", "2018-12-20 14:09:36.862921"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 22ms (ActiveRecord: 3.2ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:10:12 -0500
+Started GET "/teachers/%7Bthis.state.name%7D/" for ::1 at 2018-12-20 09:10:12 -0500
+Processing by TeachersController#create as JSON
+  
+ActionController::RoutingError (No route matches [GET] "/teachers/%7Bthis.state.name%7D"):
+  
+  Parameters: {"roomID"=>nil, "name"=>"Testme", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Testme"}}
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (5.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.5ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Testme"], ["created_at", "2018-12-20 14:10:12.871440"], ["updated_at", "2018-12-20 14:10:12.871440"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 10ms (ActiveRecord: 6.6ms)
+
+
+Started GET "/Testme/" for ::1 at 2018-12-20 09:10:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/Testme"):
+  
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/teachers/Testme/" for ::1 at 2018-12-20 09:10:42 -0500
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"Testme"}
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Testme"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:12:21 -0500
+Started GET "/teachers/%7Bthis.state.name%7D/" for ::1 at 2018-12-20 09:12:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/teachers/%7Bthis.state.name%7D"):
+  
+Processing by TeachersController#create as JSON
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Parameters: {"roomID"=>nil, "name"=>"Yar", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Yar"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.3ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Yar"], ["created_at", "2018-12-20 14:12:21.301308"], ["updated_at", "2018-12-20 14:12:21.301308"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 5ms (ActiveRecord: 1.6ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:13:06 -0500
+Started GET "/teachers/Yoho/" for ::1 at 2018-12-20 09:13:06 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Yoho", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Yoho"}}
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"Yoho"}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Yoho"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mTeacher Create (1.0ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Yoho"], ["created_at", "2018-12-20 14:13:06.018185"], ["updated_at", "2018-12-20 14:13:06.018185"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/teachers/OMG/" for ::1 at 2018-12-20 09:21:17 -0500
+Started POST "/teachers" for ::1 at 2018-12-20 09:21:17 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"OMG"}
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"OMG", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"OMG"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeacher Load (1.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "OMG"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:4
+  ↳ app/controllers/teachers_controller.rb:9
+  [1m[36mTeacher Create (1.0ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "OMG"], ["created_at", "2018-12-20 14:21:17.182336"], ["updated_at", "2018-12-20 14:21:17.182336"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 6ms (ActiveRecord: 2.4ms)
+
+
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:22:05 -0500
+Started GET "/teachers/Kis/" for ::1 at 2018-12-20 09:22:05 -0500
+Processing by TeachersController#show as */*
+Processing by TeachersController#create as JSON
+  Parameters: {"id"=>"Kis"}
+  Parameters: {"roomID"=>nil, "name"=>"Kis", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Kis"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.5ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Kis"], ["created_at", "2018-12-20 14:22:05.585016"], ["updated_at", "2018-12-20 14:22:05.585016"]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Kis"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:4
+  ↳ app/controllers/teachers_controller.rb:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 4ms (ActiveRecord: 1.7ms)
+
+
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:23:17 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"rawrme", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"rawrme"}}
+Started GET "/teachers/rawrme/" for ::1 at 2018-12-20 09:23:17 -0500
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "rawrme"], ["created_at", "2018-12-20 14:23:17.789541"], ["updated_at", "2018-12-20 14:23:17.789541"]]
+  ↳ app/controllers/teachers_controller.rb:4
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"rawrme"}
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 12ms (ActiveRecord: 3.3ms)
+
+
+  [1m[36mTeacher Load (1.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "rawrme"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:25:06 -0500
+Started GET "/teachers/Missy/" for ::1 at 2018-12-20 09:25:06 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Missy", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Missy"}}
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"Missy"}
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Load (1.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Missy"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mTeacher Create (1.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Missy"], ["created_at", "2018-12-20 14:25:06.160303"], ["updated_at", "2018-12-20 14:25:06.160303"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 3.9ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:29:23 -0500
+Started GET "/teachers/MOo/" for ::1 at 2018-12-20 09:29:23 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"MOo", "teacher"=>nil, "socket"=>nil}
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"MOo"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: teacher):
+  [1m[36mTeacher Load (1.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "MOo"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 1.9ms)
+
+
+  
+app/controllers/teachers_controller.rb:15:in `user_params'
+app/controllers/teachers_controller.rb:4:in `create'
+Started GET "/teachers/MOO/" for ::1 at 2018-12-20 09:35:22 -0500
+Started POST "/teachers" for ::1 at 2018-12-20 09:35:22 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"MOO"}
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"MOO", "teacher"=>nil, "socket"=>nil}
+  [1m[36mTeacher Load (2.1ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "MOO"], ["LIMIT", 1]]
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: teacher):
+  ↳ app/controllers/teachers_controller.rb:9
+  
+app/controllers/teachers_controller.rb:15:in `user_params'
+app/controllers/teachers_controller.rb:4:in `create'
+Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 32.8ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:40:23 -0500
+Started GET "/teachers/LOA/" for ::1 at 2018-12-20 09:40:23 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"LOA", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"LOA"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"LOA"}
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Load (1.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "LOA"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+  [1m[36mTeacher Create (1.2ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "LOA"], ["created_at", "2018-12-20 14:40:23.266186"], ["updated_at", "2018-12-20 14:40:23.266186"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 8ms (ActiveRecord: 2.6ms)
+
+
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/teachers/FDSA/" for ::1 at 2018-12-20 09:53:35 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"FDSA"}
+  [1m[36mTeacher Load (1.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "FDSA"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Started POST "/teachers" for ::1 at 2018-12-20 09:53:35 -0500
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/teachers/FDSA/" for ::1 at 2018-12-20 09:53:35 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"FDSA"}
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"FDSA", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"FDSA"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTeacher Load (2.0ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "FDSA"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:4
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+  [1m[36mTeacher Create (1.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "FDSA"], ["created_at", "2018-12-20 14:53:35.313495"], ["updated_at", "2018-12-20 14:53:35.313495"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 3.1ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 09:54:24 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"OMGN", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"OMGN"}}
+Started GET "/teachers/OMGN/" for ::1 at 2018-12-20 09:54:24 -0500
+  [1m[35m (2.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"OMGN"}
+  [1m[36mTeacher Create (2.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "OMGN"], ["created_at", "2018-12-20 14:54:24.547614"], ["updated_at", "2018-12-20 14:54:24.547614"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Load (1.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "OMGN"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.9ms)
+
+
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 16ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/teachers/OMGN/" for ::1 at 2018-12-20 09:54:24 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"OMGN"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "OMGN"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 4.9ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:12:33 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"Rawrar", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"Rawrar"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.0ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Rawrar"], ["created_at", "2018-12-20 15:12:33.809388"], ["updated_at", "2018-12-20 15:12:33.809388"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 6ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/teachers/Rawrar/" for ::1 at 2018-12-20 10:12:33 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"Rawrar"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Rawrar"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 5.1ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:14:17 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"faew", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"faew"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "faew"], ["created_at", "2018-12-20 15:14:17.249673"], ["updated_at", "2018-12-20 15:14:17.249673"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 8ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/teachers/faew/" for ::1 at 2018-12-20 10:14:17 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"faew"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "faew"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:15:32 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>nil, "name"=>"FJHDASefasfd", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"FJHDASefasfd"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "FJHDASefasfd"], ["created_at", "2018-12-20 15:15:32.044317"], ["updated_at", "2018-12-20 15:15:32.044317"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/teachers/FJHDASefasfd/" for ::1 at 2018-12-20 10:15:32 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"FJHDASefasfd"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "FJHDASefasfd"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:37:56 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"y94obi1sns", "name"=>"khnglka", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"khnglka"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.1ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "khnglka"], ["created_at", "2018-12-20 15:37:56.666389"], ["updated_at", "2018-12-20 15:37:56.666389"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 6ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/teachers/khnglka/" for ::1 at 2018-12-20 10:37:56 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"khnglka"}
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "khnglka"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 6.5ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:53:14 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"name"=>"fhdasfjdhsalhf", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"fhdasfjdhsalhf"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (2.0ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fhdasfjdhsalhf"], ["created_at", "2018-12-20 15:53:14.844643"], ["updated_at", "2018-12-20 15:53:14.844643"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 8ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/teachers/fhdasfjdhsalhf/" for ::1 at 2018-12-20 10:53:14 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"fhdasfjdhsalhf"}
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "fhdasfjdhsalhf"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 8.2ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:53:58 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"cab", "name"=>"esvafea", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"esvafea"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "esvafea"], ["created_at", "2018-12-20 15:53:58.018059"], ["updated_at", "2018-12-20 15:53:58.018059"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/teachers/esvafea/" for ::1 at 2018-12-20 10:53:58 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"esvafea"}
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "esvafea"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:54:09 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"rg4", "name"=>"tavtavgdasf", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"tavtavgdasf"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "tavtavgdasf"], ["created_at", "2018-12-20 15:54:09.943046"], ["updated_at", "2018-12-20 15:54:09.943046"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/teachers/tavtavgdasf/" for ::1 at 2018-12-20 10:54:09 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"tavtavgdasf"}
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "tavtavgdasf"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:55:13 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"bmazpf", "name"=>"ioheavg", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"ioheavg"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.7ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "ioheavg"], ["created_at", "2018-12-20 15:55:13.015483"], ["updated_at", "2018-12-20 15:55:13.015483"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/teachers/ioheavg/" for ::1 at 2018-12-20 10:55:13 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"ioheavg"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "ioheavg"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:55:23 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"ljzgyv", "name"=>"vtrqe", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"vtrqe"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "vtrqe"], ["created_at", "2018-12-20 15:55:23.853400"], ["updated_at", "2018-12-20 15:55:23.853400"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/teachers/vtrqe/" for ::1 at 2018-12-20 10:55:23 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"vtrqe"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "vtrqe"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:55:36 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"csivu8", "name"=>"hbrwtwvga", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"hbrwtwvga"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.7ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hbrwtwvga"], ["created_at", "2018-12-20 15:55:36.521091"], ["updated_at", "2018-12-20 15:55:36.521091"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/teachers/hbrwtwvga/" for ::1 at 2018-12-20 10:55:36 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"hbrwtwvga"}
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "hbrwtwvga"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 10:59:25 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"qa5yui6c", "name"=>"trgvjahkl", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"trgvjahkl"}}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "trgvjahkl"], ["created_at", "2018-12-20 15:59:25.624785"], ["updated_at", "2018-12-20 15:59:25.624785"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 9ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/teachers/trgvjahkl/" for ::1 at 2018-12-20 10:59:25 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"trgvjahkl"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "trgvjahkl"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 11:00:16 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"qko4yik", "name"=>"fdsakjlhhfewv", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"fdsakjlhhfewv"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fdsakjlhhfewv"], ["created_at", "2018-12-20 16:00:16.551414"], ["updated_at", "2018-12-20 16:00:16.551414"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 7ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/teachers/fdsakjlhhfewv/" for ::1 at 2018-12-20 11:00:16 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"fdsakjlhhfewv"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "fdsakjlhhfewv"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 11:02:23 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"5f74xl", "name"=>"blahfds", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"blahfds"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.7ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "blahfds"], ["created_at", "2018-12-20 16:02:23.743839"], ["updated_at", "2018-12-20 16:02:23.743839"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 6ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/teachers/blahfds/" for ::1 at 2018-12-20 11:02:23 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"blahfds"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "blahfds"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 11:04:47 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"m63lf7", "name"=>"jm0j98", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"jm0j98"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.0ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "jm0j98"], ["created_at", "2018-12-20 16:04:47.686871"], ["updated_at", "2018-12-20 16:04:47.686871"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 9ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/teachers/jm0j98/" for ::1 at 2018-12-20 11:04:47 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"jm0j98"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "jm0j98"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 11:26:44 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"38em3", "name"=>"fvdskalf", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"fvdskalf"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "fvdskalf"], ["created_at", "2018-12-20 16:26:44.820131"], ["updated_at", "2018-12-20 16:26:44.820131"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 12ms (ActiveRecord: 9.6ms)
+
+
+Started GET "/teachers/fvdskalf/" for ::1 at 2018-12-20 11:26:44 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"fvdskalf"}
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "fvdskalf"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/teachers" for ::1 at 2018-12-20 11:27:58 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"9c65rf", "name"=>"testme", "teacher_id"=>nil, "socket"=>nil, "teacher"=>{"name"=>"testme"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.9ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "testme"], ["created_at", "2018-12-20 16:27:58.527968"], ["updated_at", "2018-12-20 16:27:58.527968"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 8ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/teachers/testme/" for ::1 at 2018-12-20 11:27:58 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"testme"}
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "testme"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:9
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/tests" for ::1 at 2018-12-20 11:28:00 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"9c65rf", "teacher_id"=>31, "test"=>{"name"=>"9c65rf", "teacher_id"=>31}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (1.5ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "9c65rf"], ["teacher_id", 31], ["created_at", "2018-12-20 16:28:00.376674"], ["updated_at", "2018-12-20 16:28:00.376674"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 38ms (ActiveRecord: 10.4ms)
+
+

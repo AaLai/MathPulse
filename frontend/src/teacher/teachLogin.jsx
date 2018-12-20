@@ -1,25 +1,63 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import { API_ROOT, HEADERS } from '../secrets';
 const cookies = new Cookies();
 
 class TeacherLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      roomID: null,
-      user: null
+      roomID: this.getRandomString(),
+      name: null,
+      teacher_id: null,
+      socket: null
     }
   }
 
+  getRandomString = () => {
+    var result = '';
+    while (!result || result.length > 7 || result.length < 4)
+      result = Math.random().toString(36).substring(7);
+    return result;
+  }
+
   handleChange = form => {
-    this.setState({ user: form.target.value });
+    this.setState({ name: form.target.value });
   };
 
-
-  handleSubmit = form => {
+  handleSubmitTest = form => {
     form.preventDefault();
-    cookies.set('teach', this.state.user, { path: "/" });
-    this.setState({ user: "" });
+    fetch(`${API_ROOT}/tests`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify({
+        name: this.state.roomID,
+        teacher_id: this.state.teacher_id
+      })
+    });
+
+  };
+
+  handleSubmitName = form => {
+    form.preventDefault();
+    fetch(`${API_ROOT}/teachers`, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(this.state)
+    })
+    .then( resp => {
+      if (resp.ok) {
+        this.getTeacherId()
+      }
+    });
+  };
+
+  getTeacherId = () => {
+    fetch(`${API_ROOT}/teachers/${this.state.name}/`)
+      .then(res => res.json())
+      .then(teacherInfo => this.setState({teacher_id: teacherInfo.id }));
+    cookies.set('teach', this.state.name, { path: "/" });
+    this.setState({ name: '' });
   };
 
 
@@ -27,8 +65,9 @@ class TeacherLogin extends React.Component {
     if (!cookies.get('teach')) {
       return (
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmitName}>
             <label>User Name</label>
+            {this.state.roomID}
             <br />
             <input
               type='text'
@@ -42,7 +81,10 @@ class TeacherLogin extends React.Component {
     } else {
       return (
         <div>
-          I'm a teacher!
+        {this.state.teacher_id}<br/>
+        {this.state.roomID}<br/>
+        <button onClick={this.handleSubmitTest}> Create Test </button>
+        }
         </div>
       )
     }

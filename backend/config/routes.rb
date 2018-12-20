@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :teachers, only: [:create]
+  resources :teachers, only: [:create, :show]
   resources :students, only: [:create]
   resources :tests, only: [:create]
   mount ActionCable.server => '/cable'

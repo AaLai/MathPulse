@@ -7,6 +7,7 @@ class StudentLogin extends React.Component {
     super(props);
     this.state = {
       testID: null,
+      roomID: null,
       user: null
     }
   }
