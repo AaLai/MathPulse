@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import { API_ROOT, HEADERS } from '../secrets';
+import RealTimeTest from './realTimeTest'
 const cookies = new Cookies();
 
 class TeacherLogin extends React.Component {
@@ -96,11 +97,9 @@ class TeacherLogin extends React.Component {
         }
         </div>
       )
-    } else {
+    } else if (this.state.ready === 'ok') {
       return (
-        <div>
-        <h1> OMG THIS WORKS! (Put realtime test component here)</h1>
-        </div>
+        <RealTimeTest />
       )
     }
   }
