@@ -9,12 +9,12 @@ class QuestionHandler extends Component {
     super(props);
     this.state = {
       qtext: null,
-      a1: null,
+      a1: "(╯°□°）╯︵ ┻━┻",
       a2: null,
       a3: null,
       a4: null,
       correct_answer: null,
-      level: 2,
+      level: 3,
       category_id: 1,
       selected_answer: null
     }
@@ -25,7 +25,7 @@ class QuestionHandler extends Component {
     this.createSocketStudent();
   }
 
-  checkAnswer = (number) => {
+  checkAnswer = () => {
   }
 
   createSocketTeacher() {
@@ -36,26 +36,10 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-        if (data.qtext) {
-          this.setState({
-                 qtext: data.qtext,
-                    a1: data.a1,
-                    a2: data.a2,
-                    a3: data.a3,
-                    a4: data.a4,
-        correct_answer: data.correct_answer
-          });
-        }
       }
       // ,
       // rightAnswer: function() {
-      //   this.perform('Correct_Answer', {
-      //     qtext: this.state.qtext,
-      //     answer: this.state.selected_answer
-      //   })
-      // },
-      // incorrectAnswer: function() {
-      //   this.perform('Incorrect_Answer', {
+      //   this.perform('Send_Answer', {
       //     qtext: this.state.qtext,
       //     answer: this.state.selected_answer
       //   })
@@ -71,18 +55,32 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-        alert(data)
+        if (data.qtext) {
+          this.setState({
+            qtext: data.qtext,
+               a1: data.a1,
+               a2: data.a2,
+               a3: data.a3,
+               a4: data.a4,
+   correct_answer: data.correct_answer
+          });
+        }
       }
     });
   }
 
+  handleChange = event => {
+    this.setState({selected_answer: event.target.value});
+  }
 
   render = () => {
     if (!this.state.qtext) {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <button > <h2>The Test Button </h2> </button>
+         <input type='button' value={this.state.a1} onClick={this.handleChange}>
+         </input>
+         <h2> {this.state.selected_answer} </h2>
         </div>
       )
     } else {
