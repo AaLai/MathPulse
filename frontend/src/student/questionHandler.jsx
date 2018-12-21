@@ -14,54 +14,42 @@ class QuestionHandler extends Component {
       a3: null,
       a4: null,
       correct_answer: null,
+      selected_answer: null,
       level: 3,
       category_id: 1,
-      selected_answer: null
+      round: 0
     }
   }
 
   componentDidMount = () => {
-    this.createSocketTeacher();
     this.createSocketStudent();
   }
 
 
-  createSocketTeacher() {
-    let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
-
-    this.teacherChannel = cable.subscriptions.create ({
-      channel: 'TeachersChannel'
-    }, {
-      connected: () => {},
-      received: (data) => {
-        alert(data)
-      }
-    });
-  }
-
   createSocketStudent() {
-    let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
+    let cable = ActionCable.createConsumer(`${API_WS_ROOT}`);
 
     this.studentChannel = cable.subscriptions.create ({
       channel: 'StudentsChannel', name: this.props.studentName
     }, {
       connected: () => {},
       received: (data) => {
-        if (data.qtext) {
+        if (data[0].qtext) {
           this.setState({
-            qtext: data.qtext,
-               a1: data.a1,
-               a2: data.a2,
-               a3: data.a3,
-               a4: data.a4,
-   correct_answer: data.correct_answer
+            qtext: data[0].qtext,
+               a1: data[0].a1,
+               a2: data[0].a2,
+               a3: data[0].a3,
+               a4: data[0].a4,
+   correct_answer: data[0].correct_answer
           });
         }
       },
-      rightAnswer: function(cat, lvl) {
+      rightAnswer: function(cat, lvl, round) {
         this.perform('question_send', {
           category: cat,
-          level: lvl
+          level: lvl,
+          round: round
         })
       }
     });
@@ -69,7 +57,7 @@ class QuestionHandler extends Component {
 
   handleChange = event => {
     this.setState({selected_answer: event.target.value});
-    this.studentChannel.rightAnswer(this.state.category_id, this.state.level);
+    this.studentChannel.rightAnswer(this.state.category_id, this.state.level, this.state.round);
   }
 
   render = () => {
@@ -77,7 +65,7 @@ class QuestionHandler extends Component {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <input type='button' value={this.state.a1} onClick={this.handleChange}>
+         <input type='button' value='Get Question' onClick={this.handleChange}>
          </input>
          <h2> {this.state.selected_answer} </h2>
         </div>
