@@ -13,8 +13,8 @@ class StudentsChannel < ApplicationCable::Channel
     StudentsChannel.broadcast_to @student, the_question
   end
 
-  def question_send(category, level)
-    next_question = Question.where(category: category).where(level: level)
+  def question_send(data)
+    next_question = Question.where(category: data["category"]).where(level: data["level"])
     StudentsChannel.broadcast_to @student, next_question
   end
 
