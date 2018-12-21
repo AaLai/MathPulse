@@ -9,8 +9,6 @@ class TeachersChannel < ApplicationCable::Channel
   end
 
   # takes in the info from REACT and then broadcasts it to the scoreboard
-  def student_answer
-  end
 
   # INBound messages from Teachers
   def start_test
