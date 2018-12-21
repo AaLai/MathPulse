@@ -56,7 +56,9 @@ class QuestionHandler extends Component {
   }
 
   handleChange = event => {
-    this.setState({selected_answer: event.target.value});
+    let x = this.state.category_id + 1
+    this.setState({selected_answer: event.target.value,
+                       category_id: x});
     this.studentChannel.rightAnswer(this.state.category_id, this.state.level, this.state.round);
   }
 
