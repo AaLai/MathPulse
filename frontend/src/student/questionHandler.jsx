@@ -14,33 +14,20 @@ class QuestionHandler extends Component {
       a3: null,
       a4: null,
       correct_answer: null,
+      selected_answer: null,
       level: 3,
       category_id: 1,
-      selected_answer: null
+      round: 0
     }
   }
 
   componentDidMount = () => {
-    this.createSocketTeacher();
     this.createSocketStudent();
   }
 
 
-  createSocketTeacher() {
-    let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
-
-    this.teacherChannel = cable.subscriptions.create ({
-      channel: 'TeachersChannel'
-    }, {
-      connected: () => {},
-      received: (data) => {
-        alert(data)
-      }
-    });
-  }
-
   createSocketStudent() {
-    let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
+    let cable = ActionCable.createConsumer(`${API_WS_ROOT}`);
 
     this.studentChannel = cable.subscriptions.create ({
       channel: 'StudentsChannel', name: this.props.studentName
@@ -58,10 +45,11 @@ class QuestionHandler extends Component {
           });
         }
       },
-      rightAnswer: function(cat, lvl) {
+      rightAnswer: function(cat, lvl, round) {
         this.perform('question_send', {
           category: cat,
-          level: lvl
+          level: lvl,
+          round: round
         })
       }
     });
@@ -69,7 +57,7 @@ class QuestionHandler extends Component {
 
   handleChange = event => {
     this.setState({selected_answer: event.target.value});
-    this.studentChannel.rightAnswer(this.state.category_id, this.state.level);
+    this.studentChannel.rightAnswer(this.state.category_id, this.state.level, this.state.round);
   }
 
   render = () => {
