@@ -43,7 +43,7 @@ class QuestionHandler extends Component {
     let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
 
     this.studentChannel = cable.subscriptions.create ({
-      channel: 'StudentsChannel', name: `{this.props.studentName}`
+      channel: 'StudentsChannel', name: this.props.studentName
     }, {
       connected: () => {},
       received: (data) => {
