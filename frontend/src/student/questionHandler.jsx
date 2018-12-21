@@ -34,14 +34,14 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-        if (data.qtext) {
+        if (data[0].qtext) {
           this.setState({
-            qtext: data.qtext,
-               a1: data.a1,
-               a2: data.a2,
-               a3: data.a3,
-               a4: data.a4,
-   correct_answer: data.correct_answer
+            qtext: data[0].qtext,
+               a1: data[0].a1,
+               a2: data[0].a2,
+               a3: data[0].a3,
+               a4: data[0].a4,
+   correct_answer: data[0].correct_answer
           });
         }
       },
@@ -65,7 +65,7 @@ class QuestionHandler extends Component {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <input type='button' value={this.state.a1} onClick={this.handleChange}>
+         <input type='button' value='Get Question' onClick={this.handleChange}>
          </input>
          <h2> {this.state.selected_answer} </h2>
         </div>
