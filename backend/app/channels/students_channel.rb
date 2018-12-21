@@ -7,11 +7,11 @@ class StudentsChannel < ApplicationCable::Channel
 
   # Outbound to students
   # Send the individual student their question
-  def fakeq
-    the_question = Question.first
-    @student = Student.find_by(id: params[:name])
-    StudentsChannel.broadcast_to @student, the_question
-  end
+  #def fakeq
+  #  the_question = Question.first
+  #  @student = Student.find_by(id: params[:name])
+  #  StudentsChannel.broadcast_to @student, the_question
+  #end
 
   def question_send(data)
     next_question = Question.where(category: data["category"]).where(level: data["level"])

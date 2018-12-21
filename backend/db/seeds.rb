@@ -66,7 +66,8 @@ puts "Re-creating Questions ..."
       a3: 'bingo',
       a4: Faker::Name.unique.name,
       correct_answer: 'bingo',
-      level: index
+      level: index,
+      round: y
     })
     end
   end
