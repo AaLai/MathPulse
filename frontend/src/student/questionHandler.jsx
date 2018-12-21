@@ -58,9 +58,10 @@ class QuestionHandler extends Component {
           });
         }
       },
-      rightAnswer: function() {
-        this.perform('fakeq', {
-          qtext: "this.state.qtext"
+      rightAnswer: function(cat, lvl) {
+        this.perform('question_send', {
+          category: cat,
+          level: lvl
         })
       }
     });
@@ -68,7 +69,7 @@ class QuestionHandler extends Component {
 
   handleChange = event => {
     this.setState({selected_answer: event.target.value});
-    this.studentChannel.rightAnswer();
+    this.studentChannel.rightAnswer(this.state.category_id, this.state.level);
   }
 
   render = () => {
