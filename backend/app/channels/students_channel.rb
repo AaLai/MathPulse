@@ -1,7 +1,9 @@
 class StudentsChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    @student = Student.find_by(id: params[:name])
+    ## Changed find_by(id: ...) to find_by(name: ...) allows individual
+    ## channels
+    @student = Student.find_by(name: params[:name])
     stream_for @student
   end
 
