@@ -7,11 +7,14 @@ class StudentsChannel < ApplicationCable::Channel
 
   # Outbound to students
   # Send the individual student their question
-  #def fakeq
-  #  the_question = Question.first
-  #  @student = Student.find_by(id: params[:name])
-  #  StudentsChannel.broadcast_to @student, the_question
-  #end
+
+
+  # change the state of the student object for the teacher as new students come online
+  def who_is_online
+    # call from a student when they are online
+    #pull in student name
+    #broadcast out student name is online to Teacher channel
+  end
 
   def question_send(data)
     next_question = Question.where(category: data["category"]).where(level: data["level"]).where(round: data["round"])
@@ -19,8 +22,8 @@ class StudentsChannel < ApplicationCable::Channel
   end
 
   # Inbound from students
-  def student_answer (category, level, right_ans, wrong_ans)
-    answer_data = [@student, category, level, right_ans, wrong_ans]
+  def student_answer (data)
+    answer_data = [data[@student.id], data["category"], data["level"], data["right_ans"], data["wrong_ans"]]
     ActionCable.server.broadcast 'teachers_channel', answer_data
     # take in from the student the Category and Level it wants next
     # pass over to question_send to send the next question with those parameters

@@ -4,10 +4,6 @@ class TeachersChannel < ApplicationCable::Channel
     stream_from "teachers_channel"
   end
 
-  # change the state of the student object for the teacher as new students come online
-  def who_is_online
-  end
-
   # takes in the info from REACT and then broadcasts it to the scoreboard
 
   # INBound messages from Teachers
@@ -18,6 +14,8 @@ class TeachersChannel < ApplicationCable::Channel
   end
 
   def end_test
+    # called when teacher clicks END on TEST on front end
+    # broadcast to students test is over
   end
 
   def unsubscribed
