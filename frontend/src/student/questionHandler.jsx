@@ -9,7 +9,7 @@ class QuestionHandler extends Component {
     super(props);
     this.state = {
       qtext: null,
-      a1: "(╯°□°）╯︵ ┻━┻",
+      a1: null,
       a2: null,
       a3: null,
       a4: null,
@@ -25,8 +25,6 @@ class QuestionHandler extends Component {
     this.createSocketStudent();
   }
 
-  checkAnswer = () => {
-  }
 
   createSocketTeacher() {
     let cable = ActionCable.createConsumer(`${API_WS_ROOT}/cable`);
@@ -36,14 +34,8 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
+        alert(data)
       }
-      // ,
-      // rightAnswer: function() {
-      //   this.perform('Send_Answer', {
-      //     qtext: this.state.qtext,
-      //     answer: this.state.selected_answer
-      //   })
-      // }
     });
   }
 
@@ -65,12 +57,18 @@ class QuestionHandler extends Component {
    correct_answer: data.correct_answer
           });
         }
+      },
+      rightAnswer: function() {
+        this.perform('fakeq', {
+          qtext: "this.state.qtext"
+        })
       }
     });
   }
 
   handleChange = event => {
     this.setState({selected_answer: event.target.value});
+    this.studentChannel.rightAnswer();
   }
 
   render = () => {
@@ -88,10 +86,17 @@ class QuestionHandler extends Component {
         <div>
           <h1> {this.state.qtext} </h1>
           <br/> <br/>
-          <button><h3> {this.state.ans1} </h3></button>
-          <button><h3> {this.state.ans2} </h3></button>
-          <button><h3> {this.state.ans3} </h3></button>
-          <button><h3> {this.state.ans4} </h3></button>
+          <input type='button' value={this.state.a1} onClick={this.handleChange}>
+          </input>
+          <p/>
+          <input type='button' value={this.state.a2} onClick={this.handleChange}>
+          </input>
+          <p/>
+          <input type='button' value={this.state.a3} onClick={this.handleChange}>
+          </input>
+          <p/>
+          <input type='button' value={this.state.a4} onClick={this.handleChange}>
+          </input>
         </div>
       )
     }
