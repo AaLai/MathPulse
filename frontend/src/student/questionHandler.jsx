@@ -55,6 +55,7 @@ class QuestionHandler extends Component {
     });
   }
 
+// handler for making radio buttons react controlled
   buttonSelector = event => {
     this.setState({selected_answer: event.target.value})
   }
@@ -67,13 +68,14 @@ class QuestionHandler extends Component {
   checkAnswer = () => {
     this.setState({
       category_id: this.nextCategory(this.state.category_id),
-            level: this.nextRound(this.state.level),
-            round: this.nextLevel(this.state.round, this.state.selected_answer, this.state.correct_answer)
+            level: this.nextLevel(this.state.level, this.state.selected_answer, this.state.correct_answer),
+            round: this.nextRound(this.state.round, this.state.category_id)
     });
+    // This is a debugger, uncomment if you want to see the parameters change
+    console.log('level', this.state.level, 'category', this.state.category_id, 'round', this.state.round)
   }
 
   nextCategory = (currentCategory) => {
-    console.log(currentCategory)
     if (currentCategory === 4) {
       return 1;
     } else {
@@ -81,17 +83,22 @@ class QuestionHandler extends Component {
     }
   }
 
-  nextRound = (currentRound) => {
-    if (currentRound === 4) {
+// I currently have this going in an infinite loop, take out the
+// change the first 'if' if you want it to stop
+  nextRound = (currentRound, currentCategory) => {
+    if (currentCategory === 4 && currentRound === 4) {
       return 0;
-    } else {
+    } else if (currentCategory === 4) {
       return currentRound + 1;
+    } else {
+      return currentRound;
     }
   }
 
   nextLevel = (currentLevel, selected_answer, correct_answer) => {
-    console.log(selected_answer, correct_answer)
-    if ((selected_answer === correct_answer && currentLevel === 3) || (selected_answer !== correct_answer && currentLevel === 0 )) {
+    if (selected_answer === correct_answer && currentLevel === 3) {
+      return currentLevel;
+    } else if (selected_answer !== correct_answer && currentLevel === 0 ) {
       return currentLevel;
     } else if (selected_answer === correct_answer) {
       return currentLevel + 1;
@@ -101,7 +108,8 @@ class QuestionHandler extends Component {
   }
 
 
-
+// The checked and onChange functions make it so only 1 button can be
+// checked at a time
   render = () => {
     if (!this.state.qtext) {
       return (
@@ -146,8 +154,8 @@ class QuestionHandler extends Component {
               {this.state.a4}
             </label>
             <p/>
-            <button onClick={this.submitQuestion}> SUBMIT! </button>
           </form>
+          <button onClick={this.submitQuestion}> SUBMIT! </button>
         </div>
       )
     }
