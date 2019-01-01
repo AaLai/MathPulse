@@ -45,12 +45,29 @@ class QuestionHandler extends Component {
           });
         }
       },
-      rightAnswer: function(cat, lvl, round) {
+      getQuestion: function(cat, lvl, round) {
         this.perform('question_send', {
           category: cat,
           level: lvl,
           round: round
         })
+      },
+      sendAnswer: function(cat, lvl, selectedAnswer, correctAnswer) {
+        if ( selectedAnswer === correctAnswer) {
+          this.perform('student_answer', {
+            category: cat,
+            level: lvl,
+            right_ans: true,
+            wrong_ans: null
+          });
+        } else {
+          this.perform('student_answer', {
+            category: cat,
+            level: lvl,
+            right_ans: null,
+            wrong_ans: true
+          });
+        }
       }
     });
   }
@@ -61,11 +78,12 @@ class QuestionHandler extends Component {
   }
 
   submitQuestion = () => {
-    this.checkAnswer();
-    this.studentChannel.rightAnswer(this.state.category_id, this.state.level, this.state.round);
+    this.studentChannel.sendAnswer(this.state.category_id, this.state.level, this.state.selected_answer, this.state.correct_answer);
+    this.prepareNextQuestion();
+    this.studentChannel.getQuestion(this.state.category_id, this.state.level, this.state.round);
   }
 
-  checkAnswer = () => {
+  prepareNextQuestion = () => {
     this.setState({
       category_id: this.nextCategory(this.state.category_id),
             level: this.nextLevel(this.state.level, this.state.selected_answer, this.state.correct_answer),

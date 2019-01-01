@@ -11,7 +11,8 @@ class TeacherLogin extends React.Component {
       roomID: null,
       name: null,
       teacher_id: null,
-      ready: null
+      hasName: null,
+      isReady: null
     }
   }
 
@@ -43,7 +44,7 @@ class TeacherLogin extends React.Component {
       })
     }).then( resp => {
       if (resp.ok) {
-        this.setState({ready: 'ok'})
+        this.setState({isReady: true})
       }
     })
 
@@ -66,14 +67,13 @@ class TeacherLogin extends React.Component {
   getTeacherId = () => {
     fetch(`${API_ROOT}/teachers/${this.state.name}/`)
       .then(res => res.json())
-      .then(teacherInfo => this.setState({teacher_id: teacherInfo.id }));
-    cookies.set('teach', this.state.name, { path: "/" });
-    this.setState({ name: '' });
+      .then(teacherInfo => this.setState({teacher_id: teacherInfo.id,
+                                             hasName: true }));
   };
 
 
   render = () => {
-    if (!cookies.get('teach')) {
+    if (!this.state.hasName) {
       return (
         <div>
           <form onSubmit={this.handleSubmitName}>
@@ -88,18 +88,18 @@ class TeacherLogin extends React.Component {
           </form>
         </div>
       );
-    } else if (!this.state.ready) {
+    } else if (!this.state.isReady) {
       return (
         <div>
+        <h1> If we get to it, use this page to set Parameters </h1>
         {this.state.teacher_id}<br/>
         {this.state.roomID}<br/>
         <button onClick={this.handleSubmitTest}> Create Test </button>
-        }
         </div>
       )
-    } else if (this.state.ready === 'ok') {
+    } else if (this.state.isReady) {
       return (
-        <RealTimeTest />
+        <RealTimeTest roomID={this.state.roomID} />
       )
     }
   }
