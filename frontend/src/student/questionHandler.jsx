@@ -41,7 +41,10 @@ class QuestionHandler extends Component {
                a2: data[0].a2,
                a3: data[0].a3,
                a4: data[0].a4,
-   correct_answer: data[0].correct_answer
+   correct_answer: data[0].correct_answer,
+            level: data[0].level,
+      category_id: data[0].category_id,
+            round: data[0].round
           });
         }
       },
@@ -77,27 +80,35 @@ class QuestionHandler extends Component {
     this.setState({selected_answer: event.target.value})
   }
 
+  getFirstQuestion = () => {
+    this.studentChannel.getQuestion(1,2,1)
+  }
+
+// Submits current question and grabs the next question from servre
+// console logs are debuggers, uncomment them to see how to code works
   submitQuestion = () => {
+    const answerIsCorrect = this.answerChecker();
+    const nextCategory = this.nextCategory(this.state.category_id, this.state.level, answerIsCorrect);
+    const nextRound = this.nextRound(this.state.round, this.state.category_id);
+    const nextLevel = this.nextLevel(this.state.level, answerIsCorrect);
+    // console.log('currentlevel', this.state.level, 'currentcategory', this.state.category_id, 'currentround', this.state.round);
     this.studentChannel.sendAnswer(this.state.category_id, this.state.level, this.state.selected_answer, this.state.correct_answer);
-    this.prepareNextQuestion();
-    this.studentChannel.getQuestion(this.state.category_id, this.state.level, this.state.round);
+    this.studentChannel.getQuestion(nextCategory, nextLevel, nextRound);
+    // console.log('newlevel', nextLevel, 'category', nextCategory, 'round', nextRound)
   }
 
-  prepareNextQuestion = () => {
-    this.setState({
-      category_id: this.nextCategory(this.state.category_id),
-            level: this.nextLevel(this.state.level, this.state.selected_answer, this.state.correct_answer),
-            round: this.nextRound(this.state.round, this.state.category_id)
-    });
-    // This is a debugger, uncomment if you want to see the parameters change
-    console.log('level', this.state.level, 'category', this.state.category_id, 'round', this.state.round)
-  }
-
-  nextCategory = (currentCategory) => {
-    if (currentCategory === 4) {
+// Functions for getting the next question
+  nextCategory = (currentCategory, currentLevel, answerIsCorrect) => {
+    if (currentCategory === 4 && currentLevel === 0 && !answerIsCorrect) {
       return 1;
-    } else {
+    } else if (currentCategory === 4 && answerIsCorrect) {
+      return 1;
+    } else if (answerIsCorrect) {
       return currentCategory + 1;
+    } else if (!answerIsCorrect && currentLevel === 0) {
+      return currentCategory + 1;
+    } else {
+      return currentCategory;
     }
   }
 
@@ -113,16 +124,21 @@ class QuestionHandler extends Component {
     }
   }
 
-  nextLevel = (currentLevel, selected_answer, correct_answer) => {
-    if (selected_answer === correct_answer && currentLevel === 3) {
-      return currentLevel;
-    } else if (selected_answer !== correct_answer && currentLevel === 0 ) {
-      return currentLevel;
-    } else if (selected_answer === correct_answer) {
-      return currentLevel + 1;
-    } else if (selected_answer !== correct_answer) {
+  nextLevel = (currentLevel, answerIsCorrect) => {
+    if (!answerIsCorrect && currentLevel === 0 ) {
+      return 2;
+    } else if (answerIsCorrect) {
+      return 2;
+    } else if (!answerIsCorrect) {
       return currentLevel - 1;
     }
+  }
+
+  answerChecker = () => {
+    if (this.state.correct_answer === this.state.selected_answer) {
+      return true;
+    }
+    return false;
   }
 
 
@@ -133,7 +149,7 @@ class QuestionHandler extends Component {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <input type='button' value='Get Question' onClick={this.submitQuestion}>
+         <input type='button' value='Get Question' onClick={this.getFirstQuestion}>
          </input>
          <h2> {this.state.selected_answer} </h2>
         </div>
