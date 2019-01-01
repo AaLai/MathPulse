@@ -5,6 +5,8 @@ class StudentsChannel < ApplicationCable::Channel
     ## channels
     @student = Student.find_by(name: params[:name])
     stream_for @student
+    is_online = [@student.id, @student.name]
+    ActionCable.server.broadcast 'teachers_channel', is_online
   end
 
   # Outbound to students

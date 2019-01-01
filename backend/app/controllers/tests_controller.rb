@@ -9,11 +9,6 @@ class TestsController < ApplicationController
     render json: @test
   end
 
-    def show
-      @test = Test.find_by(name: params[:id])
-      render json: @test
-    end
-
   private
     def user_params
       params.require(:test).permit(:name, :teacher_id)
