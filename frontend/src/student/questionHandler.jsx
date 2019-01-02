@@ -89,7 +89,7 @@ class QuestionHandler extends Component {
   submitQuestion = () => {
     const answerIsCorrect = this.answerChecker();
     const nextCategory = this.nextCategory(this.state.category_id, this.state.level, answerIsCorrect);
-    const nextRound = this.nextRound(this.state.round, this.state.category_id);
+    const nextRound = this.nextRound(this.state.round, this.state.category_id, this.state.level, answerIsCorrect);
     const nextLevel = this.nextLevel(this.state.level, answerIsCorrect);
     // console.log('currentlevel', this.state.level, 'currentcategory', this.state.category_id, 'currentround', this.state.round);
     this.studentChannel.sendAnswer(this.state.category_id, this.state.level, this.state.selected_answer, this.state.correct_answer);
@@ -114,10 +114,12 @@ class QuestionHandler extends Component {
 
 // I currently have this going in an infinite loop, take out the
 // change the first 'if' if you want it to stop
-  nextRound = (currentRound, currentCategory) => {
+  nextRound = (currentRound, currentCategory, currentLevel, answerIsCorrect) => {
     if (currentCategory === 4 && currentRound === 4) {
       return 0;
-    } else if (currentCategory === 4) {
+    } else if (currentCategory === 4 && answerIsCorrect) {
+      return currentRound + 1;
+    } else if (currentCategory === 4 && currentLevel === 0 && !answerIsCorrect) {
       return currentRound + 1;
     } else {
       return currentRound;
