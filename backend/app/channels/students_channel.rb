@@ -26,8 +26,9 @@ class StudentsChannel < ApplicationCable::Channel
   end
 
   # Inbound from students
+  #### don't need the data for before student.id
   def student_answer (data)
-    answer_data = [data[@student.id], data["category"], data["level"], data["right_ans"], data["wrong_ans"]]
+    answer_data = [@student.id, data["category"], data["level"], data["right_ans"], data["wrong_ans"]]
     ActionCable.server.broadcast 'teachers_channel', answer_data
     # take in from the student the Category and Level it wants next
     # pass over to question_send to send the next question with those parameters
