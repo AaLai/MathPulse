@@ -3076,3 +3076,219 @@ StudentsChannel#fakeq({"qtext"=>"this.state.qtext"})
   ↳ app/channels/students_channel.rb:11
 [ActionCable] Broadcasting to students:: #<Question id: 1, qtext: "What is 3 squared?", a1: "Carl Hessel", a2: "Victoria Greenfelder", a3: "bingo", a4: "Hayden Collier", correct_answer: "bingo", level: 0, category_id: 1, created_at: "2018-12-20 19:25:57", updated_at: "2018-12-20 19:25:57">
 StudentsChannel transmitting {"id"=>1, "qtext"=>"What is 3 squared?", "a1"=>"Carl Hessel", "a2"=>"Victoria Greenfelder", "a3"=>"bingo", "a4"=>"Hayden Collier", "correct_answer"=>"bingo", "level"=>0, "category_id"=>1, "created_at"=>"2018-12-20T19:25:57.562Z", "updated_at"=>"2018-12-20T19:25:57.562Z"} (via streamed from students:)
+Started POST "/teachers" for 127.0.0.1 at 2019-01-02 16:26:08 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/rvm/gems/ruby-2.5.3/gems/rack-cors-1.0.2/lib/rack/cors.rb:97
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"qk2af", "name"=>"mr. bean", "teacher_id"=>nil, "hasName"=>nil, "isReady"=>nil, "teacher"=>{"name"=>"mr. bean"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (1.1ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "mr. bean"], ["created_at", "2019-01-02 21:26:08.699964"], ["updated_at", "2019-01-02 21:26:08.699964"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 16ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/teachers/mr.%20bean/" for 127.0.0.1 at 2019-01-02 16:26:08 -0500
+Processing by TeachersController#show as 
+  Parameters: {"id"=>"mr"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "mr"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/teachers" for 127.0.0.1 at 2019-01-02 16:30:40 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/rvm/gems/ruby-2.5.3/gems/rack-cors-1.0.2/lib/rack/cors.rb:97
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"yq3xag", "name"=>"Keith", "teacher_id"=>nil, "hasName"=>nil, "isReady"=>nil, "teacher"=>{"name"=>"Keith"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.6ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Keith"], ["created_at", "2019-01-02 21:30:40.313365"], ["updated_at", "2019-01-02 21:30:40.313365"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 19ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/teachers/Keith/" for 127.0.0.1 at 2019-01-02 16:30:40 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"Keith"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Keith"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tests" for 127.0.0.1 at 2019-01-02 16:30:46 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"yq3xag", "teacher_id"=>14, "test"=>{"name"=>"yq3xag", "teacher_id"=>14}}
+  [1m[35m (3.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (2.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (1.3ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "yq3xag"], ["teacher_id", 14], ["created_at", "2019-01-02 21:30:46.866862"], ["updated_at", "2019-01-02 21:30:46.866862"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 45ms (ActiveRecord: 22.5ms)
+
+
+Started GET "/cable/cable" for 127.0.0.1 at 2019-01-02 16:30:46 -0500
+Started GET "/cable/cable" [WebSocket] for 127.0.0.1 at 2019-01-02 16:30:46 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Started GET "/tests/yq3xag/" for 127.0.0.1 at 2019-01-02 16:31:00 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"yq3xag"}
+  [1m[36mTest Load (0.9ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "yq3xag"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2019-01-02 16:31:03 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"joey", "test_id"=>12, "student"=>{"name"=>"joey", "test_id"=>12}}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (0.7ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "joey"], ["test_id", 12], ["created_at", "2019-01-02 21:31:03.735497"], ["updated_at", "2019-01-02 21:31:03.735497"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 24ms (ActiveRecord: 9.6ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2019-01-02 16:31:03 -0500
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2019-01-02 16:31:03 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."name" = $1 LIMIT $2[0m  [["name", "joey"], ["LIMIT", 1]]
+  ↳ app/channels/students_channel.rb:6
+[ActionCable] Broadcasting to teachers_channel: [1, "joey"]
+TeachersChannel transmitting [1, "joey"] (via streamed from teachers_channel)
+StudentsChannel is transmitting the subscription confirmation
+StudentsChannel is streaming from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE
+StudentsChannel#question_send({"category"=>1, "level"=>2, "round"=>1})
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3 LIMIT $4[0m  [["category_id", 1], ["level", 2], ["round", 1], ["LIMIT", 11]]
+  ↳ app/channels/students_channel.rb:25
+[ActionCable] Broadcasting to students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE: #<ActiveRecord::Relation [#<Question id: 19, qtext: "What is 3 squared?", a1: "Leonor Abbott", a2: "Rueben Ernser", a3: "bingo", a4: "Efren Bashirian", correct_answer: "bingo", level: 2, category_id: 1, created_at: "2019-01-01 01:06:50", updated_at: "2019-01-01 01:06:50", round: 1>]>
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3[0m  [["category_id", 1], ["level", 2], ["round", 1]]
+  ↳ app/channels/students_channel.rb:25
+StudentsChannel transmitting [{"id"=>19, "qtext"=>"What is 3 squared?", "a1"=>"Leonor Abbott", "a2"=>"Rueben Ernser", "a3"=>"bingo", "a4"=>"Efren Bashirian", "correct_answer"=>"bingo", "level"=>2, "category_id"=>1, "created_at"=>"2019-01-01T01:06:50.224Z", "updated_at"=>"2019-01-01T01:06:50.224Z", "round"=>1}] (via streamed from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE)
+StudentsChannel#student_answer({"category"=>1, "level"=>2, "right_ans"=>true, "wrong_ans"=>nil})
+[ActionCable] Broadcasting to teachers_channel: [1, 1, 2, true, nil]
+StudentsChannel#question_send({"category"=>2, "level"=>2, "round"=>1})
+TeachersChannel transmitting [1, 1, 2, true, nil] (via streamed from teachers_channel)
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3 LIMIT $4[0m  [["category_id", 2], ["level", 2], ["round", 1], ["LIMIT", 11]]
+  ↳ app/channels/students_channel.rb:25
+[ActionCable] Broadcasting to students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE: #<ActiveRecord::Relation [#<Question id: 23, qtext: "What is three quarters of 5?", a1: "Jaunita O'Conner II", a2: "Herschel Harris", a3: "bingo", a4: "Zackary Glover", correct_answer: "bingo", level: 2, category_id: 2, created_at: "2019-01-01 01:06:50", updated_at: "2019-01-01 01:06:50", round: 1>]>
+  [1m[36mQuestion Load (2.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3[0m  [["category_id", 2], ["level", 2], ["round", 1]]
+  ↳ app/channels/students_channel.rb:25
+StudentsChannel transmitting [{"id"=>23, "qtext"=>"What is three quarters of 5?", "a1"=>"Jaunita O'Conner II", "a2"=>"Herschel Harris", "a3"=>"bingo", "a4"=>"Zackary Glover", "correct_answer"=>"bingo", "level"=>2, "category_id"=>2, "created_at"=>"2019-01-01T01:06:50.239Z", "updated_at"=>"2019-01-01T01:06:50.239Z", "round"=>1}] (via streamed from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE)
+StudentsChannel#student_answer({"category"=>2, "level"=>2, "right_ans"=>nil, "wrong_ans"=>true})
+StudentsChannel#question_send({"category"=>2, "level"=>1, "round"=>1})
+[ActionCable] Broadcasting to teachers_channel: [1, 2, 2, nil, true]
+TeachersChannel transmitting [1, 2, 2, nil, true] (via streamed from teachers_channel)
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3 LIMIT $4[0m  [["category_id", 2], ["level", 1], ["round", 1], ["LIMIT", 11]]
+  ↳ app/channels/students_channel.rb:25
+[ActionCable] Broadcasting to students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE: #<ActiveRecord::Relation [#<Question id: 22, qtext: "What is three quarters of 5?", a1: "Fletcher Harris", a2: "Norris Gutmann PhD", a3: "bingo", a4: "Mrs. Cody Aufderhar", correct_answer: "bingo", level: 1, category_id: 2, created_at: "2019-01-01 01:06:50", updated_at: "2019-01-01 01:06:50", round: 1>]>
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3[0m  [["category_id", 2], ["level", 1], ["round", 1]]
+  ↳ app/channels/students_channel.rb:25
+StudentsChannel transmitting [{"id"=>22, "qtext"=>"What is three quarters of 5?", "a1"=>"Fletcher Harris", "a2"=>"Norris Gutmann PhD", "a3"=>"bingo", "a4"=>"Mrs. Cody Aufderhar", "correct_answer"=>"bingo", "level"=>1, "category_id"=>2, "created_at"=>"2019-01-01T01:06:50.235Z", "updated_at"=>"2019-01-01T01:06:50.235Z", "round... (via streamed from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE)
+Finished "/cable/" [WebSocket] for 127.0.0.1 at 2019-01-02 16:40:29 -0500
+StudentsChannel stopped streaming from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzE
+Finished "/cable/cable" [WebSocket] for 127.0.0.1 at 2019-01-02 16:40:29 -0500
+TeachersChannel stopped streaming from teachers_channel
+Started POST "/teachers" for 127.0.0.1 at 2019-01-02 16:41:06 -0500
+Processing by TeachersController#create as JSON
+  Parameters: {"roomID"=>"3qcmqa", "name"=>"Joey", "teacher_id"=>nil, "hasName"=>nil, "isReady"=>nil, "teacher"=>{"name"=>"Joey"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[36mTeacher Create (0.8ms)[0m  [1m[32mINSERT INTO "teachers" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Joey"], ["created_at", "2019-01-02 21:41:06.073728"], ["updated_at", "2019-01-02 21:41:06.073728"]]
+  ↳ app/controllers/teachers_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/teachers_controller.rb:4
+Completed 204 No Content in 5ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/teachers/Joey/" for 127.0.0.1 at 2019-01-02 16:41:06 -0500
+Processing by TeachersController#show as */*
+  Parameters: {"id"=>"Joey"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."name" = $1 LIMIT $2[0m  [["name", "Joey"], ["LIMIT", 1]]
+  ↳ app/controllers/teachers_controller.rb:8
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/tests" for 127.0.0.1 at 2019-01-02 16:41:08 -0500
+Processing by TestsController#create as JSON
+  Parameters: {"name"=>"3qcmqa", "teacher_id"=>15, "test"=>{"name"=>"3qcmqa", "teacher_id"=>15}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[36mTest Create (0.8ms)[0m  [1m[32mINSERT INTO "tests" ("name", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "3qcmqa"], ["teacher_id", 15], ["created_at", "2019-01-02 21:41:08.741805"], ["updated_at", "2019-01-02 21:41:08.741805"]]
+  ↳ app/controllers/tests_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tests_controller.rb:4
+Completed 204 No Content in 8ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/cable/cable" for 127.0.0.1 at 2019-01-02 16:41:08 -0500
+Started GET "/cable/cable" [WebSocket] for 127.0.0.1 at 2019-01-02 16:41:08 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+TeachersChannel is transmitting the subscription confirmation
+TeachersChannel is streaming from teachers_channel
+Started GET "/tests/3qcmqa/" for 127.0.0.1 at 2019-01-02 16:41:14 -0500
+Processing by TestsController#show as */*
+  Parameters: {"id"=>"3qcmqa"}
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."name" = $1 LIMIT $2[0m  [["name", "3qcmqa"], ["LIMIT", 1]]
+  ↳ app/controllers/tests_controller.rb:8
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/students" for 127.0.0.1 at 2019-01-02 16:41:19 -0500
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"steve", "test_id"=>13, "student"=>{"name"=>"steve", "test_id"=>13}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT  "tests".* FROM "tests" WHERE "tests"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[36mStudent Create (0.7ms)[0m  [1m[32mINSERT INTO "students" ("name", "test_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "steve"], ["test_id", 13], ["created_at", "2019-01-02 21:41:19.805707"], ["updated_at", "2019-01-02 21:41:19.805707"]]
+  ↳ app/controllers/students_controller.rb:4
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:4
+Completed 204 No Content in 10ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2019-01-02 16:41:19 -0500
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2019-01-02 16:41:19 -0500
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."name" = $1 LIMIT $2[0m  [["name", "steve"], ["LIMIT", 1]]
+  ↳ app/channels/students_channel.rb:6
+[ActionCable] Broadcasting to teachers_channel: [21, "steve"]
+StudentsChannel is streaming from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx
+StudentsChannel is transmitting the subscription confirmation
+TeachersChannel transmitting [21, "steve"] (via streamed from teachers_channel)
+StudentsChannel#question_send({"category"=>1, "level"=>2, "round"=>1})
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3 LIMIT $4[0m  [["category_id", 1], ["level", 2], ["round", 1], ["LIMIT", 11]]
+  ↳ app/channels/students_channel.rb:25
+[ActionCable] Broadcasting to students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx: #<ActiveRecord::Relation [#<Question id: 19, qtext: "What is 3 squared?", a1: "Leonor Abbott", a2: "Rueben Ernser", a3: "bingo", a4: "Efren Bashirian", correct_answer: "bingo", level: 2, category_id: 1, created_at: "2019-01-01 01:06:50", updated_at: "2019-01-01 01:06:50", round: 1>]>
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3[0m  [["category_id", 1], ["level", 2], ["round", 1]]
+  ↳ app/channels/students_channel.rb:25
+StudentsChannel transmitting [{"id"=>19, "qtext"=>"What is 3 squared?", "a1"=>"Leonor Abbott", "a2"=>"Rueben Ernser", "a3"=>"bingo", "a4"=>"Efren Bashirian", "correct_answer"=>"bingo", "level"=>2, "category_id"=>1, "created_at"=>"2019-01-01T01:06:50.224Z", "updated_at"=>"2019-01-01T01:06:50.224Z", "round"=>1}] (via streamed from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx)
+StudentsChannel#student_answer({"category"=>1, "level"=>2, "right_ans"=>true, "wrong_ans"=>nil})
+[ActionCable] Broadcasting to teachers_channel: [21, 1, 2, true, nil]
+StudentsChannel#question_send({"category"=>2, "level"=>2, "round"=>1})
+TeachersChannel transmitting [21, 1, 2, true, nil] (via streamed from teachers_channel)
+  [1m[36mQuestion Load (2.7ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3 LIMIT $4[0m  [["category_id", 2], ["level", 2], ["round", 1], ["LIMIT", 11]]
+  ↳ app/channels/students_channel.rb:25
+[ActionCable] Broadcasting to students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx: #<ActiveRecord::Relation [#<Question id: 23, qtext: "What is three quarters of 5?", a1: "Jaunita O'Conner II", a2: "Herschel Harris", a3: "bingo", a4: "Zackary Glover", correct_answer: "bingo", level: 2, category_id: 2, created_at: "2019-01-01 01:06:50", updated_at: "2019-01-01 01:06:50", round: 1>]>
+  [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."category_id" = $1 AND "questions"."level" = $2 AND "questions"."round" = $3[0m  [["category_id", 2], ["level", 2], ["round", 1]]
+  ↳ app/channels/students_channel.rb:25
+StudentsChannel transmitting [{"id"=>23, "qtext"=>"What is three quarters of 5?", "a1"=>"Jaunita O'Conner II", "a2"=>"Herschel Harris", "a3"=>"bingo", "a4"=>"Zackary Glover", "correct_answer"=>"bingo", "level"=>2, "category_id"=>2, "created_at"=>"2019-01-01T01:06:50.239Z", "updated_at"=>"2019-01-01T01:06:50.239Z", "round"=>1}] (via streamed from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx)
+Finished "/cable/" [WebSocket] for 127.0.0.1 at 2019-01-02 16:41:52 -0500
+StudentsChannel stopped streaming from students:Z2lkOi8vYmFja2VuZC9TdHVkZW50LzIx
+Finished "/cable/cable" [WebSocket] for 127.0.0.1 at 2019-01-02 16:42:03 -0500
+TeachersChannel stopped streaming from teachers_channel
