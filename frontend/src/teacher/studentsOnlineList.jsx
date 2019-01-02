@@ -5,7 +5,7 @@ class StudentsOnlineList extends Component {
   render = () => {
 
     const studentsOnline = this.props.students.map((student) =>
-      <li>{student[Object.keys(student)].name}</li>
+      <li>{student.name}</li>
     );
 
     if (this.props.students.length === 0) {
