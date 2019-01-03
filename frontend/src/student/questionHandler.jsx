@@ -8,17 +8,17 @@ class QuestionHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qtext: null,
-      a1: null,
-      a2: null,
-      a3: null,
-      a4: null,
-      correct_answer: null,
+                qtext: null,
+                   a1: null,
+                   a2: null,
+                   a3: null,
+                   a4: null,
+       correct_answer: null,
       selected_answer: null,
-      level: 2,
-      category_id: 1,
-      round: 1,
-      message: null
+                level: 2,
+          category_id: 1,
+                round: 1,
+              message: null
     }
   }
 
@@ -60,22 +60,22 @@ class QuestionHandler extends Component {
       getQuestion: function(cat, lvl, round) {
         this.perform('question_send', {
           category: cat,
-          level: lvl,
-          round: round
+             level: lvl,
+             round: round
         })
       },
       sendAnswer: function(cat, lvl, selectedAnswer, correctAnswer) {
         if ( selectedAnswer === correctAnswer) {
           this.perform('student_answer', {
-            category: cat,
-            level: lvl,
+             category: cat,
+                level: lvl,
             right_ans: true,
             wrong_ans: null
           });
         } else {
           this.perform('student_answer', {
-            category: cat,
-            level: lvl,
+             category: cat,
+                level: lvl,
             right_ans: null,
             wrong_ans: true
           });

@@ -12,6 +12,7 @@ class TeacherLogin extends React.Component {
       name: null,
       teacher_id: null,
       hasName: null,
+      testTime: null,
       isReady: null
     }
   }
@@ -32,6 +33,10 @@ class TeacherLogin extends React.Component {
   handleChange = form => {
     this.setState({ name: form.target.value });
   };
+
+  handleTimeChange = form => {
+    this.setState({ testTime: form.target.value })
+  }
 
   handleSubmitTest = form => {
     form.preventDefault();
@@ -92,14 +97,18 @@ class TeacherLogin extends React.Component {
       return (
         <div>
         <h1> If we get to it, use this page to set Parameters </h1>
-        {this.state.teacher_id}<br/>
-        {this.state.roomID}<br/>
+        <h4>Please enter test duration in minutes </h4>
+        <input type="number" onChange={this.handleTimeChange}/>
+        <br/>
         <button onClick={this.handleSubmitTest}> Create Test </button>
         </div>
       )
     } else if (this.state.isReady) {
       return (
-        <RealTimeTest roomID={this.state.roomID} />
+        <RealTimeTest
+          roomID={this.state.roomID}
+          testTime={this.state.testTime}
+        />
       )
     }
   }

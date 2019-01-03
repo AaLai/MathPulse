@@ -3,6 +3,7 @@ import { API_WS_ROOT } from '../secrets';
 import ActionCable from 'actioncable';
 import StudentsOnlineList from './studentsOnlineList';
 import StudentStatsTable from './studentStatsTable';
+import TestTimer from './testTimer';
 
 
 class RealTimeTest extends Component {
@@ -89,11 +90,11 @@ class RealTimeTest extends Component {
 
 
   render = () => {
-
     if (this.state.testStart) {
       return (
         <div>
           <p class="h2 bg-secondary text-white"> Real Time Results... </p>
+          <TestTimer testTime={this.props.testTime} />
           <StudentStatsTable
             students={this.state.students}
             sendMessage={this.sendMessage}
