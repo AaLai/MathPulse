@@ -39,10 +39,10 @@ class App extends Component {
     else {
       return (
         <div>
-          <button onClick={this.changeToTeacher}> Teacher </button>
+          <button type="button" class="btn btn-primary" onClick={this.changeToTeacher}> Teacher </button>
           <br/>
           <br/>
-          <button onClick={this.changeToStudent}> Student </button>
+          <button type="button" class="btn btn-primary" onClick={this.changeToStudent}> Student </button>
         </div>
       );
     }

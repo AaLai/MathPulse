@@ -54,7 +54,7 @@ class StudentStatsTable extends Component {
     );
 
     return (
-      <table>
+      <table class="table table-striped">
         <tr>
           <th> Name </th>
           <th> Exponents </th>
