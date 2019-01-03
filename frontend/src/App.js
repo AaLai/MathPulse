@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/css/index.css';
 import TeacherLogin from './teacher/teachLogin';
 import StudentLogin from './student/studentLogin';
 
