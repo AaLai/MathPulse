@@ -26,6 +26,11 @@ class TeachersChannel < ApplicationCable::Channel
     StudentsChannel.broadcast_to @student, [ "game", "over" ]
   end
 
+  def pause_test (data)
+    @student = Student.find(data["id"])
+    StudentsChannel.broadcast_to @student, [data["pause"], "extra", "data"]
+  end
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

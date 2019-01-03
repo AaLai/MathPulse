@@ -20,7 +20,8 @@ class QuestionHandler extends Component {
           category_id: 1,
                 round: 1,
               message: null,
-             testOver: null
+             testOver: null,
+                pause: null
     }
   }
 
@@ -39,6 +40,12 @@ class QuestionHandler extends Component {
       received: (data) => {
         if (data.length === 2) {
           this.setState({ testOver: true })
+        } else if (data.length === 3) {
+          if (data[0] === 'pause') {
+            this.setState({ pause: true })
+          } else {
+            this.setState({ pause: null })
+          }
         } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds
 // below the test
@@ -163,6 +170,13 @@ class QuestionHandler extends Component {
     if (this.state.testOver) {
       return (
         <img src={corgi} />
+      )
+    } else if (this.state.pause) {
+      return (
+        <div>
+          Your teacher has paused the test, take a break <br/>
+          😌
+        </div>
       )
     } else if (!this.state.qtext) {
       return (

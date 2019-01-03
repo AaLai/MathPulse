@@ -20,7 +20,9 @@ class TestTimer extends Component {
   }
 
   timer = () => {
-    if (this.state.negative && this.state.seconds === 59) {
+    if (this.props.testEnd) {
+      clearInterval(this.state.countdown)
+    } else if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
          seconds: 0
@@ -45,11 +47,15 @@ class TestTimer extends Component {
   pause = () => {
     clearInterval(this.state.countdown)
     this.setState({ pause: true })
+    this.props.pauseTest('pause')
   }
 
   continue = () => {
-    setInterval(this.timer, 1000)
-    this.setState({ pause: false })
+    const countdown = setInterval(this.timer, 1000)
+    this.setState({     pause: false,
+                    countdown: countdown
+                  })
+    this.props.pauseTest('continue')
   }
 
   timerButton = () => {

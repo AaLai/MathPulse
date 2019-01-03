@@ -10,8 +10,9 @@ class RealTimeTest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: [],
-      testStart: null
+       students: [],
+      testStart: null,
+        testEnd: null
     }
   }
 
@@ -68,6 +69,11 @@ class RealTimeTest extends Component {
       },
       endTest: function(studentID) {
         this.perform('end_test', { id: studentID });
+      },
+      pauseTest: function(studentID, pause) {
+        this.perform('pause_test', {    id: studentID,
+                                     pause: pause
+                                   });
       }
     });
   }
@@ -92,8 +98,15 @@ class RealTimeTest extends Component {
   }
 
   endTest = () => {
+    this.setState({ testEnd: true })
     this.state.students.map((student) => {
       this.teacherChannel.endTest(student.id)
+    })
+  }
+
+  pauseTest = (pause) => {
+    this.state.students.map((student) => {
+      this.teacherChannel.pauseTest(student.id, pause)
     })
   }
 
@@ -103,7 +116,11 @@ class RealTimeTest extends Component {
       return (
         <div>
           <p class="h2 bg-secondary text-white"> Real Time Results... </p>
-          <TestTimer testTime={this.props.testTime} />
+          <TestTimer
+            testTime={this.props.testTime}
+            pauseTest={this.pauseTest}
+            testEnd={this.state.testEnd}
+          />
           <StudentStatsTable
             students={this.state.students}
             sendMessage={this.sendMessage}
