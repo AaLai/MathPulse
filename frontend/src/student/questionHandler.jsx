@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API_WS_ROOT } from '../secrets';
 import logo from '../logo.svg';
 import ActionCable from 'actioncable';
+import corgi from '../corgiFinisher.jpg'
 
 
 class QuestionHandler extends Component {
@@ -18,7 +19,8 @@ class QuestionHandler extends Component {
                 level: 2,
           category_id: 1,
                 round: 1,
-              message: null
+              message: null,
+             testOver: null
     }
   }
 
@@ -35,7 +37,9 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-        if (!data[0].qtext) {
+        if (data.length === 2) {
+          this.setState({ testOver: true })
+        } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds
 // below the test
           const deleteMessage = () => {
@@ -156,7 +160,11 @@ class QuestionHandler extends Component {
 // The checked and onChange functions make it so only 1 button can be
 // checked at a time
   render = () => {
-    if (!this.state.qtext) {
+    if (this.state.testOver) {
+      return (
+        <img src={corgi} />
+      )
+    } else if (!this.state.qtext) {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />

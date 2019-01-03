@@ -65,6 +65,9 @@ class RealTimeTest extends Component {
         this.perform('send_message', {      id: studentID,
                                        message: message
                                      });
+      },
+      endTest: function(studentID) {
+        this.perform('end_test', { id: studentID });
       }
     });
   }
@@ -88,6 +91,12 @@ class RealTimeTest extends Component {
     this.teacherChannel.sendMessage(studentID, message)
   }
 
+  endTest = () => {
+    this.state.students.map((student) => {
+      this.teacherChannel.endTest(student.id)
+    })
+  }
+
 
   render = () => {
     if (this.state.testStart) {
@@ -99,6 +108,7 @@ class RealTimeTest extends Component {
             students={this.state.students}
             sendMessage={this.sendMessage}
           />
+          <button onClick={this.endTest}> End Test </button>
         </div>
       )
     } else {

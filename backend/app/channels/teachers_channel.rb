@@ -21,9 +21,9 @@ class TeachersChannel < ApplicationCable::Channel
     StudentsChannel.broadcast_to @student, [data["message"]]
   end
 
-  def end_test
-    # called when teacher clicks END on TEST on front end
-    # broadcast to students test is over
+  def end_test (data)
+    @student = Student.find(data["id"])
+    StudentsChannel.broadcast_to @student, [ "game", "over" ]
   end
 
   def unsubscribed
