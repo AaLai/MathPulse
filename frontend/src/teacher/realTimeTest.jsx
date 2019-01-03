@@ -58,7 +58,12 @@ class RealTimeTest extends Component {
         }
       },
       startTest: function(studentID) {
-        this.perform('start_test', {id: studentID})
+        this.perform('start_test', {id: studentID});
+      },
+      sendMessage: function(studentID, message) {
+        this.perform('send_message', {      id: studentID,
+                                       message: message
+                                     });
       }
     });
   }
@@ -78,6 +83,10 @@ class RealTimeTest extends Component {
     this.setState({testStart: "go"})
   }
 
+  sendMessage = (studentID, message) => {
+    this.teacherChannel.sendMessage(studentID, message)
+  }
+
 
   render = () => {
 
@@ -85,7 +94,10 @@ class RealTimeTest extends Component {
       return (
         <div>
           <h1> And off we go~ </h1>
-          <StudentStatsTable students={this.state.students} />
+          <StudentStatsTable
+            students={this.state.students}
+            sendMessage={this.sendMessage}
+          />
         </div>
       )
     } else {

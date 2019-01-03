@@ -15,6 +15,12 @@ class TeachersChannel < ApplicationCable::Channel
     StudentsChannel.broadcast_to @student, first_question
   end
 
+  def send_message (data)
+    # called when teacher clicks message to student
+    @student = Student.find(data["id"])
+    StudentsChannel.broadcast_to @student, [data["message"]]
+  end
+
   def end_test
     # called when teacher clicks END on TEST on front end
     # broadcast to students test is over

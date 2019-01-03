@@ -20,10 +20,8 @@ class StudentStatsTable extends Component {
     return (student[1].length + student[2].length + student[3].length + student[4].length)
   }
 
-
-  render = () => {
-
-    const studentStats = this.props.students.map((student) =>
+  makeTestGrader = (student) => {
+    return (
       <tr>
         <td>{student.name}</td>
         <td>{this.numberCorrect(student[1])} / {student[1].length}</td>
@@ -31,7 +29,22 @@ class StudentStatsTable extends Component {
         <td>{this.numberCorrect(student[3])} / {student[3].length}</td>
         <td>{this.numberCorrect(student[4])} / {student[4].length}</td>
         <td>{this.calculateTotal(student)} / {this.totalQuestions(student)}</td>
+        <td>
+          <input type="button" value="(╯°□°）╯︵ ┻━┻" onClick={() => this.props.sendMessage(student.id, "(╯°□°）╯︵ ┻━┻")} />
+          <input type="button" value="☜(⌒▽⌒)☞" onClick={() => this.props.sendMessage(student.id, "☜(⌒▽⌒)☞")} />
+          <input type="button" value="ヽ(´▽`)/" onClick={() => this.props.sendMessage(student.id, "ヽ(´▽`)/")} />
+          <input type="button" value="(◠﹏◠)" onClick={() => this.props.sendMessage(student.id, "(◠﹏◠)")} />
+          <input type="button" value="(ง'̀-'́)ง" onClick={() => this.props.sendMessage(student.id, "(ง'̀-'́)ง")} />
+        </td>
       </tr>
+    )
+  }
+
+
+  render = () => {
+
+    const studentStats = this.props.students.map((student) =>
+      this.makeTestGrader(student)
     );
 
     return (
@@ -43,6 +56,7 @@ class StudentStatsTable extends Component {
           <th> BEDMAS </th>
           <th> Algebra </th>
           <th> Total </th>
+          <th> Message </th>
         </tr>
         {studentStats}
       </table>

@@ -17,7 +17,8 @@ class QuestionHandler extends Component {
       selected_answer: null,
       level: 2,
       category_id: 1,
-      round: 1
+      round: 1,
+      message: null
     }
   }
 
@@ -34,7 +35,15 @@ class QuestionHandler extends Component {
     }, {
       connected: () => {},
       received: (data) => {
-        if (data[0].qtext) {
+        if (!data[0].qtext) {
+// This causes a teacher sent icon to pop up for 2 seconds
+// below the test
+          const deleteMessage = () => {
+            this.setState({message: null})
+          }
+          this.setState({message: data[0]})
+          setTimeout(function() {deleteMessage()}, 2000);
+        } else {
           this.setState({
             qtext: data[0].qtext,
                a1: data[0].a1,
@@ -192,6 +201,10 @@ class QuestionHandler extends Component {
             <p/>
           </form>
           <button onClick={this.submitQuestion}> SUBMIT! </button>
+          <div>
+            <h3> {this.state.message} </h3>
+          </div>
+
         </div>
       )
     }
