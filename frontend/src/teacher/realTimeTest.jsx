@@ -57,8 +57,8 @@ class RealTimeTest extends Component {
           }
         }
       },
-      startTest: function() {
-        this.perform('start_test', {data: "Run away!"})
+      startTest: function(studentID) {
+        this.perform('start_test', {id: studentID})
       }
     });
   }
@@ -72,7 +72,9 @@ class RealTimeTest extends Component {
   }
 
   startTest = () => {
-    this.teacherChannel.startTest();
+    this.state.students.map((student) => {
+      this.teacherChannel.startTest(student.id)
+    })
     this.setState({testStart: "go"})
   }
 
