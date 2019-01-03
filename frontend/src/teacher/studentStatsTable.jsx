@@ -27,7 +27,8 @@ class StudentStatsTable extends Component {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
     return (
       <tr>
-        <td>{student.name}</td>
+
+        <th scope="row">{student.name}</th>
         <td>{this.numberCorrect(student[1])} / {student[1].length}</td>
         <td>{this.numberCorrect(student[2])} / {student[2].length}</td>
         <td>{this.numberCorrect(student[3])} / {student[3].length}</td>
@@ -55,15 +56,17 @@ class StudentStatsTable extends Component {
 
     return (
       <table class="table table-striped">
+        <thead>
         <tr>
-          <th> Name </th>
-          <th> Exponents </th>
-          <th> Fractions </th>
-          <th> BEDMAS </th>
-          <th> Algebra </th>
-          <th> Total </th>
-          <th> Message </th>
+          <th scope="col"> Name </th>
+          <th scope="col"> Exponents </th>
+          <th scope="col"> Fractions </th>
+          <th scope="col"> BEDMAS </th>
+          <th scope="col"> Algebra </th>
+          <th scope="col"> Total </th>
+          <th scope="col"> Message </th>
         </tr>
+        </thead>
         {studentStats}
       </table>
     )

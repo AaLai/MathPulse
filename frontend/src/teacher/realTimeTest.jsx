@@ -93,7 +93,7 @@ class RealTimeTest extends Component {
     if (this.state.testStart) {
       return (
         <div>
-          <h1> And off we go~ </h1>
+          <p class="h2 bg-secondary text-white"> Real Time Results... </p>
           <StudentStatsTable
             students={this.state.students}
             sendMessage={this.sendMessage}
