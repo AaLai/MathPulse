@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StudentMessageButtons from './studentMessageButtons';
 
 class StudentStatsTable extends Component {
 
@@ -20,7 +21,10 @@ class StudentStatsTable extends Component {
     return (student[1].length + student[2].length + student[3].length + student[4].length)
   }
 
+// Icons can be changed based on that array, the larger the
+// array, the more buttons
   makeTestGrader = (student) => {
+    const icons = ["(╯°□°）╯︵ ┻━┻", "☜(⌒▽⌒)☞", "ヽ(´▽`)/", "(◠﹏◠)", "(ง'̀-'́)ง"]
     return (
       <tr>
         <td>{student.name}</td>
@@ -30,11 +34,13 @@ class StudentStatsTable extends Component {
         <td>{this.numberCorrect(student[4])} / {student[4].length}</td>
         <td>{this.calculateTotal(student)} / {this.totalQuestions(student)}</td>
         <td>
-          <input type="button" value="(╯°□°）╯︵ ┻━┻" onClick={() => this.props.sendMessage(student.id, "(╯°□°）╯︵ ┻━┻")} />
-          <input type="button" value="☜(⌒▽⌒)☞" onClick={() => this.props.sendMessage(student.id, "☜(⌒▽⌒)☞")} />
-          <input type="button" value="ヽ(´▽`)/" onClick={() => this.props.sendMessage(student.id, "ヽ(´▽`)/")} />
-          <input type="button" value="(◠﹏◠)" onClick={() => this.props.sendMessage(student.id, "(◠﹏◠)")} />
-          <input type="button" value="(ง'̀-'́)ง" onClick={() => this.props.sendMessage(student.id, "(ง'̀-'́)ง")} />
+          {icons.map((icon) => (
+            <StudentMessageButtons
+              student={student}
+              sendMessage={this.props.sendMessage}
+              icon={icon}
+            />
+          ))}
         </td>
       </tr>
     )
