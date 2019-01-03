@@ -24,7 +24,7 @@ class StudentStatsTable extends Component {
 // Icons can be changed based on that array, the larger the
 // array, the more buttons
   makeTestGrader = (student) => {
-    const icons = ["(╯°□°）╯︵ ┻━┻", "☜(⌒▽⌒)☞", "ヽ(´▽`)/", "(◠﹏◠)", "(ง'̀-'́)ง"]
+    const icons = ["👏", "🧠", "💯", "👍", "🐳"]
     return (
       <tr>
         <td>{student.name}</td>
