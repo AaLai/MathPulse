@@ -19,6 +19,7 @@ class QuestionHandler extends Component {
                 level: 2,
           category_id: 1,
                 round: 1,
+        questionTimer: null,
               message: null,
              testOver: null,
                 pause: null
@@ -54,7 +55,13 @@ class QuestionHandler extends Component {
           }
           this.setState({message: data[0]})
           setTimeout(function() {deleteMessage()}, 2000);
-        } else {
+        } else if (data[0].qtext) {
+// Question timer is in here, multiple timers can stack
+// Thus the clear interval
+          if (this.state.questionTimer) {
+            clearInterval(this.state.questionTimer)
+          }
+          const questionTimer = setInterval(this.submitQuestion, 25000)
           this.setState({
             qtext: data[0].qtext,
                a1: data[0].a1,
@@ -64,7 +71,8 @@ class QuestionHandler extends Component {
    correct_answer: data[0].correct_answer,
             level: data[0].level,
       category_id: data[0].category_id,
-            round: data[0].round
+            round: data[0].round,
+    questionTimer: questionTimer
           });
         }
       },
