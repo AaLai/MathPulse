@@ -50,10 +50,10 @@ class RealTimeTest extends Component {
           if (!student) {
             const newStudent = {    id: studentId,
                                   name: data[1],
-                                   '1': [[],[],[],[]],
-                                   '2': [[],[],[],[]],
-                                   '3': [[],[],[],[]],
-                                   '4': [[],[],[],[]]
+                                   '1': [ [], [], [] ],
+                                   '2': [ [], [], [] ],
+                                   '3': [ [], [], [] ],
+                                   '4': [ [], [], [] ]
                                   };
             let studentList = [...this.state.students, newStudent]
             this.setState({students: studentList})

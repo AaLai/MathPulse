@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentMessageButtons from './studentMessageButtons';
-import ShowScoreTable from './showScoreTable';
+import CreateScoreTable from './createScoreTable';
 
 class StudentStatsTable extends Component {
   constructor(props) {
@@ -19,25 +19,31 @@ class StudentStatsTable extends Component {
 
 // Icons can be changed based on that array, the larger the
 // array, the more buttons
-  makeTestGrader = (student) => {
+// Levels and Categories are the same, can be set by the teacher
+// later on if necessary
+  makeScoreTable = (student) => {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
-    return (
-      <ShowScoreTable
-        student={student}
-        sendMessage={this.props.sendMessage}
-        icons={icons}
-        selectedStudent={this.state.selectedStudent}
-        showLevels={this.showTestScores}
-        hideLevels={this.hideTestScores}
-      />
-    )
+    const levels = [ 2, 1, 0 ]
+    const categories = [ 1, 2, 3, 4 ]
+      return (
+        <CreateScoreTable
+          student={student}
+          sendMessage={this.props.sendMessage}
+          icons={icons}
+          selectedStudent={this.state.selectedStudent}
+          showLevels={this.showTestScores}
+          hideLevels={this.hideTestScores}
+          levels={levels}
+          categories={categories}
+        />
+      )
   }
 
 
   render = () => {
 
-    const studentStats = this.props.students.map((student) =>
-      this.makeTestGrader(student)
+    const scoreTable = this.props.students.map((student) =>
+      this.makeScoreTable(student)
     );
 
     return (
@@ -53,7 +59,7 @@ class StudentStatsTable extends Component {
           <th scope="col"> Message </th>
         </tr>
         </thead>
-        {studentStats}
+        {scoreTable}
       </table>
     )
   }
