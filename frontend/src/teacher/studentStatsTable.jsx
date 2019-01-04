@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import StudentMessageButtons from './studentMessageButtons';
+import ShowGradeTable from './showGradeTable';
 
 class StudentStatsTable extends Component {
 
   numberCorrect = (categoryAnswers) => {
     let correct = 0
     categoryAnswers.map((answer) => {
-      if (answer === true) {
-        correct ++;
-      }
+      answer.map((levelAnswer) => {
+        if (levelAnswer === true) {
+          correct ++;
+        }
+      })
     });
     return correct;
+  }
+
+
+  numberOfQuestions = (category) => {
+    let number = 0
+    category.map((answer) => {
+      number = number + answer.length
+    })
+    return number;
   }
 
   calculateTotal = (student) => {
@@ -18,32 +30,28 @@ class StudentStatsTable extends Component {
   }
 
   totalQuestions = (student) => {
-    return (student[1].length + student[2].length + student[3].length + student[4].length)
+    return (this.numberOfQuestions(student[1]) + this.numberOfQuestions(student[2]) + this.numberOfQuestions(student[3]) + this.numberOfQuestions(student[4]) )
+  }
+
+  showTestScores = (studentID) => {
+    this.setState({ selectedStudent: studentID })
+  }
+
+  hideTestScores = () => {
+    this.setState({ selectedStudent: null })
   }
 
 // Icons can be changed based on that array, the larger the
 // array, the more buttons
   makeTestGrader = (student) => {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
+    const categories = [ 1, 2, 3, 4]
     return (
-      <tr>
-
-        <th scope="row">{student.name}</th>
-        <td>{this.numberCorrect(student[1])} / {student[1].length}</td>
-        <td>{this.numberCorrect(student[2])} / {student[2].length}</td>
-        <td>{this.numberCorrect(student[3])} / {student[3].length}</td>
-        <td>{this.numberCorrect(student[4])} / {student[4].length}</td>
-        <td>{this.calculateTotal(student)} / {this.totalQuestions(student)}</td>
-        <td>
-          {icons.map((icon) => (
-            <StudentMessageButtons
-              student={student}
-              sendMessage={this.props.sendMessage}
-              icon={icon}
-            />
-          ))}
-        </td>
-      </tr>
+      <ShowGradeTable
+        student={student}
+        sendMessage={this.props.sendMessage}
+        icons={icons}
+      />
     )
   }
 

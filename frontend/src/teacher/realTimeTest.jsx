@@ -39,8 +39,9 @@ class RealTimeTest extends Component {
           if (student !== false) {
             const category = data[1]
             const answer = data[3]
+            const level = data[2]
             let studentList = [...this.state.students]
-            studentList[student][category].push(answer)
+            studentList[student][category][level].push(answer)
             this.setState({students: studentList})
             console.log(this.state.students)
           }
@@ -49,10 +50,10 @@ class RealTimeTest extends Component {
           if (!student) {
             const newStudent = {    id: studentId,
                                   name: data[1],
-                                   '1': [],
-                                   '2': [],
-                                   '3': [],
-                                   '4': []
+                                   '1': [[],[],[],[]],
+                                   '2': [[],[],[],[]],
+                                   '3': [[],[],[],[]],
+                                   '4': [[],[],[],[]]
                                   };
             let studentList = [...this.state.students, newStudent]
             this.setState({students: studentList})
