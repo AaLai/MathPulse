@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class StudentMessageButtons extends Component {
 
   sendMessage = (num) => {
+    num.stopPropagation();
     this.props.sendMessage(this.props.student.id, this.props.icon)
   }
 

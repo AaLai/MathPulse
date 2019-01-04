@@ -1,37 +1,13 @@
 import React, { Component } from 'react';
 import StudentMessageButtons from './studentMessageButtons';
-import ShowGradeTable from './showGradeTable';
+import ShowScoreTable from './showScoreTable';
 
 class StudentStatsTable extends Component {
-
-  numberCorrect = (categoryAnswers) => {
-    let correct = 0
-    categoryAnswers.map((answer) => {
-      answer.map((levelAnswer) => {
-        if (levelAnswer === true) {
-          correct ++;
-        }
-      })
-    });
-    return correct;
+  constructor(props) {
+    super(props)
+    this.state = { selectedStudent: null }
   }
 
-
-  numberOfQuestions = (category) => {
-    let number = 0
-    category.map((answer) => {
-      number = number + answer.length
-    })
-    return number;
-  }
-
-  calculateTotal = (student) => {
-    return (this.numberCorrect(student[1]) + this.numberCorrect(student[2]) + this.numberCorrect(student[3]) + this.numberCorrect(student[4]))
-  }
-
-  totalQuestions = (student) => {
-    return (this.numberOfQuestions(student[1]) + this.numberOfQuestions(student[2]) + this.numberOfQuestions(student[3]) + this.numberOfQuestions(student[4]) )
-  }
 
   showTestScores = (studentID) => {
     this.setState({ selectedStudent: studentID })
@@ -45,12 +21,14 @@ class StudentStatsTable extends Component {
 // array, the more buttons
   makeTestGrader = (student) => {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
-    const categories = [ 1, 2, 3, 4]
     return (
-      <ShowGradeTable
+      <ShowScoreTable
         student={student}
         sendMessage={this.props.sendMessage}
         icons={icons}
+        selectedStudent={this.state.selectedStudent}
+        showLevels={this.showTestScores}
+        hideLevels={this.hideTestScores}
       />
     )
   }
