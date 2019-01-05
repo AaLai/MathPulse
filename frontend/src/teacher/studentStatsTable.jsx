@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import StudentMessageButtons from './studentMessageButtons';
 import CreateScoreTable from './createScoreTable';
+import CreateSummaryTable from './createSummaryTable';
 
 class StudentStatsTable extends Component {
   constructor(props) {
     super(props)
-    this.state = { selectedStudent: null }
+    this.state = {
+      selectedStudent: null,
+           categories: [ 1, 2, 3, 4 ],
+               levels: [ 2, 1, 0 ]
+      }
   }
 
 
@@ -19,12 +24,8 @@ class StudentStatsTable extends Component {
 
 // Icons can be changed based on that array, the larger the
 // array, the more buttons
-// Levels and Categories are the same, can be set by the teacher
-// later on if necessary
   makeScoreTable = (student) => {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
-    const levels = [ 2, 1, 0 ]
-    const categories = [ 1, 2, 3, 4 ]
       return (
         <CreateScoreTable
           student={student}
@@ -33,8 +34,8 @@ class StudentStatsTable extends Component {
           selectedStudent={this.state.selectedStudent}
           showLevels={this.showTestScores}
           hideLevels={this.hideTestScores}
-          levels={levels}
-          categories={categories}
+          levels={this.state.levels}
+          categories={this.state.categories}
           testEnd={this.props.testEnd}
         />
       )
@@ -60,6 +61,14 @@ class StudentStatsTable extends Component {
               <th scope="col"> Total </th>
             </tr>
           </thead>
+          <CreateSummaryTable
+            levels={this.state.levels}
+            categories={this.state.categories}
+            students={this.props.students}
+            selectedStudent={this.state.selectedStudent}
+            showLevels={this.showTestScores}
+            hideLevels={this.hideTestScores}
+          />
           {scoreTable}
         </table>
       )

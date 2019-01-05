@@ -118,6 +118,22 @@ class CreateScoreTable extends Component {
           ))}
         </React.Fragment>
       )
+    } else if (this.props.testEnd) {
+      return (
+        <tr onClick={this.showDetailedScores}>
+          <th scope="row">{student.name}</th>
+          {categories.map((category) => (
+            <CreateScoreRow
+              student={student}
+              category={category}
+              numberCorrectByLevel={this.numberCorrectByLevel}
+              numberCorrect={this.numberCorrect}
+              numberOfQuestionsAnswered={this.numberOfQuestionsAnswered}
+            />
+          ))}
+          <td>{this.calculateTotalCorrect(student)} / {this.totalQuestionsAnswered(student)}</td>
+        </tr>
+      )
     } else if (this.props.selectedStudent === student.id) {
       return (
         <React.Fragment>
@@ -160,22 +176,6 @@ class CreateScoreTable extends Component {
             </tr>
           ))}
         </React.Fragment>
-      )
-    } else if (this.props.testEnd) {
-      return (
-        <tr onClick={this.showDetailedScores}>
-          <th scope="row">{student.name}</th>
-          {categories.map((category) => (
-            <CreateScoreRow
-              student={student}
-              category={category}
-              numberCorrectByLevel={this.numberCorrectByLevel}
-              numberCorrect={this.numberCorrect}
-              numberOfQuestionsAnswered={this.numberOfQuestionsAnswered}
-            />
-          ))}
-          <td>{this.calculateTotalCorrect(student)} / {this.totalQuestionsAnswered(student)}</td>
-        </tr>
       )
     } else {
       return (
