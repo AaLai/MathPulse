@@ -71,9 +71,9 @@ class TestTimer extends Component {
   totalTestTime = () => {
     let total = 0;
     if (this.state.negative) {
-      total = this.props.testTime + this.state.testTime
+      total = parseInt(this.props.testTime) + parseInt(this.state.testTime)
     } else {
-      total = this.props.testTime - this.state.testTime
+      total = parseInt(this.props.testTime) - parseInt(this.state.testTime)
     }
     this.props.totalTime(total)
     this.setState({ timeSent: true })
