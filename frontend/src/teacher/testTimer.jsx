@@ -7,7 +7,8 @@ class TestTimer extends Component {
       testTime: null,
        seconds: 59,
          pause: false,
-      negative: false
+      negative: false,
+      timeSent: null
       }
   }
 
@@ -20,8 +21,9 @@ class TestTimer extends Component {
   }
 
   timer = () => {
-    if (this.props.testEnd) {
+    if (this.props.testEnd && !this.state.timeSent) {
       clearInterval(this.state.countdown)
+      this.totalTestTime()
     } else if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
@@ -66,10 +68,27 @@ class TestTimer extends Component {
     }
   }
 
+  totalTestTime = () => {
+    let total = 0;
+    if (this.state.negative) {
+      total = this.props.testTime + this.state.testTime
+    } else {
+      total = this.props.testTime - this.state.testTime
+    }
+    this.props.totalTime(total)
+    this.setState({ timeSent: true })
+  }
+
 // Most of the logic here is used to deal with positive and
 // negative number scenarios
   render = () => {
-    if (this.state.testTime >= 0 && this.state.seconds < 10 && !this.state.negative) {
+    if (this.props.testEnd && this.state.timeSent) {
+      return (
+        <div>
+          Time taken {this.props.totalTestTime} min
+        </div>
+      )
+    } else if (this.state.testTime >= 0 && this.state.seconds < 10 && !this.state.negative) {
       return (
         <div>
           {this.state.testTime}:0{this.state.seconds}

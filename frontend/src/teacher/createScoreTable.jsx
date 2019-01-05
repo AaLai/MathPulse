@@ -84,7 +84,41 @@ class CreateScoreTable extends Component {
     const levels = this.props.levels
     const categories = this.props.categories
 
-    if (this.props.selectedStudent === student.id) {
+    if (this.props.selectedStudent === student.id && this.props.testEnd) {
+      return (
+        <React.Fragment>
+          <tr onClick={this.hideDetailedScores}>
+            <th scope="row">{student.name}</th>
+            {categories.map((category) => (
+              <CreateScoreRow
+                student={student}
+                category={category}
+                numberCorrectByLevel={this.numberCorrectByLevel}
+                numberCorrect={this.numberCorrect}
+                numberOfQuestionsAnswered={this.numberOfQuestionsAnswered}
+              />
+            ))}
+            <td>{this.calculateTotalCorrect(student)} / {this.totalQuestionsAnswered(student)}</td>
+          </tr>
+          {levels.map((level) => (
+            <tr>
+              <td> Level {level} </td>
+              {categories.map((category) => (
+                <CreateScoreRow
+                  student={student}
+                  level={level}
+                  category={category}
+                  numberCorrectByLevel={this.numberCorrectByLevel}
+                  numberCorrect={this.numberCorrect}
+                  numberOfQuestionsAnswered={this.numberOfQuestionsAnswered}
+                />
+              ))}
+              <td>{this.calculateTotalCorrectByLevel(student, level)} / {this.totalQuestionsAnsweredByLevel(student, level)}</td>
+            </tr>
+          ))}
+        </React.Fragment>
+      )
+    } else if (this.props.selectedStudent === student.id) {
       return (
         <React.Fragment>
           <tr onClick={this.hideDetailedScores}>
@@ -126,6 +160,22 @@ class CreateScoreTable extends Component {
             </tr>
           ))}
         </React.Fragment>
+      )
+    } else if (this.props.testEnd) {
+      return (
+        <tr onClick={this.showDetailedScores}>
+          <th scope="row">{student.name}</th>
+          {categories.map((category) => (
+            <CreateScoreRow
+              student={student}
+              category={category}
+              numberCorrectByLevel={this.numberCorrectByLevel}
+              numberCorrect={this.numberCorrect}
+              numberOfQuestionsAnswered={this.numberOfQuestionsAnswered}
+            />
+          ))}
+          <td>{this.calculateTotalCorrect(student)} / {this.totalQuestionsAnswered(student)}</td>
+        </tr>
       )
     } else {
       return (

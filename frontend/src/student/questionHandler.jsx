@@ -21,6 +21,7 @@ class QuestionHandler extends Component {
                 round: 1,
         questionTimer: null,
               message: null,
+         messageTimer: null,
              testOver: null,
                 pause: null
     }
@@ -41,20 +42,26 @@ class QuestionHandler extends Component {
       received: (data) => {
         if (data.length === 2) {
           this.setState({ testOver: true })
+          clearInterval(this.state.questionTimer)
         } else if (data.length === 3) {
           if (data[0] === 'pause') {
             this.setState({ pause: true })
+          clearInterval(this.state.questionTimer)
           } else {
-            this.setState({ pause: null })
+            const questionTimer = setInterval(this.submitQuestion, 25000)
+            this.setState({
+              questionTimer: questionTimer,
+                      pause: null
+                          })
           }
         } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds
 // below the test
-          const deleteMessage = () => {
-            this.setState({message: null})
-          }
-          this.setState({message: data[0]})
-          setTimeout(function() {deleteMessage()}, 2000);
+          const messageTimer = setTimeout(this.deleteMessage, 2000);
+          this.setState({
+            message: data[0],
+       messageTimer: messageTimer
+          })
         } else if (data[0].qtext) {
 // Question timer is in here, multiple timers can stack
 // Thus the clear interval
@@ -169,6 +176,11 @@ class QuestionHandler extends Component {
       return true;
     }
     return false;
+  }
+
+  deleteMessage = () => {
+    clearInterval(this.state.messageTimer)
+    this.setState({message: null})
   }
 
 

@@ -35,6 +35,7 @@ class StudentStatsTable extends Component {
           hideLevels={this.hideTestScores}
           levels={levels}
           categories={categories}
+          testEnd={this.props.testEnd}
         />
       )
   }
@@ -46,22 +47,40 @@ class StudentStatsTable extends Component {
       this.makeScoreTable(student)
     );
 
-    return (
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col"> Name </th>
-          <th scope="col"> Exponents </th>
-          <th scope="col"> Fractions </th>
-          <th scope="col"> BEDMAS </th>
-          <th scope="col"> Algebra </th>
-          <th scope="col"> Total </th>
-          <th scope="col"> Message </th>
-        </tr>
-        </thead>
-        {scoreTable}
-      </table>
-    )
+    if (this.props.testEnd) {
+      return (
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"> Name </th>
+              <th scope="col"> Exponents </th>
+              <th scope="col"> Fractions </th>
+              <th scope="col"> BEDMAS </th>
+              <th scope="col"> Algebra </th>
+              <th scope="col"> Total </th>
+            </tr>
+          </thead>
+          {scoreTable}
+        </table>
+      )
+    } else {
+      return (
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"> Name </th>
+              <th scope="col"> Exponents </th>
+              <th scope="col"> Fractions </th>
+              <th scope="col"> BEDMAS </th>
+              <th scope="col"> Algebra </th>
+              <th scope="col"> Total </th>
+              <th scope="col"> Message </th>
+            </tr>
+          </thead>
+          {scoreTable}
+        </table>
+      )
+    }
   }
 }
 

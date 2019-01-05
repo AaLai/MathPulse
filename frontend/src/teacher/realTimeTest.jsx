@@ -12,7 +12,8 @@ class RealTimeTest extends Component {
     this.state = {
        students: [],
       testStart: null,
-        testEnd: null
+        testEnd: null,
+  totalTestTime: null
     }
   }
 
@@ -111,9 +112,31 @@ class RealTimeTest extends Component {
     })
   }
 
+  totalTestTimeSet = (time) => {
+    this.setState({ totalTestTime: time })
+  }
+
 
   render = () => {
-    if (this.state.testStart) {
+    if (this.state.testEnd) {
+      return (
+        <div>
+          <p class="h2 bg-secondary text-white"> Real Time Results... </p>
+          <TestTimer
+            testTime={this.props.testTime}
+            pauseTest={this.pauseTest}
+            testEnd={this.state.testEnd}
+            totalTime={this.totalTestTimeSet}
+            totalTestTime={this.state.totalTestTime}
+          />
+          <StudentStatsTable
+            students={this.state.students}
+            sendMessage={this.sendMessage}
+            testEnd={this.state.testEnd}
+          />
+        </div>
+      )
+    } else if (this.state.testStart) {
       return (
         <div>
           <p class="h2 bg-secondary text-white"> Real Time Results... </p>
