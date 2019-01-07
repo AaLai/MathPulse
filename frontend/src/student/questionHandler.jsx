@@ -93,6 +93,7 @@ class QuestionHandler extends Component {
            category_id: data[0].category_id,
                  round: data[0].round,
          questionTimer: questionTimer,
+       selected_answer: null,
   questionAlertMessage: null,
     questionAlertTimer: alertTimer
           });
@@ -200,6 +201,27 @@ class QuestionHandler extends Component {
   }
 
 
+  CreateAnswerButtons = (props) => {
+    const answerNum = [ 'a1', 'a2', 'a3', 'a4' ]
+    return (
+      <form className="question">
+        {answerNum.map((answer) => {
+          return(
+            <React.Fragment>
+              <label >
+                <input type='radio' value={this.state[answer]}
+                  checked={this.state.selected_answer === this.state[answer]}
+                  onChange={this.buttonSelector}/>
+                {this.state[answer]}
+              </label>
+              <p/>
+            </React.Fragment>
+          )
+        })}
+      </form>
+    )
+  }
+
 // The checked and onChange functions make it so only 1 button can be
 // checked at a time
   render = () => {
@@ -228,36 +250,7 @@ class QuestionHandler extends Component {
           <h3> {this.state.qtext} </h3>
 
           {this.state.questionAlertMessage}
-          <form className="question">
-            <label >
-              <input type='radio' value={this.state.a1}
-                checked={this.state.selected_answer === this.state.a1}
-                onChange={this.buttonSelector}/>
-              {this.state.a1}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a2}
-                checked={this.state.selected_answer === this.state.a2}
-                onChange={this.buttonSelector}/>
-              {this.state.a2}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a3}
-                checked={this.state.selected_answer === this.state.a3}
-                onChange={this.buttonSelector}/>
-              {this.state.a3}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a4}
-              checked={this.state.selected_answer === this.state.a4}
-              onChange={this.buttonSelector}/>
-              {this.state.a4}
-            </label>
-            <p/>
-          </form>
+          <this.CreateAnswerButtons />
           <button class="btn btn-info" style={styleObject} onClick={this.submitQuestion}> Submit </button>
           <div>
             <h3> {this.state.message} </h3>
