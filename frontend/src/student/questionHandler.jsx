@@ -146,10 +146,18 @@ class QuestionHandler extends Component {
 
 // Functions for getting the next question
   nextCategory = (currentCategory, currentLevel, answerIsCorrect) => {
-    if (currentCategory === 4 && currentLevel === 0 && !answerIsCorrect) {
-      return 1;
+    if (currentCategory === 4 && !answerIsCorrect) {
+      if (currentLevel === 0 || currentLevel === 3) {
+        return 1;
+      } else {
+        return currentCategory;
+      }
     } else if (currentCategory === 4 && answerIsCorrect) {
       return 1;
+    } else if (currentLevel === 3) {
+      return currentCategory + 1;
+    } else if (currentLevel === 2 && answerIsCorrect) {
+      return currentCategory;
     } else if (answerIsCorrect) {
       return currentCategory + 1;
     } else if (!answerIsCorrect && currentLevel === 0) {
@@ -174,7 +182,11 @@ class QuestionHandler extends Component {
   }
 
   nextLevel = (currentLevel, answerIsCorrect) => {
-    if (!answerIsCorrect && currentLevel === 0 ) {
+    if (currentLevel === 3) {
+      return 2;
+    } else if (currentLevel === 2 && answerIsCorrect) {
+      return 3;
+    } else if (!answerIsCorrect && currentLevel === 0 ) {
       return 2;
     } else if (answerIsCorrect) {
       return 2;
