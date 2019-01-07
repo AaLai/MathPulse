@@ -210,10 +210,10 @@ class QuestionHandler extends Component {
     } else {
       return (
         <div>
-          <h1> {this.state.qtext} </h1>
-          <br/> <br/>
-          <form>
-            <label>
+          <h3> {this.state.qtext} </h3>
+
+          <form className="question">
+            <label >
               <input type='radio' value={this.state.a1}
                 checked={this.state.selected_answer === this.state.a1}
                 onChange={this.buttonSelector}/>
@@ -242,7 +242,7 @@ class QuestionHandler extends Component {
             </label>
             <p/>
           </form>
-          <button onClick={this.submitQuestion}> SUBMIT! </button>
+          <button class="btn btn-info" onClick={this.submitQuestion}> Submit </button>
           <div>
             <h3> {this.state.message} </h3>
           </div>

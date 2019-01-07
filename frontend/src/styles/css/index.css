@@ -48,3 +48,18 @@ code {
     monospace;
 }
 
+/* for questions */
+.question {
+      position:  relative;
+      border:        7px solid #acde12;
+      background-color: blanchedAlmond;
+      border-radius: 10px;
+      padding:       10px;
+      margin-top:    10px;
+      margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  margin: 4px;
+}
+
