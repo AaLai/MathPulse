@@ -23,7 +23,9 @@ class QuestionHandler extends Component {
               message: null,
          messageTimer: null,
              testOver: null,
-                pause: null
+                pause: null,
+   questionAlertTimer: null,
+ questionAlertMessage: null
     }
   }
 
@@ -43,17 +45,21 @@ class QuestionHandler extends Component {
         if (data.length === 2) {
           this.setState({ testOver: true })
           clearInterval(this.state.questionTimer)
+          clearInterval(this.state.questionAlertTimer)
         } else if (data.length === 3) {
           if (data[0] === 'pause') {
-            this.setState({ pause: true })
-          clearInterval(this.state.questionTimer)
+            this.setState({ pause: true });
+            clearInterval(this.state.questionTimer);
+            clearInterval(this.state.questionAlertTimer);
           } else {
             if (!this.state.qtext) {
               this.studentChannel.getQuestion( 1, 2, 1 )
               this.setState({pause: null})
             } else {
-              const questionTimer = setInterval(this.submitQuestion, 25000)
+              const questionTimer = setInterval(this.submitQuestion, 25000);
+              const alertTimer = setInterval(this.questionAlertMessage, 10000);
               this.setState({
+           questionAlertTimer: alertTimer,
                 questionTimer: questionTimer,
                         pause: null
               })
@@ -72,19 +78,23 @@ class QuestionHandler extends Component {
 // Thus the clear interval
           if (this.state.questionTimer) {
             clearInterval(this.state.questionTimer)
+            clearInterval(this.state.questionAlertTimer)
           }
           const questionTimer = setInterval(this.submitQuestion, 25000)
+          const alertTimer = setInterval(this.questionAlertMessage, 10000)
           this.setState({
-            qtext: data[0].qtext,
-               a1: data[0].a1,
-               a2: data[0].a2,
-               a3: data[0].a3,
-               a4: data[0].a4,
-   correct_answer: data[0].correct_answer,
-            level: data[0].level,
-      category_id: data[0].category_id,
-            round: data[0].round,
-    questionTimer: questionTimer
+                 qtext: data[0].qtext,
+                    a1: data[0].a1,
+                    a2: data[0].a2,
+                    a3: data[0].a3,
+                    a4: data[0].a4,
+        correct_answer: data[0].correct_answer,
+                 level: data[0].level,
+           category_id: data[0].category_id,
+                 round: data[0].round,
+         questionTimer: questionTimer,
+  questionAlertMessage: null,
+    questionAlertTimer: alertTimer
           });
         }
       },
@@ -118,10 +128,6 @@ class QuestionHandler extends Component {
 // handler for making radio buttons react controlled
   buttonSelector = event => {
     this.setState({selected_answer: event.target.value})
-  }
-
-  getFirstQuestion = () => {
-    this.studentChannel.getQuestion(1,2,1)
   }
 
 // Submits current question and grabs the next question from servre
@@ -188,6 +194,11 @@ class QuestionHandler extends Component {
     this.setState({message: null})
   }
 
+  questionAlertMessage = () => {
+    clearInterval(this.state.questionAlertTimer)
+    this.setState({ questionAlertMessage: "Keep trying for a few more seconds, then we'll move to the next question" })
+  }
+
 
 // The checked and onChange functions make it so only 1 button can be
 // checked at a time
@@ -207,9 +218,6 @@ class QuestionHandler extends Component {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <input type='button' value='Get Question' onClick={this.getFirstQuestion}>
-         </input>
-         <h2> {this.state.selected_answer} </h2>
         </div>
       )
     } else {
@@ -217,6 +225,7 @@ class QuestionHandler extends Component {
         <div>
           <h3> {this.state.qtext} </h3>
 
+          {this.state.questionAlertMessage}
           <form className="question">
             <label >
               <input type='radio' value={this.state.a1}

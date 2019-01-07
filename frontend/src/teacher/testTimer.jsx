@@ -118,7 +118,7 @@ class TestTimer extends Component {
       return (
         <div style={{color: 'red'}}>
           {this.state.testTime}:{this.state.seconds}
-          {this.timerButton()}
+          <this.TimerButton />
         </div>
       )
     }
