@@ -203,6 +203,8 @@ class QuestionHandler extends Component {
 // The checked and onChange functions make it so only 1 button can be
 // checked at a time
   render = () => {
+
+    const styleObject = { marginLeft: 10};
     if (this.state.testOver) {
       return (
         <img src={corgi} />
@@ -256,7 +258,7 @@ class QuestionHandler extends Component {
             </label>
             <p/>
           </form>
-          <button class="btn btn-info" onClick={this.submitQuestion}> Submit </button>
+          <button class="btn btn-info" style={styleObject} onClick={this.submitQuestion}> Submit </button>
           <div>
             <h3> {this.state.message} </h3>
           </div>
