@@ -115,6 +115,7 @@ class RealTimeTest extends Component {
   }
 
   render = () => {
+    const styleObject = { marginLeft: 10};
     if (this.state.testEnd) {
       return (
         <div>
@@ -155,7 +156,8 @@ class RealTimeTest extends Component {
           <h1> Please write {this.props.roomID} on the board! </h1>
           <h3> Online Students </h3>
           <StudentsOnlineList students={this.state.students} />
-          <button onClick={this.startTest}> Start Test </button>
+          <br/>
+          <button class="btn btn-info" style={styleObject} onClick={this.startTest}> Start Test </button>
         </div>
       )
     }

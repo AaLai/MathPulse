@@ -56,33 +56,37 @@ class StudentLogin extends React.Component {
 
 
   render = () => {
+
+    const styleObject = { marginLeft: 10};
     if (!this.state.testID) {
       return (
         <div>
+          <h3>Please enter the test ID</h3>
           <form onSubmit={this.handleSubmitTestID}>
-            <label>Please enter the test ID</label>
-            <br />
             <input
+              className="teacherinputs"
               type='text'
-              placeholder='Please enter your testID!'
+              placeholder='Your teacher should provide this...'
               onChange={this.handleChange}
             />
-            <input type='submit' />
+            <br/>
+            <input class="btn btn-info" style={styleObject} type='submit' />
           </form>
         </div>
       );
     } else if (!this.state.name) {
       return (
         <div>
-        <h2> Awesome, now please enter your name </h2>
+          <h3>Please enter your name</h3>
           <form onSubmit={this.handleSubmitName}>
-            <br />
             <input
+              className="teacherinputs"
               type='text'
-              placeholder='Please enter your Name!'
+              placeholder='Please enter your first name...'
               onChange={this.handleChange}
             />
-            <input type='submit' />
+            <br/>
+            <input class="btn btn-info" style={styleObject} type='submit' />
           </form>
         </div>
       )

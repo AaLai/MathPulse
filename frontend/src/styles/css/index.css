@@ -61,7 +61,11 @@ code {
       margin-right: 10px;
 }
 
-
+.teacherinputs {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
 
 input[type="radio"] {
   margin: 4px;

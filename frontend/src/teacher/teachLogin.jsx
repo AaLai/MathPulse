@@ -75,28 +75,34 @@ class TeacherLogin extends React.Component {
 
 
   render = () => {
+
+    const styleObject = { marginLeft: 10};
     if (!this.state.hasName) {
       return (
         <div>
           <form onSubmit={this.createTeacherName}>
-            <label>User Name</label>
-            <br />
+            <label>Please enter your name:</label>
+            <br/>
             <input
+              className="teacherinputs"
               type='text'
-              placeholder='please enter your name'
+              placeholder='eg. Ms. Kindergan'
               onChange={this.handleNameChange}
             />
-            <input type='submit' />
+            <br/>
+            <input class="btn btn-info" style={styleObject} type='submit' />
           </form>
         </div>
       );
     } else if (!this.state.isReady) {
       return (
         <div>
-        <h1> Please enter test duration in minutes </h1>
-        <input type="number" onChange={this.handleTestTimeSet}/>
-        <br/>
-        <button onClick={this.createTest}> Create Test </button>
+        <h3> In minutes, how long would you like to run this test? </h3>
+        <p>(you can pause and end the test at any time)</p>
+        <input className="teacherinputs" type="number" placeholder='enter a number like 30, 45 or 90' onChange={this.handleTestTimeSet}/>
+        <br></br>
+
+        <button class="btn btn-info" style={styleObject} onClick={this.createTest}> Create Test </button>
         </div>
       )
     } else if (this.state.isReady) {
