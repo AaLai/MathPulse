@@ -23,7 +23,6 @@ class TestTimer extends Component {
   timer = () => {
     if (this.props.testEnd && !this.state.timeSent) {
       clearInterval(this.state.countdown);
-      this.displayTotalTestTime();
     } else if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
@@ -60,14 +59,6 @@ class TestTimer extends Component {
     this.props.pauseTest('continue');
   }
 
-  timerButton = () => {
-    if (this.state.pause) {
-      return ( <button onClick={this.continue}> Continue Test </button> );
-    } else {
-      return ( <button onClick={this.pause}> Pause Test </button> );
-    }
-  }
-
   displayTotalTestTime = () => {
     let total = 0;
     if (this.state.negative) {
@@ -78,6 +69,20 @@ class TestTimer extends Component {
     this.props.totalTime(total);
     this.setState({ timeSent: true });
   }
+
+
+
+  TimerButton = (props) => {
+    if (this.props.testEnd) {
+      this.displayTotalTestTime();
+      return null
+    } else if (this.state.pause) {
+      return ( <button onClick={this.continue}> Continue Test </button> );
+    } else {
+      return ( <button onClick={this.pause}> Pause Test </button> );
+    }
+  }
+
 
 // Logic here is used to deal with positive and
 // negative minute scenarios and single digit seconds
@@ -92,21 +97,21 @@ class TestTimer extends Component {
       return (
         <div>
           {this.state.testTime}:0{this.state.seconds}
-          {this.timerButton()}
+          <this.TimerButton />
         </div>
       )
     } else if (this.state.testTime >= 0 && !this.state.negative) {
       return (
         <div>
           {this.state.testTime}:{this.state.seconds}
-          {this.timerButton()}
+          <this.TimerButton />
         </div>
       )
     } else if (this.state.negative && this.state.seconds < 10) {
       return (
         <div style={{color: 'red'}}>
           {this.state.testTime}:0{this.state.seconds}
-          {this.timerButton()}
+          <this.TimerButton />
         </div>
       )
     } else if (this.state.negative) {
