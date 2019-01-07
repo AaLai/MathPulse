@@ -12,18 +12,18 @@ class TestTimer extends Component {
       }
   }
 
-// seconds always starts at 59 so that is why
-// the initial time is reduced by 1 min
+// Sets up initial timer state
   componentDidMount = () => {
     this.setState({ testTime: this.props.testTime - 1 });
     const countdown = setInterval(this.timer, 1000);
-    this.setState({ countdown: countdown })
+    this.setState({ countdown: countdown });
   }
 
+// Timer countdown and test end logic
   timer = () => {
     if (this.props.testEnd && !this.state.timeSent) {
-      clearInterval(this.state.countdown)
-      this.totalTestTime()
+      clearInterval(this.state.countdown);
+      this.displayTotalTestTime();
     } else if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
@@ -33,7 +33,7 @@ class TestTimer extends Component {
       this.setState({
          seconds: 1,
         negative: true
-      })
+      });
     } else if (!this.state.negative && this.state.seconds === 0) {
       this.setState({
         testTime: this.state.testTime - 1,
@@ -42,45 +42,45 @@ class TestTimer extends Component {
     } else if (this.state.negative) {
       this.setState({ seconds: this.state.seconds + 1 });
     } else if (!this.state.negative) {
-      this.setState({ seconds: this.state.seconds - 1 })
+      this.setState({ seconds: this.state.seconds - 1 });
     }
   }
 
   pause = () => {
-    clearInterval(this.state.countdown)
-    this.setState({ pause: true })
-    this.props.pauseTest('pause')
+    clearInterval(this.state.countdown);
+    this.setState({ pause: true });
+    this.props.pauseTest('pause');
   }
 
   continue = () => {
-    const countdown = setInterval(this.timer, 1000)
+    const countdown = setInterval(this.timer, 1000);
     this.setState({     pause: false,
                     countdown: countdown
-                  })
-    this.props.pauseTest('continue')
+                  });
+    this.props.pauseTest('continue');
   }
 
   timerButton = () => {
     if (this.state.pause) {
-      return ( <button onClick={this.continue}> Continue Test </button> )
+      return ( <button onClick={this.continue}> Continue Test </button> );
     } else {
-      return ( <button onClick={this.pause}> Pause Test </button> )
+      return ( <button onClick={this.pause}> Pause Test </button> );
     }
   }
 
-  totalTestTime = () => {
+  displayTotalTestTime = () => {
     let total = 0;
     if (this.state.negative) {
-      total = parseInt(this.props.testTime) + parseInt(this.state.testTime)
+      total = parseInt(this.props.testTime) + parseInt(this.state.testTime);
     } else {
-      total = parseInt(this.props.testTime) - parseInt(this.state.testTime)
+      total = parseInt(this.props.testTime) - parseInt(this.state.testTime);
     }
-    this.props.totalTime(total)
-    this.setState({ timeSent: true })
+    this.props.totalTime(total);
+    this.setState({ timeSent: true });
   }
 
-// Most of the logic here is used to deal with positive and
-// negative number scenarios
+// Logic here is used to deal with positive and
+// negative minute scenarios and single digit seconds
   render = () => {
     if (this.props.testEnd && this.state.timeSent) {
       return (

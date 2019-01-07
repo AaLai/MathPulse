@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API_WS_ROOT } from '../secrets';
 import ActionCable from 'actioncable';
 import StudentsOnlineList from './studentsOnlineList';
-import StudentStatsTable from './studentStatsTable';
+import TeacherScoreBoard from './teacherScoreBoard';
 import TestTimer from './testTimer';
 
 
@@ -28,15 +28,13 @@ class RealTimeTest extends Component {
       channel: 'TeachersChannel'
     }, {
       connected: () => {},
+// Uses data array length to filter actions
+// data length 5 is for answers from the student side
+// data length 2 is for creating a new student when they log in
       received: (data) => {
-        console.log(data)
         const studentId = data[0];
         const student = this.studentFinder(studentId)
-//  This is for question answers, not used yet
-//  Not fully sure how to build yet either
-//  I'm using the length of the data array for identification
         if (data.length === 5) {
-          console.log(student)
           if (student !== false) {
             const category = data[1]
             const answer = data[3]
@@ -46,7 +44,6 @@ class RealTimeTest extends Component {
             this.setState({students: studentList})
             console.log(this.state.students)
           }
-//  For initial Student Online List
         } else if (data.length === 2) {
           if (!student) {
             const newStudent = {    id: studentId,
@@ -80,6 +77,7 @@ class RealTimeTest extends Component {
     });
   }
 
+// checks if a student exists and displays their location in array if they do
   studentFinder = (studentID) => {
     const index = this.state.students.findIndex(student => student.id === studentID)
     if (index === -1 ) {
@@ -116,7 +114,6 @@ class RealTimeTest extends Component {
     this.setState({ totalTestTime: time })
   }
 
-
   render = () => {
     if (this.state.testEnd) {
       return (
@@ -129,7 +126,7 @@ class RealTimeTest extends Component {
             totalTime={this.totalTestTimeSet}
             totalTestTime={this.state.totalTestTime}
           />
-          <StudentStatsTable
+          <TeacherScoreBoard
             students={this.state.students}
             sendMessage={this.sendMessage}
             testEnd={this.state.testEnd}
@@ -145,7 +142,7 @@ class RealTimeTest extends Component {
             pauseTest={this.pauseTest}
             testEnd={this.state.testEnd}
           />
-          <StudentStatsTable
+          <TeacherScoreBoard
             students={this.state.students}
             sendMessage={this.sendMessage}
           />

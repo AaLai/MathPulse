@@ -1,8 +1,6 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import { API_ROOT, HEADERS } from '../secrets';
 import QuestionHandler from './questionHandler'
-const cookies = new Cookies();
 
 class StudentLogin extends React.Component {
   constructor(props) {

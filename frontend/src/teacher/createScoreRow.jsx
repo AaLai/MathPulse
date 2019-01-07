@@ -1,31 +1,132 @@
 import React, { Component } from 'react';
+import StudentMessageButtons from './studentMessageButtons';
+import CreateScoreCell from './createScoreCell';
+import CreateTotalCell from './createTotalCell';
 
-// Creates each row that contains individual scores
+// Puts together the parts that make up a row on the score table
 class CreateScoreRow extends Component {
+
+// Hides and shows the levels score table
+  showDetailedScores = () => {
+    this.props.showLevels(this.props.student.id)
+  }
+
+  hideDetailedScores = () => {
+    this.props.hideLevels()
+  }
+
+
+
+
+  CreateCategoryRow = (props) => {
+    const icons = this.props.icons
+    return(
+      <tr onClick={ props.levelsHidden ? this.showDetailedScores : this.hideDetailedScores }>
+        <th scope="row">{props.student.name}</th>
+        {props.categories.map((category) => (
+          <CreateScoreCell
+            student={props.student}
+            category={category}
+          />
+        ))}
+        <CreateTotalCell
+          student={props.student}
+          categories={props.categories}
+        />
+        { props.allowMessages ? (
+          <td>
+           {icons.map((icon) => (
+              <StudentMessageButtons
+                student={this.props.student}
+                sendMessage={this.props.sendMessage}
+                icon={icon}
+              />
+            ))}
+           </td>
+        ) : ( null )}
+      </tr>
+    )
+  }
+
+  CreateLevelRows = (props) => {
+    return (
+      <React.Fragment>
+      {props.levels.map((level) => (
+        <tr>
+          <td> Level {level} </td>
+            {props.categories.map((category) => (
+              <CreateScoreCell
+                student={props.student}
+                level={level}
+                category={category}
+              />
+            ))}
+          <CreateTotalCell
+            student={props.student}
+            level={level}
+            categories={props.categories}
+          />
+        </tr>
+      ))}
+      </React.Fragment>
+    )
+  }
+
 
   render = () => {
     const student = this.props.student
-    const category = this.props.category
-    const level = this.props.level
+    const levels = this.props.levels
+    const categories = this.props.categories
 
-    if (level && this.props.summary || level === 0 && this.props.summary) {
+    if (this.props.selectedStudent === student.id && this.props.testEnd) {
       return (
-        <td>{this.props.totalCorrectAnswersByCategoryLevel(category, level)} / {this.props.totalAnswersByCategoryLevel(category, level)}</td>
+        <React.Fragment>
+          <this.CreateCategoryRow
+            student={student}
+            categories={categories}
+          />
+          <this.CreateLevelRows
+            student={student}
+            categories={categories}
+            levels={levels}
+          />
+        </React.Fragment>
       )
-    } else if (this.props.summary) {
+    } else if (this.props.testEnd) {
       return (
-        <td>{this.props.totalCorrectAnswersByCategory(category)} / {this.props.totalAnswersByCategory(category)}</td>
+        <this.CreateCategoryRow
+          student={student}
+          categories={categories}
+          levelsHidden="true"
+        />
       )
-    } else if (level || level === 0 ) {
+    } else if (this.props.selectedStudent === student.id) {
       return (
-        <td>{this.props.numberCorrectByLevel(student[category][level])} / {student[category][level].length}</td>
+        <React.Fragment>
+          <this.CreateCategoryRow
+            student={student}
+            categories={categories}
+            allowMessages="true"
+          />
+          <this.CreateLevelRows
+            student={student}
+            categories={categories}
+            levels={levels}
+          />
+        </React.Fragment>
       )
     } else {
       return (
-        <td>{this.props.numberCorrect(student[category])} / {this.props.numberOfQuestionsAnswered(student[category])}</td>
+        <this.CreateCategoryRow
+          student={student}
+          categories={categories}
+          levelsHidden="true"
+          allowMessages="true"
+        />
       )
     }
   }
+
 }
 
 export default CreateScoreRow;

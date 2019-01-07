@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import StudentMessageButtons from './studentMessageButtons';
-import CreateScoreTable from './createScoreTable';
-import CreateSummaryTable from './createSummaryTable';
+import CreateScoreRow from './createScoreRow';
+import CreateSummaryRow from './createSummaryRow';
 
-class StudentStatsTable extends Component {
+class TeacherScoreBoard extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,7 +27,7 @@ class StudentStatsTable extends Component {
   makeScoreTable = (student) => {
     const icons = ["👏", "🧠", "💯", "👍", "🐳"]
       return (
-        <CreateScoreTable
+        <CreateScoreRow
           student={student}
           sendMessage={this.props.sendMessage}
           icons={icons}
@@ -61,7 +61,7 @@ class StudentStatsTable extends Component {
               <th scope="col"> Total </th>
             </tr>
           </thead>
-          <CreateSummaryTable
+          <CreateSummaryRow
             levels={this.state.levels}
             categories={this.state.categories}
             students={this.props.students}
@@ -93,4 +93,4 @@ class StudentStatsTable extends Component {
   }
 }
 
-export default StudentStatsTable;
+export default TeacherScoreBoard;

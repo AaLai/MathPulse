@@ -1,9 +1,8 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import { API_ROOT, HEADERS } from '../secrets';
 import RealTimeTest from './realTimeTest'
-const cookies = new Cookies();
 
+// Handles teacher and test creation logic
 class TeacherLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,6 @@ class TeacherLogin extends React.Component {
 
   componentDidMount = () => {
     const rand = this.getRandomString();
-    console.log('test')
     this.setState({roomID: rand})
   }
 
@@ -30,15 +28,15 @@ class TeacherLogin extends React.Component {
     return result;
   }
 
-  handleChange = form => {
+  handleNameChange = form => {
     this.setState({ name: form.target.value });
-  };
-
-  handleTimeChange = form => {
-    this.setState({ testTime: form.target.value })
   }
 
-  handleSubmitTest = form => {
+  handleTestTimeSet = form => {
+    this.setState({ testTime: form.target.value });
+  }
+
+  createTest = form => {
     form.preventDefault();
     fetch(`${API_ROOT}/tests`, {
       method: 'POST',
@@ -51,11 +49,10 @@ class TeacherLogin extends React.Component {
       if (resp.ok) {
         this.setState({isReady: true})
       }
-    })
+    });
+  }
 
-  };
-
-  handleSubmitName = form => {
+  createTeacherName = form => {
     form.preventDefault();
     fetch(`${API_ROOT}/teachers`, {
       method: 'POST',
@@ -81,13 +78,13 @@ class TeacherLogin extends React.Component {
     if (!this.state.hasName) {
       return (
         <div>
-          <form onSubmit={this.handleSubmitName}>
+          <form onSubmit={this.createTeacherName}>
             <label>User Name</label>
             <br />
             <input
               type='text'
               placeholder='please enter your name'
-              onChange={this.handleChange}
+              onChange={this.handleNameChange}
             />
             <input type='submit' />
           </form>
@@ -96,11 +93,10 @@ class TeacherLogin extends React.Component {
     } else if (!this.state.isReady) {
       return (
         <div>
-        <h1> If we get to it, use this page to set Parameters </h1>
-        <h4>Please enter test duration in minutes </h4>
-        <input type="number" onChange={this.handleTimeChange}/>
+        <h1> Please enter test duration in minutes </h1>
+        <input type="number" onChange={this.handleTestTimeSet}/>
         <br/>
-        <button onClick={this.handleSubmitTest}> Create Test </button>
+        <button onClick={this.createTest}> Create Test </button>
         </div>
       )
     } else if (this.state.isReady) {
