@@ -13,7 +13,8 @@ class RealTimeTest extends Component {
        students: [],
       testStart: null,
         testEnd: null,
-  totalTestTime: null
+  totalTestTime: null,
+          pause: null
     }
   }
 
@@ -46,12 +47,15 @@ class RealTimeTest extends Component {
           }
         } else if (data.length === 2) {
           if (!student) {
+            if (this.state.pause) {
+              this.teacherChannel.pauseTest(studentId, "pause");
+            }
             const newStudent = {    id: studentId,
                                   name: data[1],
-                                   '1': [ [], [], [] ],
-                                   '2': [ [], [], [] ],
-                                   '3': [ [], [], [] ],
-                                   '4': [ [], [], [] ]
+                                   '1': [ [], [], [], [] ],
+                                   '2': [ [], [], [], [] ],
+                                   '3': [ [], [], [], [] ],
+                                   '4': [ [], [], [], [] ]
                                   };
             let studentList = [...this.state.students, newStudent]
             this.setState({students: studentList})
@@ -108,6 +112,7 @@ class RealTimeTest extends Component {
     this.state.students.map((student) => {
       this.teacherChannel.pauseTest(student.id, pause)
     })
+    this.setState({ pause: pause })
   }
 
   totalTestTimeSet = (time) => {

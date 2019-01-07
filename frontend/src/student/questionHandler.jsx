@@ -48,11 +48,16 @@ class QuestionHandler extends Component {
             this.setState({ pause: true })
           clearInterval(this.state.questionTimer)
           } else {
-            const questionTimer = setInterval(this.submitQuestion, 25000)
-            this.setState({
-              questionTimer: questionTimer,
-                      pause: null
-                          })
+            if (!this.state.qtext) {
+              this.studentChannel.getQuestion( 1, 2, 1 )
+              this.setState({pause: null})
+            } else {
+              const questionTimer = setInterval(this.submitQuestion, 25000)
+              this.setState({
+                questionTimer: questionTimer,
+                        pause: null
+              })
+            }
           }
         } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds
