@@ -9,7 +9,7 @@ class TeacherScoreBoard extends Component {
     this.state = {
       selectedStudent: null,
            categories: [ 1, 2, 3, 4 ],
-               levels: [ 2, 1, 0 ]
+               levels: [ 3, 2, 1, 0 ]
       }
   }
 

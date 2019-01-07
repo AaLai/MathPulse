@@ -23,7 +23,9 @@ class QuestionHandler extends Component {
               message: null,
          messageTimer: null,
              testOver: null,
-                pause: null
+                pause: null,
+   questionAlertTimer: null,
+ questionAlertMessage: null
     }
   }
 
@@ -43,16 +45,25 @@ class QuestionHandler extends Component {
         if (data.length === 2) {
           this.setState({ testOver: true })
           clearInterval(this.state.questionTimer)
+          clearInterval(this.state.questionAlertTimer)
         } else if (data.length === 3) {
           if (data[0] === 'pause') {
-            this.setState({ pause: true })
-          clearInterval(this.state.questionTimer)
+            this.setState({ pause: true });
+            clearInterval(this.state.questionTimer);
+            clearInterval(this.state.questionAlertTimer);
           } else {
-            const questionTimer = setInterval(this.submitQuestion, 25000)
-            this.setState({
-              questionTimer: questionTimer,
-                      pause: null
-                          })
+            if (!this.state.qtext) {
+              this.studentChannel.getQuestion( 1, 2, 1 )
+              this.setState({pause: null})
+            } else {
+              const questionTimer = setInterval(this.submitQuestion, 25000);
+              const alertTimer = setInterval(this.questionAlertMessage, 10000);
+              this.setState({
+           questionAlertTimer: alertTimer,
+                questionTimer: questionTimer,
+                        pause: null
+              })
+            }
           }
         } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds
@@ -67,19 +78,24 @@ class QuestionHandler extends Component {
 // Thus the clear interval
           if (this.state.questionTimer) {
             clearInterval(this.state.questionTimer)
+            clearInterval(this.state.questionAlertTimer)
           }
           const questionTimer = setInterval(this.submitQuestion, 25000)
+          const alertTimer = setInterval(this.questionAlertMessage, 10000)
           this.setState({
-            qtext: data[0].qtext,
-               a1: data[0].a1,
-               a2: data[0].a2,
-               a3: data[0].a3,
-               a4: data[0].a4,
-   correct_answer: data[0].correct_answer,
-            level: data[0].level,
-      category_id: data[0].category_id,
-            round: data[0].round,
-    questionTimer: questionTimer
+                 qtext: data[0].qtext,
+                    a1: data[0].a1,
+                    a2: data[0].a2,
+                    a3: data[0].a3,
+                    a4: data[0].a4,
+        correct_answer: data[0].correct_answer,
+                 level: data[0].level,
+           category_id: data[0].category_id,
+                 round: data[0].round,
+         questionTimer: questionTimer,
+       selected_answer: null,
+  questionAlertMessage: null,
+    questionAlertTimer: alertTimer
           });
         }
       },
@@ -115,10 +131,6 @@ class QuestionHandler extends Component {
     this.setState({selected_answer: event.target.value})
   }
 
-  getFirstQuestion = () => {
-    this.studentChannel.getQuestion(1,2,1)
-  }
-
 // Submits current question and grabs the next question from servre
 // console logs are debuggers, uncomment them to see how to code works
   submitQuestion = () => {
@@ -134,10 +146,18 @@ class QuestionHandler extends Component {
 
 // Functions for getting the next question
   nextCategory = (currentCategory, currentLevel, answerIsCorrect) => {
-    if (currentCategory === 4 && currentLevel === 0 && !answerIsCorrect) {
-      return 1;
+    if (currentCategory === 4 && !answerIsCorrect) {
+      if (currentLevel === 0 || currentLevel === 3) {
+        return 1;
+      } else {
+        return currentCategory;
+      }
     } else if (currentCategory === 4 && answerIsCorrect) {
       return 1;
+    } else if (currentLevel === 3) {
+      return currentCategory + 1;
+    } else if (currentLevel === 2 && answerIsCorrect) {
+      return currentCategory;
     } else if (answerIsCorrect) {
       return currentCategory + 1;
     } else if (!answerIsCorrect && currentLevel === 0) {
@@ -162,7 +182,11 @@ class QuestionHandler extends Component {
   }
 
   nextLevel = (currentLevel, answerIsCorrect) => {
-    if (!answerIsCorrect && currentLevel === 0 ) {
+    if (currentLevel === 3) {
+      return 2;
+    } else if (currentLevel === 2 && answerIsCorrect) {
+      return 3;
+    } else if (!answerIsCorrect && currentLevel === 0 ) {
       return 2;
     } else if (answerIsCorrect) {
       return 2;
@@ -183,6 +207,32 @@ class QuestionHandler extends Component {
     this.setState({message: null})
   }
 
+  questionAlertMessage = () => {
+    clearInterval(this.state.questionAlertTimer)
+    this.setState({ questionAlertMessage: "Keep trying for a few more seconds, then we'll move to the next question" })
+  }
+
+
+  CreateAnswerButtons = (props) => {
+    const answerNum = [ 'a1', 'a2', 'a3', 'a4' ]
+    return (
+      <form className="question">
+        {answerNum.map((answer) => {
+          return(
+            <React.Fragment>
+              <label >
+                <input type='radio' value={this.state[answer]}
+                  checked={this.state.selected_answer === this.state[answer]}
+                  onChange={this.buttonSelector}/>
+                {this.state[answer]}
+              </label>
+              <p/>
+            </React.Fragment>
+          )
+        })}
+      </form>
+    )
+  }
 
 // The checked and onChange functions make it so only 1 button can be
 // checked at a time
@@ -204,9 +254,6 @@ class QuestionHandler extends Component {
       return (
         <div>
          <img src={logo} className="App-logo" alt="logo" />
-         <input type='button' value='Get Question' onClick={this.getFirstQuestion}>
-         </input>
-         <h2> {this.state.selected_answer} </h2>
         </div>
       )
     } else {
@@ -214,36 +261,8 @@ class QuestionHandler extends Component {
         <div>
           <h3> {this.state.qtext} </h3>
 
-          <form className="question">
-            <label >
-              <input type='radio' value={this.state.a1}
-                checked={this.state.selected_answer === this.state.a1}
-                onChange={this.buttonSelector}/>
-              {this.state.a1}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a2}
-                checked={this.state.selected_answer === this.state.a2}
-                onChange={this.buttonSelector}/>
-              {this.state.a2}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a3}
-                checked={this.state.selected_answer === this.state.a3}
-                onChange={this.buttonSelector}/>
-              {this.state.a3}
-            </label>
-            <p/>
-            <label>
-              <input type='radio' value={this.state.a4}
-              checked={this.state.selected_answer === this.state.a4}
-              onChange={this.buttonSelector}/>
-              {this.state.a4}
-            </label>
-            <p/>
-          </form>
+          {this.state.questionAlertMessage}
+          <this.CreateAnswerButtons />
           <button class="btn btn-info" style={styleObject} onClick={this.submitQuestion}> Submit </button>
           <div>
             <h3> {this.state.message} </h3>
