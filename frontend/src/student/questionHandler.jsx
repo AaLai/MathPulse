@@ -252,6 +252,8 @@ class QuestionHandler extends Component {
     } else if (!this.state.qtext) {
       return (
         <div>
+         <h3>Waiting for the Test to Start</h3>
+         <p>(hold your phone up so your Teacher knows you're ready)</p>
          <img src={logo} className="App-logo" alt="logo" />
         </div>
       )

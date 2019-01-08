@@ -89,6 +89,8 @@ class TestTimer extends Component {
 // Logic here is used to deal with positive and
 // negative minute scenarios and single digit seconds
   render = () => {
+    const styleObject = {float: 'right', marginRight: 10, marginTop: 5};
+    const styleObjectRed = {float: 'right', marginRight: 10, marginTop: 5, color: 'red'};
 
     if (this.props.testEnd && this.state.timeSent) {
       return (
@@ -98,29 +100,29 @@ class TestTimer extends Component {
       )
     } else if (this.state.testTime >= 0 && this.state.seconds < 10 && !this.state.negative) {
       return (
-        <div style={{float: 'right', marginRight: 10}}>
+        <div style={styleObject}>
           {this.state.testTime}:0{this.state.seconds}
           <this.TimerButton />
         </div>
       )
     } else if (this.state.testTime >= 0 && !this.state.negative) {
       return (
-        <div style={{float: 'right', marginRight: 10}}>
+        <div style={styleObject}>
           {this.state.testTime}:{this.state.seconds}
           <this.TimerButton />
         </div>
       )
     } else if (this.state.negative && this.state.seconds < 10) {
       return (
-        <div style={{color: 'red'}}>
-          {this.state.testTime}:0{this.state.seconds}
+        <div style={styleObjectRed}>
+          <p style={{ display: 'inline-block', marginRight: 3 }}>Extra Time: </p>{this.state.testTime}:0{this.state.seconds}
           <this.TimerButton />
         </div>
       )
     } else if (this.state.negative) {
       return (
-        <div style={{color: 'red'}}>
-          {this.state.testTime}:{this.state.seconds}
+        <div style={styleObjectRed}>
+          <p style={{ display: 'inline-block', marginRight: 3 }}>Extra Time: </p>{this.state.testTime}:{this.state.seconds}
           <this.TimerButton />
         </div>
       )
