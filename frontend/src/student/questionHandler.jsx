@@ -3,6 +3,7 @@ import { API_WS_ROOT } from '../secrets';
 import logo from '../images/logo.svg';
 import ActionCable from 'actioncable';
 import corgi from '../images/corgiFinisher.jpg'
+import standby from '../images/standby.jpeg'
 
 // Main component for students
 // Handles websocket and question logic
@@ -244,9 +245,9 @@ class QuestionHandler extends Component {
     } else if (this.state.pause) {
       return (
         <div>
-          <h3>Your teacher has paused the test, take a break. </h3>
+          <h3>Your teacher has paused the test...</h3>
           <br/>
-          <h2>😌</h2>
+          <img src={standby} />
         </div>
       )
     } else if (!this.state.qtext) {
