@@ -71,18 +71,49 @@ input[type="radio"] {
   margin: 4px;
 }
 
+
 .corgiFinish {
-  animation: Corgi-Entry 2s ease-out; 
+  animation: Corgi-Entry 2s ease-out;
   width: 100%
 }
 
 @keyframes Corgi-Entry {
-  0% { 
+  0% {
     height: 0%;
     width: 0%;
     margin-right: 99%;
      }
-  100% { 
+  100% {
     width: 100%;
-    transform: rotate(1440deg); } 
+    transform: rotate(1440deg); }
 }
+
+.example-enter {
+  opacity: 0.01;
+  background-color: red;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.example-appear {
+  opacity: 0.01;
+  background-color: red;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
