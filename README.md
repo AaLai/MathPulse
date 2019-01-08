@@ -15,8 +15,8 @@ Base build
 * A results summary is generated at the end of the assessment
 
 ## Screenshots
-!["Teacher Scoreboard"]()
-!["Student Question"]()
+!["Teacher Scoreboard"](https://github.com/67millwood/grade10math/blob/development/frontend/src/images/teacherScoreBoard.png?raw=true)
+!["Student Question"](https://github.com/67millwood/grade10math/blob/development/frontend/src/images/studentQuestion.png?raw=true)
 
 ## Setup
 
