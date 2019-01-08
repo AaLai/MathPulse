@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import StudentMessageButtons from './studentMessageButtons';
 import CreateScoreRow from './createScoreRow';
 import CreateSummaryRow from './createSummaryRow';
 
