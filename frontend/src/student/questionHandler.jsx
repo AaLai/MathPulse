@@ -240,7 +240,7 @@ class QuestionHandler extends Component {
     const styleObject = { marginLeft: 10};
     if (this.state.testOver) {
       return (
-        <img src={corgi} />
+        <img src={corgi} class="corgiFinish" />
       )
     } else if (this.state.pause) {
       return (
