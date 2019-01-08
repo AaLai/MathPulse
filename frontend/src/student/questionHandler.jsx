@@ -50,24 +50,18 @@ class QuestionHandler extends Component {
           clearInterval(this.state.questionAlertTimer);
         } else if (data.length === 3) {
 // Pause and unpause functionality
-// Will also send first question to students who join late
           if (data[0] === 'pause') {
             this.setState({ pause: true });
             clearInterval(this.state.questionTimer);
             clearInterval(this.state.questionAlertTimer);
           } else {
-            if (!this.state.qtext) {
-              this.studentChannel.getQuestion( 1, 2, 1 );
-              this.setState({pause: null});
-            } else {
-              const questionTimer = setInterval(this.submitQuestion, 25000);
-              const alertTimer = setInterval(this.questionAlertMessage, 10000);
-              this.setState({
+            const questionTimer = setInterval(this.submitQuestion, 25000);
+            const alertTimer = setInterval(this.questionAlertMessage, 10000);
+            this.setState({
            questionAlertTimer: alertTimer,
                 questionTimer: questionTimer,
                         pause: null
-              });
-            }
+            });
           }
         } else if (!data[0].qtext) {
 // This causes a teacher sent icon to pop up for 2 seconds

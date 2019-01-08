@@ -20,6 +20,7 @@ class StudentLogin extends React.Component {
 
   checkIfTestExists = form => {
     form.preventDefault();
+    form.target.reset();
     const test = this.state.formField
     fetch(`${API_ROOT}/tests/${test}/`)
       .then (res => {
