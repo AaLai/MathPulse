@@ -38,11 +38,14 @@ class App extends Component {
     }
     else {
       return (
+
         <div>
-          <button type="button" class="btn btn-primary" onClick={this.changeToTeacher}> Teacher </button>
-          <br/>
-          <br/>
-          <button type="button" class="btn btn-primary" onClick={this.changeToStudent}> Student </button>
+          <h3>Welcome to MathPulse</h3>
+          <p>Please select 'Teacher' or 'Student' to begin</p>
+          <button type="button" class="btn btn-primary" style={{marginLeft: 10}} onClick={this.changeToTeacher}> Teacher </button>
+
+
+          <button type="button" class="btn btn-primary" style={{marginLeft: 10}} onClick={this.changeToStudent}> Student </button>
         </div>
       );
     }

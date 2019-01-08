@@ -89,6 +89,7 @@ class TestTimer extends Component {
 // Logic here is used to deal with positive and
 // negative minute scenarios and single digit seconds
   render = () => {
+    const styleObject = {float: 'right', marginRight: 10, marginTop: 5};
 
     if (this.props.testEnd && this.state.timeSent) {
       return (
@@ -98,14 +99,14 @@ class TestTimer extends Component {
       )
     } else if (this.state.testTime >= 0 && this.state.seconds < 10 && !this.state.negative) {
       return (
-        <div style={{float: 'right', marginRight: 10}}>
+        <div style={styleObject}>
           {this.state.testTime}:0{this.state.seconds}
           <this.TimerButton />
         </div>
       )
     } else if (this.state.testTime >= 0 && !this.state.negative) {
       return (
-        <div style={{float: 'right', marginRight: 10}}>
+        <div style={styleObject}>
           {this.state.testTime}:{this.state.seconds}
           <this.TimerButton />
         </div>

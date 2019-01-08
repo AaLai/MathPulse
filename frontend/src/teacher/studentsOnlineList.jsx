@@ -10,7 +10,9 @@ class StudentsOnlineList extends Component {
     );
 
     if (this.props.students.length === 0) {
-      return 'Students will appear automatically as they sign in...';
+      return (
+        <p>Students will appear <b><u>here</u></b> automatically as they sign in...</p>
+        )
     } else {
       return (
         <ul class="list-group">

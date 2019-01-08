@@ -125,7 +125,7 @@ class RealTimeTest extends Component {
 
   render = () => {
 
-    const styleObject = { marginLeft: 10};
+    const styleObject = { float: 'right', backgroundColor: '#dc3545', marginRight: 10, marginTop: 5};
     if (this.state.testEnd) {
       return (
         <div>
@@ -148,7 +148,7 @@ class RealTimeTest extends Component {
       return (
         <div>
           <h3 style={{display: 'inline-block'}}> Real Time Results: <span class="badge badge-secondary">{this.props.roomID}</span></h3>
-          <button class="btn btn-info" style={{float: 'right', backgroundColor: '#dc3545', marginRight: 10}}onClick={this.endTest}> End Test </button>
+          <button class="btn btn-info" style={styleObject} onClick={this.endTest}> End Test </button>
 
           <TestTimer
             testTime={this.props.testTime}
@@ -164,11 +164,12 @@ class RealTimeTest extends Component {
     } else {
       return (
         <div>
-          <h1> Please write {this.props.roomID} on the board! </h1>
+          <h1 style={{display: 'inline-block'}}> Test Code: <span class="badge badge-secondary">{this.props.roomID}</span></h1>
+          <button class="btn btn-info" style={styleObject} onClick={this.startTest}> Start Test </button>
+          <br/>
           <h3> Online Students </h3>
           <StudentsOnlineList students={this.state.students} />
           <br/>
-          <button class="btn btn-info" style={styleObject} onClick={this.startTest}> Start Test </button>
         </div>
       )
     }

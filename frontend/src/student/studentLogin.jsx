@@ -64,7 +64,7 @@ class StudentLogin extends React.Component {
     if (!this.state.testID) {
       return (
         <div>
-          <h3>Please enter the test ID</h3>
+          <h3>Please enter the test code</h3>
           <form onSubmit={this.checkIfTestExists}>
             <input
               className="teacherinputs"
