@@ -153,7 +153,11 @@ class QuestionHandler extends Component {
         return currentCategory;
       }
     } else if (currentCategory === 4 && answerIsCorrect) {
-      return 1;
+      if (currentLevel === 2) {
+        return currentCategory;
+      } else {
+        return 1;
+      }
     } else if (currentLevel === 3) {
       return currentCategory + 1;
     } else if (currentLevel === 2 && answerIsCorrect) {
