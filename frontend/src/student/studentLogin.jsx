@@ -2,6 +2,8 @@ import React from 'react';
 import { API_ROOT, HEADERS } from '../secrets';
 import QuestionHandler from './questionHandler'
 
+// Creates student on server side and makes sure
+// student joins an already existing test
 class StudentLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -16,9 +18,9 @@ class StudentLogin extends React.Component {
     this.setState({ formField: form.target.value });
   };
 
-
-  handleSubmitTestID = form => {
+  checkIfTestExists = form => {
     form.preventDefault();
+    form.target.reset();
     const test = this.state.formField
     fetch(`${API_ROOT}/tests/${test}/`)
       .then (res => {
@@ -27,16 +29,17 @@ class StudentLogin extends React.Component {
           .then( testdata => {
             if (testdata !== null) {
               this.setState({ testID: testdata.id,
-                           formField: null});
+                           formField: null
+                           });
             } else {
-              alert('That test doesn\'t exist, please try again')
+              alert('That test doesn\'t exist, please try again');
             }
-          })
+          });
         }
-      })
+      });
   };
 
-  handleSubmitName = form => {
+  createStudent = form => {
     form.preventDefault();
     fetch(`${API_ROOT}/students`, {
       method: 'POST',
@@ -47,11 +50,11 @@ class StudentLogin extends React.Component {
       })
     }).then( resp => {
       if (resp.ok) {
-        this.setState({greenCircleOfDeath: 'ok',
-                                     name: this.state.formField,
-                                formField: null});
+        this.setState({     name: this.state.formField,
+                       formField: null
+                     });
       }
-    })
+    });
   }
 
 
@@ -62,7 +65,7 @@ class StudentLogin extends React.Component {
       return (
         <div>
           <h3>Please enter the test ID</h3>
-          <form onSubmit={this.handleSubmitTestID}>
+          <form onSubmit={this.checkIfTestExists}>
             <input
               className="teacherinputs"
               type='text'
@@ -78,7 +81,7 @@ class StudentLogin extends React.Component {
       return (
         <div>
           <h3>Please enter your name</h3>
-          <form onSubmit={this.handleSubmitName}>
+          <form onSubmit={this.createStudent}>
             <input
               className="teacherinputs"
               type='text'

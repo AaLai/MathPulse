@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-// Creates each cell that contains individual scores
+// Handles logic and display for the cells showing
+// category or level totals in the summary row
 class CreateSummaryTotalCell extends Component {
 
   totalCorrectAnswers = () => {
@@ -19,7 +20,7 @@ class CreateSummaryTotalCell extends Component {
     return total;
   }
 
-  totalAnswers = () => {
+  totalQuestionsAnswered = () => {
     let total = 0;
     this.props.categories.map((category) => {
       this.props.students.map((student) => {
@@ -45,7 +46,7 @@ class CreateSummaryTotalCell extends Component {
     return total;
   }
 
-  totalAnswersByLevel = (level) => {
+  totalQuestionsAnsweredByLevel = (level) => {
     let total = 0
     this.props.students.map((student) => {
       this.props.categories.map((category) => {
@@ -60,15 +61,14 @@ class CreateSummaryTotalCell extends Component {
 
     if ( level || level === 0 ) {
       return (
-        <td>{this.totalCorrectAnswersByLevel(level)} / {this.totalAnswersByLevel(level)}</td>
+        <td>{this.totalCorrectAnswersByLevel(level)} / {this.totalQuestionsAnsweredByLevel(level)}</td>
       )
     } else {
       return (
-        <td>{this.totalCorrectAnswers()} / {this.totalAnswers()}</td>
+        <td>{this.totalCorrectAnswers()} / {this.totalQuestionsAnswered()}</td>
       )
     }
   }
-
 }
 
 export default CreateSummaryTotalCell;

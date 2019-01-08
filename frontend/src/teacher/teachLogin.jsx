@@ -18,7 +18,7 @@ class TeacherLogin extends React.Component {
 
   componentDidMount = () => {
     const rand = this.getRandomString();
-    this.setState({roomID: rand})
+    this.setState({roomID: rand});
   }
 
   getRandomString = () => {
@@ -47,7 +47,7 @@ class TeacherLogin extends React.Component {
       })
     }).then( resp => {
       if (resp.ok) {
-        this.setState({isReady: true})
+        this.setState({isReady: true});
       }
     });
   }
@@ -61,7 +61,7 @@ class TeacherLogin extends React.Component {
     })
     .then( resp => {
       if (resp.ok) {
-        this.getTeacherId()
+        this.getTeacherId();
       }
     });
   };

@@ -5,7 +5,8 @@ import StudentsOnlineList from './studentsOnlineList';
 import TeacherScoreBoard from './teacherScoreBoard';
 import TestTimer from './testTimer';
 
-
+// Main component for teachers
+// Handles Websockets and student array
 class RealTimeTest extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class RealTimeTest extends Component {
       connected: () => {},
 // Uses data array length to filter actions
 // data length 5 is for answers from the student side
-// data length 2 is for creating a new student when they log in
+// data length 2 is for creating a new student when they log in along with late student logic
       received: (data) => {
         const studentId = data[0];
         const student = this.studentFinder(studentId)
@@ -43,12 +44,14 @@ class RealTimeTest extends Component {
             let studentList = [...this.state.students]
             studentList[student][category][level].push(answer)
             this.setState({students: studentList})
-            console.log(this.state.students)
           }
         } else if (data.length === 2) {
           if (!student) {
-            if (this.state.pause) {
+            if (this.state.pause === 'pause') {
               this.teacherChannel.pauseTest(studentId, "pause");
+            }
+            if (this.state.testStart) {
+              this.teacherChannel.startTest(studentId);
             }
             const newStudent = {    id: studentId,
                                   name: data[1],
@@ -97,8 +100,11 @@ class RealTimeTest extends Component {
     this.setState({testStart: "go"})
   }
 
-  sendMessage = (studentID, message) => {
-    this.teacherChannel.sendMessage(studentID, message)
+  pauseTest = (pause) => {
+    this.state.students.map((student) => {
+      this.teacherChannel.pauseTest(student.id, pause)
+    })
+    this.setState({ pause: pause })
   }
 
   endTest = () => {
@@ -108,18 +114,17 @@ class RealTimeTest extends Component {
     })
   }
 
-  pauseTest = (pause) => {
-    this.state.students.map((student) => {
-      this.teacherChannel.pauseTest(student.id, pause)
-    })
-    this.setState({ pause: pause })
+  sendMessage = (studentID, message) => {
+    this.teacherChannel.sendMessage(studentID, message)
   }
 
   totalTestTimeSet = (time) => {
     this.setState({ totalTestTime: time })
   }
 
+
   render = () => {
+
     const styleObject = { marginLeft: 10};
     if (this.state.testEnd) {
       return (

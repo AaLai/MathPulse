@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-// Calculations for category and level summary cells
+// Creates a cell that shows indiviual category
+// or level scores in the summary row
 class CreateSummaryCell extends Component {
 
   totalCorrectAnswersByCategory = (category) => {

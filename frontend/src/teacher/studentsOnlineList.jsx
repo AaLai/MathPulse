@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Displays students as they log into the test websocket
 class StudentsOnlineList extends Component {
 
   render = () => {

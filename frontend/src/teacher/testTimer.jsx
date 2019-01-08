@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// handles logic and display for test timer along with
+// final test time calculation
 class TestTimer extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,7 @@ class TestTimer extends Component {
   }
 
 
-
+// functional component pause button
   TimerButton = (props) => {
     if (this.props.testEnd) {
       return null;
@@ -87,6 +89,7 @@ class TestTimer extends Component {
 // Logic here is used to deal with positive and
 // negative minute scenarios and single digit seconds
   render = () => {
+
     if (this.props.testEnd && this.state.timeSent) {
       return (
         <div>

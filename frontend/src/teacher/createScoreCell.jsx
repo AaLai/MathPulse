@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-// Creates each cell that contains individual scores
+// Creates a cell that contains individual scores for
+// category or level
 class CreateScoreCell extends Component {
 
-  // Used for calculating correct answers
   numberCorrect = (categoryAnswers) => {
     let correct = 0
     categoryAnswers.map((answer) => {
@@ -34,7 +34,8 @@ class CreateScoreCell extends Component {
     return number;
   }
 
-
+// Decides whether to make a category or level cell based on
+// if a level props is passed down
   render = () => {
     const student = this.props.student
     const category = this.props.category

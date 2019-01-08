@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import CreateSummaryCell from './createSummaryCell'
 import CreateSummaryTotalCell from './createSummaryTotalCell'
 
+// Combines summary cells to create a summary row
+// Handles show and hide row logic
 class CreateSummaryRow extends Component {
 
 
-// Hides and shows the levels score table
+// Hides and shows the level rows
   showDetailedScores = () => {
     this.props.showLevels('summary')
   }
@@ -14,7 +16,7 @@ class CreateSummaryRow extends Component {
     this.props.hideLevels()
   }
 
-
+// functional components to create level or category rows
   CreateSummaryCategoryRow = (props) => {
     return(
       <tr onClick={props.levelsHidden ? this.showDetailedScores : this.hideDetailedScores}>
