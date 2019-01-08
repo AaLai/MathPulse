@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'
 
 // Displays students as they log into the test websocket
 class StudentsOnlineList extends Component {
@@ -16,7 +17,14 @@ class StudentsOnlineList extends Component {
     } else {
       return (
         <ul class="list-group">
+          <CSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000}
+          transitionLeave={false}>
           {studentsOnline}
+          </CSSTransitionGroup>
         </ul>
       )
     };
