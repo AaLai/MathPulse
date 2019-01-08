@@ -95,14 +95,14 @@ class TestTimer extends Component {
       )
     } else if (this.state.testTime >= 0 && this.state.seconds < 10 && !this.state.negative) {
       return (
-        <div>
+        <div style={{float: 'right', marginRight: 10}}>
           {this.state.testTime}:0{this.state.seconds}
           <this.TimerButton />
         </div>
       )
     } else if (this.state.testTime >= 0 && !this.state.negative) {
       return (
-        <div>
+        <div style={{float: 'right', marginRight: 10}}>
           {this.state.testTime}:{this.state.seconds}
           <this.TimerButton />
         </div>

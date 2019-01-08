@@ -154,7 +154,6 @@ class RealTimeTest extends Component {
             students={this.state.students}
             sendMessage={this.sendMessage}
           />
-          <button onClick={this.endTest}> End Test </button>
         </div>
       )
     } else {
