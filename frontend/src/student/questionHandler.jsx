@@ -4,7 +4,8 @@ import logo from '../logo.svg';
 import ActionCable from 'actioncable';
 import corgi from '../corgiFinisher.jpg'
 
-
+// Main component for students
+// Handles websocket and question logic
 class QuestionHandler extends Component {
   constructor(props) {
     super(props);
@@ -43,18 +44,21 @@ class QuestionHandler extends Component {
       connected: () => {},
       received: (data) => {
         if (data.length === 2) {
-          this.setState({ testOver: true })
-          clearInterval(this.state.questionTimer)
-          clearInterval(this.state.questionAlertTimer)
+// Test end functionality
+          this.setState({ testOver: true });
+          clearInterval(this.state.questionTimer);
+          clearInterval(this.state.questionAlertTimer);
         } else if (data.length === 3) {
+// Pause and unpause functionality
+// Will also send first question to students who join late
           if (data[0] === 'pause') {
             this.setState({ pause: true });
             clearInterval(this.state.questionTimer);
             clearInterval(this.state.questionAlertTimer);
           } else {
             if (!this.state.qtext) {
-              this.studentChannel.getQuestion( 1, 2, 1 )
-              this.setState({pause: null})
+              this.studentChannel.getQuestion( 1, 2, 1 );
+              this.setState({pause: null});
             } else {
               const questionTimer = setInterval(this.submitQuestion, 25000);
               const alertTimer = setInterval(this.questionAlertMessage, 10000);
@@ -62,7 +66,7 @@ class QuestionHandler extends Component {
            questionAlertTimer: alertTimer,
                 questionTimer: questionTimer,
                         pause: null
-              })
+              });
             }
           }
         } else if (!data[0].qtext) {
@@ -77,11 +81,11 @@ class QuestionHandler extends Component {
 // Question timer is in here, multiple timers can stack
 // Thus the clear interval
           if (this.state.questionTimer) {
-            clearInterval(this.state.questionTimer)
-            clearInterval(this.state.questionAlertTimer)
+            clearInterval(this.state.questionTimer);
+            clearInterval(this.state.questionAlertTimer);
           }
-          const questionTimer = setInterval(this.submitQuestion, 25000)
-          const alertTimer = setInterval(this.questionAlertMessage, 10000)
+          const questionTimer = setInterval(this.submitQuestion, 25000);
+          const alertTimer = setInterval(this.questionAlertMessage, 10000);
           this.setState({
                  qtext: data[0].qtext,
                     a1: data[0].a1,
@@ -104,7 +108,7 @@ class QuestionHandler extends Component {
           category: cat,
              level: lvl,
              round: round
-        })
+        });
       },
       sendAnswer: function(cat, lvl, selectedAnswer, correctAnswer) {
         if ( selectedAnswer === correctAnswer) {
@@ -126,22 +130,19 @@ class QuestionHandler extends Component {
     });
   }
 
-// handler for making radio buttons react controlled
+
   buttonSelector = event => {
-    this.setState({selected_answer: event.target.value})
+    this.setState({selected_answer: event.target.value});
   }
 
-// Submits current question and grabs the next question from servre
-// console logs are debuggers, uncomment them to see how to code works
+// Submits current question and grabs the next question from server
   submitQuestion = () => {
     const answerIsCorrect = this.answerChecker();
     const nextCategory = this.nextCategory(this.state.category_id, this.state.level, answerIsCorrect);
     const nextRound = this.nextRound(this.state.round, this.state.category_id, this.state.level, answerIsCorrect);
     const nextLevel = this.nextLevel(this.state.level, answerIsCorrect);
-    // console.log('currentlevel', this.state.level, 'currentcategory', this.state.category_id, 'currentround', this.state.round);
     this.studentChannel.sendAnswer(this.state.category_id, this.state.level, this.state.selected_answer, this.state.correct_answer);
     this.studentChannel.getQuestion(nextCategory, nextLevel, nextRound);
-    // console.log('newlevel', nextLevel, 'category', nextCategory, 'round', nextRound)
   }
 
 // Functions for getting the next question
@@ -171,8 +172,7 @@ class QuestionHandler extends Component {
     }
   }
 
-// I currently have this going in an infinite loop, take out the
-// change the first 'if' if you want it to stop
+
   nextRound = (currentRound, currentCategory, currentLevel, answerIsCorrect) => {
     if (currentCategory === 4 && currentRound === 4) {
       return 0;
@@ -206,17 +206,18 @@ class QuestionHandler extends Component {
     return false;
   }
 
+// Functions to handle teacher message and question timer message
   deleteMessage = () => {
-    clearInterval(this.state.messageTimer)
-    this.setState({message: null})
+    clearInterval(this.state.messageTimer);
+    this.setState({message: null});
   }
 
   questionAlertMessage = () => {
-    clearInterval(this.state.questionAlertTimer)
-    this.setState({ questionAlertMessage: "Keep trying for a few more seconds, then we'll move to the next question" })
+    clearInterval(this.state.questionAlertTimer);
+    this.setState({ questionAlertMessage: "Keep trying for a few more seconds, then we'll move to the next question" });
   }
 
-
+// Creates answer buttons based
   CreateAnswerButtons = (props) => {
     const answerNum = [ 'a1', 'a2', 'a3', 'a4' ]
     return (
@@ -238,8 +239,7 @@ class QuestionHandler extends Component {
     )
   }
 
-// The checked and onChange functions make it so only 1 button can be
-// checked at a time
+
   render = () => {
 
     const styleObject = { marginLeft: 10};

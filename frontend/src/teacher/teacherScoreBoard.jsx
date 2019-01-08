@@ -3,6 +3,8 @@ import StudentMessageButtons from './studentMessageButtons';
 import CreateScoreRow from './createScoreRow';
 import CreateSummaryRow from './createSummaryRow';
 
+// Handles top level data for real time scoreboard and logic for
+// hiding and showing rows
 class TeacherScoreBoard extends Component {
   constructor(props) {
     super(props)
@@ -12,7 +14,6 @@ class TeacherScoreBoard extends Component {
                levels: [ 3, 2, 1, 0 ]
       }
   }
-
 
   showTestScores = (studentID) => {
     this.setState({ selectedStudent: studentID })

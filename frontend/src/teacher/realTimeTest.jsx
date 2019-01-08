@@ -5,7 +5,8 @@ import StudentsOnlineList from './studentsOnlineList';
 import TeacherScoreBoard from './teacherScoreBoard';
 import TestTimer from './testTimer';
 
-
+// Main component for teachers
+// Handles Websockets and student array
 class RealTimeTest extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +48,7 @@ class RealTimeTest extends Component {
           }
         } else if (data.length === 2) {
           if (!student) {
-            if (this.state.pause) {
+            if (this.state.pause === 'pause') {
               this.teacherChannel.pauseTest(studentId, "pause");
             }
             const newStudent = {    id: studentId,
@@ -97,8 +98,11 @@ class RealTimeTest extends Component {
     this.setState({testStart: "go"})
   }
 
-  sendMessage = (studentID, message) => {
-    this.teacherChannel.sendMessage(studentID, message)
+  pauseTest = (pause) => {
+    this.state.students.map((student) => {
+      this.teacherChannel.pauseTest(student.id, pause)
+    })
+    this.setState({ pause: pause })
   }
 
   endTest = () => {
@@ -108,18 +112,17 @@ class RealTimeTest extends Component {
     })
   }
 
-  pauseTest = (pause) => {
-    this.state.students.map((student) => {
-      this.teacherChannel.pauseTest(student.id, pause)
-    })
-    this.setState({ pause: pause })
+  sendMessage = (studentID, message) => {
+    this.teacherChannel.sendMessage(studentID, message)
   }
 
   totalTestTimeSet = (time) => {
     this.setState({ totalTestTime: time })
   }
 
+
   render = () => {
+
     const styleObject = { marginLeft: 10};
     if (this.state.testEnd) {
       return (

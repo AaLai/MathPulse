@@ -3,10 +3,11 @@ import StudentMessageButtons from './studentMessageButtons';
 import CreateScoreCell from './createScoreCell';
 import CreateTotalCell from './createTotalCell';
 
-// Puts together the parts that make up a row on the score table
+// Puts together the parts that make up a student row on the score table
+// Handles logic for showing or hiding level rows
 class CreateScoreRow extends Component {
 
-// Hides and shows the levels score table
+// Hides and shows the levels rows
   showDetailedScores = () => {
     this.props.showLevels(this.props.student.id)
   }
@@ -15,9 +16,7 @@ class CreateScoreRow extends Component {
     this.props.hideLevels()
   }
 
-
-
-
+// functional components for creating category or level rows
   CreateCategoryRow = (props) => {
     const icons = this.props.icons
     return(
