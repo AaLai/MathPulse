@@ -77,9 +77,9 @@ class TestTimer extends Component {
       this.displayTotalTestTime();
       return null
     } else if (this.state.pause) {
-      return ( <button onClick={this.continue}> Continue Test </button> );
+      return ( <button class="btn btn-info" onClick={this.continue}> Continue Test </button> );
     } else {
-      return ( <button onClick={this.pause}> Pause Test </button> );
+      return ( <button class="btn btn-info" onClick={this.pause}> Pause Test </button> );
     }
   }
 
