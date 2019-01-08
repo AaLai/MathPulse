@@ -22,7 +22,7 @@ class TestTimer extends Component {
 // Timer countdown and test end logic
   timer = () => {
     if (this.props.testEnd && !this.state.timeSent) {
-      clearInterval(this.state.countdown);
+      this.displayTotalTestTime();
     } else if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
@@ -67,6 +67,7 @@ class TestTimer extends Component {
       total = parseInt(this.props.testTime) - parseInt(this.state.testTime);
     }
     this.props.totalTime(total);
+    clearInterval(this.state.countdown);
     this.setState({ timeSent: true });
   }
 
@@ -74,8 +75,7 @@ class TestTimer extends Component {
 
   TimerButton = (props) => {
     if (this.props.testEnd) {
-      this.displayTotalTestTime();
-      return null
+      return null;
     } else if (this.state.pause) {
       return ( <button class="btn btn-info" onClick={this.continue}> Continue Test </button> );
     } else {
