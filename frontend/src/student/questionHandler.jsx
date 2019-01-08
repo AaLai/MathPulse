@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { API_WS_ROOT } from '../secrets';
-import logo from '../logo.svg';
+import logo from '../images/logo.svg';
 import ActionCable from 'actioncable';
-import corgi from '../corgiFinisher.jpg'
+import corgi from '../images/corgiFinisher.jpg'
 
 // Main component for students
 // Handles websocket and question logic
@@ -244,8 +244,9 @@ class QuestionHandler extends Component {
     } else if (this.state.pause) {
       return (
         <div>
-          Your teacher has paused the test, take a break <br/>
-          😌
+          <h3>Your teacher has paused the test, take a break. </h3>
+          <br/>
+          <h2>😌</h2>
         </div>
       )
     } else if (!this.state.qtext) {
