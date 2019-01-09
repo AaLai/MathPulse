@@ -247,7 +247,7 @@ class QuestionHandler extends Component {
         <div>
           <h3>Your teacher has paused the test...</h3>
           <br/>
-          <img src={standby} />
+          <img src={standby} class="standBy"/>
         </div>
       )
     } else if (!this.state.qtext) {

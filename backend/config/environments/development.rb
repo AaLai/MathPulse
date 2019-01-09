@@ -44,8 +44,10 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # First is the location of /cable, please change if not using ngrok
+  # Second is allows requests for CORS
   config.action_cable.url = 'wss://localhost:3006/cable',
-  config.action_cable.allowed_request_origins = [ 'https://mathpulse.herokuapp.com']
+  config.action_cable.allowed_request_origins = [ 'http://mathpulse.herokuapp.com', 'https://mathpulse.herokuapp.com', 'http://localhost:3000']
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

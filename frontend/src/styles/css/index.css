@@ -88,6 +88,10 @@ input[type="radio"] {
     transform: rotate(1440deg); }
 }
 
+.standBy {
+  width: 100%
+}
+
 .example-enter {
   opacity: 0.01;
   background-color: red;
