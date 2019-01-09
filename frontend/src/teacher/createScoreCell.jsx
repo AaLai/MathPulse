@@ -12,6 +12,8 @@ class CreateScoreCell extends Component {
                  }
   }
 
+// Logic for notification animation
+// setTimeout changes animation length
   componentDidMount = () => {
     if (!this.props.testEnd) {
       if (this.props.level || this.props.level === 0 ) {
@@ -69,6 +71,7 @@ class CreateScoreCell extends Component {
     this.setState({ animate: false })
   }
 
+// Calculates the numbers displayed in the cell
   numberCorrect = (categoryAnswers) => {
     let correct = 0
     categoryAnswers.map((answer) => {
