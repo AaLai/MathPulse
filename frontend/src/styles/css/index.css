@@ -92,6 +92,16 @@ input[type="radio"] {
   width: 100%
 }
 
+.toWhite {
+  background: white;
+  transition: background 1s;
+}
+
+.toGreen {
+  background: limegreen;
+  transition: background 1s; 
+}
+
 .example-enter {
   opacity: 0.01;
   background-color: red;

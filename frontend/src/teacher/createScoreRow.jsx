@@ -26,6 +26,8 @@ class CreateScoreRow extends Component {
           <CreateScoreCell
             student={props.student}
             category={category}
+            levelsHidden={props.levelsHidden}
+            testEnd={this.props.testEnd}
           />
         ))}
         <CreateTotalCell
@@ -58,6 +60,7 @@ class CreateScoreRow extends Component {
                 student={props.student}
                 level={level}
                 category={category}
+                testEnd={this.props.testEnd}
               />
             ))}
           <CreateTotalCell

@@ -3,6 +3,71 @@ import React, { Component } from 'react';
 // Creates a cell that contains individual scores for
 // category or level
 class CreateScoreCell extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+                  update: 0,
+                 animate: false,
+               lastTotal: false
+                 }
+  }
+
+  componentDidMount = () => {
+    if (!this.props.testEnd) {
+      if (this.props.level || this.props.level === 0 ) {
+        const currentTotal = this.props.student[this.props.category][this.props.level].length
+        this.setState({ lastTotal: currentTotal })
+      }
+    }
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (!this.props.testEnd) {
+      const currentLevel = this.props.level
+      const currentCategory = this.props.category
+      const currentStudent = this.props.student
+
+      if ( currentLevel || currentLevel === 0 ) {
+        const currentTotal = currentStudent[currentCategory][currentLevel].length
+        if ( this.state.lastTotal != currentTotal) {
+          if (this.state.update === 0 ) {
+            const newUpdate = this.state.update + 1
+            this.setState({ update: newUpdate })
+          } else {
+            setTimeout( this.fadeOut, 500);
+            const newUpdate = this.state.update + 1
+            this.setState({ update: newUpdate,
+                           animate: true,
+                         lastTotal: currentTotal
+                         })
+          }
+        }
+      } else if ( this.props.levelsHidden ) {
+        const currentTotal = this.numberOfQuestionsAnswered(currentStudent[currentCategory])
+        console.log(this.state.lastTotal, currentTotal)
+        if (this.state.lastTotal != currentTotal) {
+          if (this.state.update === 0 ) {
+            const newUpdate = this.state.update + 1
+            this.setState({ update: newUpdate })
+          } else {
+            setTimeout( this.fadeOut, 500);
+            const newUpdate = this.state.update + 1
+            this.setState({ update: newUpdate,
+                           animate: true,
+                         lastTotal: currentTotal
+                         })
+          }
+        }
+      } else if ( this.state.lastTotal != this.numberOfQuestionsAnswered(currentStudent[currentCategory])) {
+        const currentTotal = this.numberOfQuestionsAnswered(currentStudent[currentCategory])
+        this.setState ({ lastTotal: currentTotal })
+      }
+    }
+  }
+
+  fadeOut = () => {
+    this.setState({ animate: false })
+  }
 
   numberCorrect = (categoryAnswers) => {
     let correct = 0
@@ -43,11 +108,11 @@ class CreateScoreCell extends Component {
 
     if (level || level === 0 ) {
       return (
-        <td>{this.numberCorrectByLevel(student[category][level])} / {student[category][level].length}</td>
+        <td key={student+category+level} class={this.state.animate ? "toGreen" : "toWhite"}>{this.numberCorrectByLevel(student[category][level])} / {student[category][level].length}</td>
       )
     } else {
       return (
-        <td>{this.numberCorrect(student[category])} / {this.numberOfQuestionsAnswered(student[category])}</td>
+        <td key={student+category} class={this.state.animate ? "toGreen" : "toWhite"}>{this.numberCorrect(student[category])} / {this.numberOfQuestionsAnswered(student[category])}</td>
       )
     }
   }
