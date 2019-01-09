@@ -17,7 +17,7 @@ class TeacherLogin extends React.Component {
   }
 
   componentDidMount = () => {
-    const rand = this.getRandomString();
+    const rand = this.getRandomString().toUpperCase();
     this.setState({roomID: rand});
   }
 
