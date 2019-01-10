@@ -50,7 +50,7 @@ cat3 = Category.create!({name: 'Algebra', catnum: 4})
 
 categories = [cat0, cat1, cat2, cat3]
 questions = ["What is 3 squared?", "What is three quarters of 5?", "What comes first * or +?", "If x = 6 what is 3x?"]
-
+answers = [['3^2', '5', '0'], ['4', '1/2', '0.33'], ['2', 'Undefined', '0'], ['1', '3/4', '0']]
 
 ## PRODUCTS
 
@@ -61,10 +61,10 @@ puts "Re-creating Questions ..."
     4.times do |index|
       categories[x].questions.create!({
       qtext:  questions[x],
-      a1: Faker::Name.unique.name,
-      a2: Faker::Name.unique.name,
+      a1: rand(5..9).to_s + '/' + rand(2..4).to_s,
+      a2: rand(0..2).to_s,
       a3: 'Correct Answer',
-      a4: Faker::Name.unique.name,
+      a4: rand(1..6).to_s + '^' + rand(1..4).to_s,
       correct_answer: 'Correct Answer',
       level: index,
       round: y
