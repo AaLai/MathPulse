@@ -27,12 +27,23 @@ class QuestionHandler extends Component {
              testOver: null,
                 pause: null,
    questionAlertTimer: null,
- questionAlertMessage: null
+ questionAlertMessage: null,
+              animate: null
     }
   }
 
   componentDidMount = () => {
     this.createSocketStudent();
+  }
+
+// Handles state changes needed to animate questions
+  componentDidUpdate = (prevProps, prevState) => {
+    const currentLevel = this.state.level
+    const currentCategory = this.state.category_id
+    if (prevState.level !== currentLevel || prevState.category_id !== currentCategory ) {
+      setTimeout( this.animateQuestion, 1000)
+      this.setState({ animate: true })
+    }
   }
 
 
@@ -125,6 +136,9 @@ class QuestionHandler extends Component {
     });
   }
 
+  animateQuestion = () => {
+    this.setState({animate: null});
+  }
 
   buttonSelector = event => {
     this.setState({selected_answer: event.target.value});
@@ -260,7 +274,7 @@ class QuestionHandler extends Component {
       )
     } else {
       return (
-        <div>
+        <div class={this.state.animate ? "questionStart" : "questionEnd"}>
           <h3> {this.state.qtext} </h3>
 
           {this.state.questionAlertMessage}

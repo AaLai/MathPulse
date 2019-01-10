@@ -102,6 +102,16 @@ input[type="radio"] {
   transition: background 1s; 
 }
 
+.questionStart {
+  opacity: 0;
+  transition: opacity 0.01s;
+}
+
+.questionEnd {
+  opacity: 1;
+  transition: opacity 0.05s;
+}
+
 .example-enter {
   opacity: 0.01;
   background-color: red;

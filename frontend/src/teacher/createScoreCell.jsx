@@ -31,35 +31,10 @@ class CreateScoreCell extends Component {
 
       if ( currentLevel || currentLevel === 0 ) {
         const currentTotal = currentStudent[currentCategory][currentLevel].length
-        if ( this.state.lastTotal != currentTotal) {
-          if (this.state.update === 0 ) {
-            const newUpdate = this.state.update + 1
-            this.setState({ update: newUpdate })
-          } else {
-            setTimeout( this.fadeOut, 500);
-            const newUpdate = this.state.update + 1
-            this.setState({ update: newUpdate,
-                           animate: true,
-                         lastTotal: currentTotal
-                         })
-          }
-        }
+        this.animateAnswerCell(currentTotal);
       } else if ( this.props.levelsHidden ) {
         const currentTotal = this.numberOfQuestionsAnswered(currentStudent[currentCategory])
-        console.log(this.state.lastTotal, currentTotal)
-        if (this.state.lastTotal != currentTotal) {
-          if (this.state.update === 0 ) {
-            const newUpdate = this.state.update + 1
-            this.setState({ update: newUpdate })
-          } else {
-            setTimeout( this.fadeOut, 500);
-            const newUpdate = this.state.update + 1
-            this.setState({ update: newUpdate,
-                           animate: true,
-                         lastTotal: currentTotal
-                         })
-          }
-        }
+        this.animateAnswerCell(currentTotal);
       } else if ( this.state.lastTotal != this.numberOfQuestionsAnswered(currentStudent[currentCategory])) {
         const currentTotal = this.numberOfQuestionsAnswered(currentStudent[currentCategory])
         this.setState ({ lastTotal: currentTotal })
@@ -69,6 +44,22 @@ class CreateScoreCell extends Component {
 
   fadeOut = () => {
     this.setState({ animate: false })
+  }
+
+  animateAnswerCell = (currentTotal) => {
+    if (this.state.lastTotal != currentTotal) {
+      if (this.state.update === 0 ) {
+        const newUpdate = this.state.update + 1
+        this.setState({ update: newUpdate })
+      } else {
+        setTimeout( this.fadeOut, 500);
+        const newUpdate = this.state.update + 1
+        this.setState({ update: newUpdate,
+                       animate: true,
+                     lastTotal: currentTotal
+                      })
+      }
+    }
   }
 
 // Calculates the numbers displayed in the cell
