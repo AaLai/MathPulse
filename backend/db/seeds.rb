@@ -63,9 +63,9 @@ puts "Re-creating Questions ..."
       qtext:  questions[x],
       a1: Faker::Name.unique.name,
       a2: Faker::Name.unique.name,
-      a3: 'bingo',
+      a3: 'Correct Answer',
       a4: Faker::Name.unique.name,
-      correct_answer: 'bingo',
+      correct_answer: 'Correct Answer',
       level: index,
       round: y
     })
