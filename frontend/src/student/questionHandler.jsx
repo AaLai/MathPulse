@@ -41,7 +41,7 @@ class QuestionHandler extends Component {
     const currentLevel = this.state.level
     const currentCategory = this.state.category_id
     if (prevState.level !== currentLevel || prevState.category_id !== currentCategory ) {
-      setTimeout( this.animateQuestion, 1000)
+      setTimeout( this.animateQuestion, 500)
       this.setState({ animate: true })
     }
   }

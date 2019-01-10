@@ -99,7 +99,7 @@ input[type="radio"] {
 
 .toGreen {
   background: limegreen;
-  transition: background 1s; 
+  transition: background 1s;
 }
 
 .questionStart {
@@ -109,7 +109,7 @@ input[type="radio"] {
 
 .questionEnd {
   opacity: 1;
-  transition: opacity 0.05s;
+  transition: opacity 500ms ease-in;
 }
 
 .example-enter {
