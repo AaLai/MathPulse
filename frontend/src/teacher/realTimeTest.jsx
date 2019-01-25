@@ -134,7 +134,6 @@ class RealTimeTest extends Component {
             testTime={this.props.testTime}
             pauseTest={this.pauseTest}
             testEnd={this.state.testEnd}
-            totalTime={this.totalTestTimeSet}
             totalTestTime={this.state.totalTestTime}
           />
           <TeacherScoreBoard
@@ -154,6 +153,7 @@ class RealTimeTest extends Component {
             testTime={this.props.testTime}
             pauseTest={this.pauseTest}
             testEnd={this.state.testEnd}
+            totalTime={this.totalTestTimeSet}
           />
           <TeacherScoreBoard
             students={this.state.students}

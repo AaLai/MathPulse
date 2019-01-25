@@ -21,11 +21,13 @@ class TestTimer extends Component {
     this.setState({ countdown: countdown });
   }
 
+  componentWillUnmount = () => {
+    this.displayTotalTestTime();
+  }
+
 // Timer countdown and test end logic
   timer = () => {
-    if (this.props.testEnd && !this.state.timeSent) {
-      this.displayTotalTestTime();
-    } else if (this.state.negative && this.state.seconds === 59) {
+    if (this.state.negative && this.state.seconds === 59) {
       this.setState({
         testTime: this.state.testTime + 1,
          seconds: 0
@@ -92,7 +94,7 @@ class TestTimer extends Component {
     const styleObject = {float: 'right', marginRight: 10, marginTop: 5};
     const styleObjectRed = {float: 'right', marginRight: 10, marginTop: 5, color: 'red'};
 
-    if (this.props.testEnd && this.state.timeSent) {
+    if (this.props.testEnd) {
       return (
         <div>
           Time taken {this.props.totalTestTime} min
